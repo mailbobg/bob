@@ -327,6 +327,19 @@
   }
   .reflect .body .mute { color: var(--mute-2); }
 
+  /* monospace formula inline — keeps the Scene-Mode equation visually distinct */
+  .formula {
+    font-family: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 0.86em;
+    background: rgba(138, 101, 55, 0.08);
+    color: #8a6537;
+    padding: 0.12em 0.5em;
+    border-radius: 2px;
+    letter-spacing: -0.005em;
+    white-space: nowrap;
+  }
+  @media (max-width: 720px) { .formula { white-space: normal; } }
+
   /* ──────────────── NEXT + FOOT ──────────────── */
   .next-band {
     background: var(--paper-2);
@@ -422,7 +435,7 @@
 
 <!-- §1 — FULL-BLEED OVERVIEW VIDEO -->
 <section class="stage tall">
-  <img src="./PDS/section-1.png" alt="Vehicle Design Studio — Design Operating System" style="width:100%;height:100%;object-fit:cover;display:block;">
+  <img src="./PDS/dashboard.png" alt="Product Design Studio dashboard — live counts of Domains, Features, Product Functions, Scenes; AI Tasks pane" style="width:100%;height:100%;object-fit:cover;display:block;">
 </section>
 
 <!-- §2 — Voice -->
@@ -430,10 +443,10 @@
   <div class="chapter reveal">
     <div class="eyebrow" data-i18n="c2_eye">CHAPTER 01</div>
     <h2 data-i18n-html="c2_h">Voice, parsed <span class="mute">in under a second.</span></h2>
-    <p class="lede" data-i18n="c2_lede">Speech analysis runs on-device. The cabin acts on the dimension a driver is least equipped to manage themselves — their own state.</p>
+    <p class="lede" data-i18n-html="c2_lede">Speech analysis runs on-device. The cabin acts on the dimension a driver is least equipped to manage themselves — their own state.</p>
   </div>
   <div class="chapter-media reveal">
-    <div class="frame"><img src="./PDS/section-2.png" alt="The Role of AI — reasoning over product definitions"></div>
+    <div class="frame"><img src="./PDS/domain.png" alt="Domain Master Library — 11 canonical domains, Smart Cabin selected with 12 features and 88 product functions"></div>
   </div>
   <div class="chapter-cap reveal">
     <p data-i18n="c2_p1">The system listens for paralinguistic features — pace, pitch contour, breathiness — not the words. Nothing leaves the car.</p>
@@ -449,9 +462,9 @@
     <p class="lede" data-i18n="c3_lede">Lighting, music and climate move together, never individually. You feel a room turn — not three sliders.</p>
   </div>
   <div class="triptych reveal">
-    <div class="cell"><img src="./PDS/section-3.png" alt="Reason over definitions"><div class="tag" data-i18n-html="t_calm">CALM · <b>Soft Cyan</b></div></div>
-    <div class="cell"><img src="./PDS/section-4.png" alt="Extend existing logic"><div class="tag" data-i18n-html="t_neutral">NEUTRAL · <b>Warm White</b></div></div>
-    <div class="cell"><img src="./PDS/section-5.png" alt="Stress-test decisions"><div class="tag" data-i18n-html="t_stress">STRESSED · <b>Warm Amber</b></div></div>
+    <div class="cell"><img src="./PDS/feature.png" alt="Feature Master Library — 54 features"><div class="tag" data-i18n-html="t_calm">REASON · <b>over 54 Features</b></div></div>
+    <div class="cell"><img src="./PDS/product-function.png" alt="Product Function Master Library — 299 product functions"><div class="tag" data-i18n-html="t_neutral">EXTEND · <b>across 299 Functions</b></div></div>
+    <div class="cell"><img src="./PDS/tech-function.png" alt="Tech Function Master Library — leaf-level tech functions linked to product functions"><div class="tag" data-i18n-html="t_stress">STRESS-TEST · <b>via Tech Functions</b></div></div>
   </div>
   <div class="chapter-cap reveal" style="margin-top: 8vh">
     <p data-i18n="c3_p1">Each state is a small composition — a color temperature, a track, a fan speed, a sentence of explanation. We designed them like rooms in a hotel, not like presets in an app.</p>
@@ -463,10 +476,10 @@
   <div class="chapter reveal">
     <div class="eyebrow" data-i18n="c4_eye">CHAPTER 03</div>
     <h2 data-i18n-html="c4_h">Routes that <span class="mute">read the room.</span></h2>
-    <p class="lede" data-i18n="c4_lede">The same state vector reaches navigation. A stressed driver gets a longer, calmer route by default. An alternative is always one tap away.</p>
+    <p class="lede" data-i18n-html="c4_lede">The same state vector reaches navigation. A stressed driver gets a longer, calmer route by default. An alternative is always one tap away.</p>
   </div>
   <div class="chapter-media reveal">
-    <div class="frame"><img src="./PDS/section-3.png" alt="Scene-Based Definition — products defined through dynamic scenarios"></div>
+    <div class="frame"><img src="./PDS/scene-design.png" alt="Design Your Scene — three-column workflow: Context &amp; Scope · Scene Definition · Refine &amp; Generate"></div>
   </div>
   <div class="chapter-cap reveal">
     <p data-i18n="c4_p1">A good route card is a good concierge: state the choice clearly, offer a single alternative, name the trade-off in plain English. Anything more is a tax on a driver already deciding twenty things per minute.</p>
@@ -479,16 +492,16 @@
   <h2 data-i18n-html="stats_h">A brief in, a cabin out, <span class="mute">— in ninety seconds.</span></h2>
   <div class="stat-row">
     <div class="stat">
-      <div class="num">4</div>
-      <div class="lbl" data-i18n="s1_lbl">CORE COMPONENTS</div>
+      <div class="num">11</div>
+      <div class="lbl" data-i18n="s1_lbl">DOMAINS</div>
     </div>
     <div class="stat">
-      <div class="num">7</div>
-      <div class="lbl" data-i18n="s2_lbl">EXPERIENCE DIMENSIONS</div>
+      <div class="num">54</div>
+      <div class="lbl" data-i18n="s2_lbl">FEATURES</div>
     </div>
     <div class="stat">
-      <div class="num">5</div>
-      <div class="lbl" data-i18n="s3_lbl">SYSTEM DIMENSIONS</div>
+      <div class="num">299</div>
+      <div class="lbl" data-i18n="s3_lbl">PRODUCT FUNCTIONS</div>
     </div>
   </div>
 </section>
@@ -501,7 +514,7 @@
     <p class="lede" data-i18n="c6_lede">One editor pane. One live cabin preview. The brief is the design file.</p>
   </div>
   <div class="chapter-media reveal">
-    <div class="frame"><img src="./PDS/section-6.png" alt="Define with intent. Build with confidence." style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+    <div class="frame"><img src="./PDS/scene-mode.png" alt="Scene-Mode Master Library — Scene-Mode = f(User Intent, Situation Context, User State, Experience Goal)" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
   </div>
   <div class="chapter-cap reveal">
     <p data-i18n="c6_p1">Every sentence in the brief is parsed into a constraint. "The car is a daily commuter for an introvert" is a different sentence than "the car is a Friday weekend toy" — the model composes the cabin against those constraints.</p>
@@ -557,36 +570,36 @@
 
       c2_eye: "CHAPTER 01",
       c2_h: "Not a tool. <span class='mute'>An operating system.</span>",
-      c2_lede: "Scene Design, Master Library, Artifact Checkpoint and Competitor Intelligence work as one definition stack — the substrate teams compose on, not yet another canvas.",
-      c2_p1: "3,400 engineering requirements abstracted into ~250 reusable product functions. A structured vocabulary teams compose against, instead of writing a fresh feature list every cycle.",
-      c2_p2: "Every artifact is traceable: scene → interaction → function → spec. No more orphan PRDs. No more lost rationale between rev 3 and shipping.",
+      c2_lede: "A four-tier taxonomy — <b>11 Domains</b> → <b>54 Features</b> → <b>299 Product Functions</b> → indexed Tech Functions — runs underneath Scene Design, Master Library, Artifact Checkpoint and Competitive Intelligence. One definition stack, one source of truth.",
+      c2_p1: "Every artifact is traceable: scene → interaction → function → spec. From the Dashboard down to a single Tech Function (TF-xxxxx), each ID carries its lineage, status, and the team conversations that produced it.",
+      c2_p2: "Background AI Tasks — scene generation, flowchart synthesis, scene-preview generation — surface on the Dashboard with auto-refresh, so no model decision is anonymous. The studio is the operating layer, not yet another brainstorming canvas.",
 
       c3_eye: "CHAPTER 02",
-      c3_h: "AI reasons over <span class='mute'>definitions.</span>",
-      c3_lede: "It does not invent them. The model extends existing logic patterns, stress-tests decisions, and surfaces gaps inside the constraints you wrote.",
-      c3_p1: "Strict boundaries by design: the model cannot invent principles, break established rules, or make irreversible choices without human oversight. Every output sits inside the rules your team already set.",
-      t_calm: "REASON · <b>over definitions</b>", t_neutral: "EXTEND · <b>existing logic</b>", t_stress: "STRESS-TEST · <b>decisions</b>",
+      c3_h: "AI reasons over <span class='mute'>your definitions.</span>",
+      c3_lede: "DeepSeek powers the reasoning — but the model never invents principles. It composes against the Master Library, stress-tests scene coverage, and surfaces gaps inside the constraints your team already wrote.",
+      c3_p1: "Every AI call lands in AI Call History; every long-running job becomes a tracked AI Task. The pipeline is auditable end-to-end — no anonymous generation, no irreversible writes without human review. AI Model Settings expose the knobs; nothing else is hidden.",
+      t_calm: "REASON · <b>over 54 Features</b>", t_neutral: "EXTEND · <b>across 299 Functions</b>", t_stress: "STRESS-TEST · <b>via Tech Functions</b>",
 
       c4_eye: "CHAPTER 03",
       c4_h: "Scene-based <span class='mute'>definition.</span>",
-      c4_lede: "Reject the feature list. Define products through dynamic scenarios — actual user interactions across seven dimensions: visual, auditory, tactile, olfactory, thermal, kinetic, temporal.",
-      c4_p1: "Reuse scenes through variants, not duplicates. Freeze logic before assets. Communicate via scenes across teams. The studio rewards reuse and punishes one-off invention.",
+      c4_lede: "The founding formula, written into the Master Library: <span class='formula'>Scene-Mode = f(User Intent, Situation Context, User State, Experience Goal)</span>. Reject the feature list — define products through dynamic scenarios across seven sensory dimensions.",
+      c4_p1: "Two dozen canonical Scene Modes seed the library — Morning Preparation, Commute, Arrival, Departure, Comfort Drive, Eco Drive, Cinema, Gaming, Lock &amp; Leave, and more. Each Mode owns its scenes; scenes own their flowcharts; flowcharts ground every spec the studio emits.",
 
-      stats_eye: "BY THE NUMBERS",
-      stats_h: "From fuzzy intent to shippable spec, <span class='mute'>— one stack.</span>",
-      s1_lbl: "CORE COMPONENTS", s2_lbl: "EXPERIENCE DIMENSIONS", s3_lbl: "SYSTEM DIMENSIONS",
+      stats_eye: "LIVE FROM THE DASHBOARD",
+      stats_h: "Counts from the master library, <span class='mute'>not a brochure.</span>",
+      s1_lbl: "DOMAINS", s2_lbl: "FEATURES", s3_lbl: "PRODUCT FUNCTIONS",
 
       c6_eye: "CHAPTER 04",
       c6_h: "From vague <span class='mute'>to clear.</span>",
-      c6_lede: "Refinement moves systematically: intent → scenes → interactions → functions → specs → market expression. Each stage adds granularity without demanding complete detail.",
-      c6_p1: "You don't need to know everything to make progress. The system holds your half-formed ideas without forcing premature commitment, and surfaces the next question that actually unlocks the next stage.",
-      c6_p2: "Define with intent. Build with confidence. The handbook codifies the seven experience dimensions, five system axes, and three best practices — so a new contributor reaches fluency in days, not quarters.",
+      c6_lede: "Refinement is a tracked pipeline — Business Requirements → Feature → Function → Scene → Spec → Market expression. Each stage adds granularity without demanding complete detail.",
+      c6_p1: "BR-to-Feature transcribes raw stakeholder asks into Features. Function Status Sync keeps the Master Library aligned with engineering reality. Assessment Generation, Coverage Tracking and Verification Reports close the loop from definition to delivery.",
+      c6_p2: "Define with intent. Build with confidence. The handbook codifies seven sensory dimensions, the Granularity &amp; Dimension protocol, and a Refining Rules layer — so a new contributor reaches fluency in days, not quarters.",
 
       m_role: "ROLE", m_role_v: "FOUNDER · PRODUCT LEAD",
       m_year: "YEAR",
       m_team: "TEAM", m_team_v: "SOLO · AI-ASSISTED",
       m_domain: "DOMAIN", m_domain_v: "INTELLIGENT VEHICLES",
-      m_status: "STATUS", m_status_v: "LIVE · vehicledesign.studio",
+      m_status: "STATUS", m_status_v: "LIVE · app.vehicledesign.studio",
 
       ref_body: "Most product definition tools chase generation. <span class='mute'>The interesting question is the opposite — how do you make a system humble enough to keep asking what you actually meant, before it goes and builds the wrong thing brilliantly?</span>",
       next_label: "NEXT — 02 / 07", next_title: "PixelForge/Artifact",
@@ -600,36 +613,36 @@
 
       c2_eye: "第一章",
       c2_h: "不是工具，<span class='mute'>是操作系统。</span>",
-      c2_lede: "Scene Design、Master Library、Artifact Checkpoint、Competitor Intelligence 作为同一套定义栈协同工作 —— 团队基于它组合，而不是又一块画布。",
-      c2_p1: "把 3,400 条工程需求抽象成约 250 个可复用的产品功能。一套结构化词汇，让团队组合它，而不是每一轮都从零写一份特性清单。",
-      c2_p2: "每个交付物都可追溯：场景 → 交互 → 功能 → 规格。不再有失联的 PRD，不再有 rev3 到量产之间被丢掉的设计原因。",
+      c2_lede: "底层是一套四层分类法 —— <b>11 个领域 (Domain)</b> → <b>54 个特性 (Feature)</b> → <b>299 个产品功能 (PF)</b> → 索引到具体的技术功能 (TF)。Scene Design、Master Library、Artifact Checkpoint、Competitive Intelligence 之上跑同一套定义栈、同一份真相。",
+      c2_p1: "每个交付物都可追溯：场景 → 交互 → 功能 → 规格。从 Dashboard 一路下钻到某条 Tech Function (TF-xxxxx)，每个 ID 都带血缘、状态和当初产生它的团队对话。",
+      c2_p2: "后台 AI 任务 —— 场景生成、流程图合成、场景预览 —— 都汇聚到 Dashboard 自动刷新流。没有匿名的模型决策。这是个操作层，不是又一块头脑风暴的白板。",
 
       c3_eye: "第二章",
-      c3_h: "AI 在这里<span class='mute'>是做推理的。</span>",
-      c3_lede: "AI 不发明定义。它延展已有的逻辑模式、压力测试关键决策、暴露你写下的约束里漏掉的空白。",
-      c3_p1: "边界是刻意的：模型不会发明原则、突破既定规则，或在没有人类监督的情况下做出不可逆决策。每一次输出都坐在你团队已经定下的规则之内。",
-      t_calm: "推理 · <b>在定义之上</b>", t_neutral: "延展 · <b>已有逻辑</b>", t_stress: "压测 · <b>关键决策</b>",
+      c3_h: "AI 在这里<span class='mute'>对定义做推理。</span>",
+      c3_lede: "推理由 DeepSeek 驱动 —— 但模型不发明原则。它在 Master Library 之上组合，对场景覆盖度做压力测试，暴露团队既定约束里漏掉的空白。",
+      c3_p1: "每一次 AI 调用都落在 AI Call History；每一个长任务都变成可追踪的 AI Task。整条流水线从头到尾可审计 —— 没有匿名生成、没有未经人类复核的不可逆写入。AI Model Settings 把旋钮明摆着，其它什么都不藏。",
+      t_calm: "推理 · <b>覆盖 54 个特性</b>", t_neutral: "延展 · <b>跨 299 个功能</b>", t_stress: "压测 · <b>通过 Tech Function</b>",
 
       c4_eye: "第三章",
       c4_h: "基于场景<span class='mute'>定义产品。</span>",
-      c4_lede: "放弃特性清单。用动态场景定义产品 —— 真实的用户交互，跨七个体验维度：视觉、听觉、触觉、嗅觉、温度、运动、时间。",
-      c4_p1: "通过变体复用场景，而不是复制。在生成资产之前先冻结逻辑。用场景在团队之间沟通。这个工作台奖励复用、惩罚一次性发明。",
+      c4_lede: "写进 Master Library 的奠基公式：<span class='formula'>Scene-Mode = f(User Intent, Situation Context, User State, Experience Goal)</span>。放弃特性清单 —— 用动态场景定义产品，跨七个感官维度。",
+      c4_p1: "二十多个经典 Scene Mode 是种子库 —— Morning Preparation、Commute、Arrival、Departure、Comfort Drive、Eco Drive、Cinema、Gaming、Lock &amp; Leave 等等。每个 Mode 拥有自己的 scene；scene 拥有自己的 flowchart；flowchart 锚定工作台输出的每一份规格。",
 
-      stats_eye: "用数字说话",
-      stats_h: "从模糊的意图到可交付的规格，<span class='mute'>—— 一套流程。</span>",
-      s1_lbl: "核心组件", s2_lbl: "体验维度", s3_lbl: "系统维度",
+      stats_eye: "实时来自 DASHBOARD",
+      stats_h: "Master Library 的真实计数，<span class='mute'>—— 不是宣传册。</span>",
+      s1_lbl: "领域", s2_lbl: "特性", s3_lbl: "产品功能",
 
       c6_eye: "第四章",
       c6_h: "从模糊<span class='mute'>到清晰。</span>",
-      c6_lede: "精炼过程系统地推进：意图 → 场景 → 交互 → 功能 → 规格 → 市场表达。每个阶段提高颗粒度，但不要求完整的细节。",
-      c6_p1: "你不需要知道一切才能推进。系统能容纳你半成形的想法，不强迫提前承诺，并主动浮现下一个真正能解锁下一阶段的问题。",
-      c6_p2: "Define with intent. Build with confidence. 操作手册把七个体验维度、五个系统维度、三条最佳实践编码下来 —— 让新成员在几天内进入熟练，而不是几个季度。",
+      c6_lede: "精炼过程是条被追踪的流水线 —— Business Requirement → Feature → Function → Scene → Spec → 市场表达。每个阶段提高颗粒度，但不强求一次性给到完整细节。",
+      c6_p1: "BR-to-Feature 把原始诉求转写成 Feature。Function Status Sync 让 Master Library 跟工程现实保持对齐。Assessment Generation、Coverage Tracking、Verification Reports 把从定义到交付这一环闭上。",
+      c6_p2: "Define with intent. Build with confidence. 操作手册把七个感官维度、Granularity &amp; Dimension 协议、以及 Refining Rules 编码下来 —— 让新成员在几天内进入熟练，而不是几个季度。",
 
       m_role: "角色", m_role_v: "创始人 · 产品负责人",
       m_year: "年份",
       m_team: "团队", m_team_v: "独立 · AI 辅助",
       m_domain: "领域", m_domain_v: "智能整车",
-      m_status: "状态", m_status_v: "已上线 · vehicledesign.studio",
+      m_status: "状态", m_status_v: "已上线 · app.vehicledesign.studio",
 
       ref_body: "大多数产品定义工具在追逐「生成」。<span class='mute'>真正有意思的问题恰恰相反 —— 怎么让系统足够谦逊，会持续追问你到底想要的是什么，而不是漂亮地把错的东西建出来。</span>",
       next_label: "下一个 — 02 / 07", next_title: "PixelForge/Artifact",
