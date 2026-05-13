@@ -423,10 +423,10 @@
   .work-row {
     position: relative;
     display: grid;
-    grid-template-columns: 44px 1.3fr 1.1fr 220px 70px 28px;
-    align-items: center;
-    gap: 28px;
-    padding: 22px 0;
+    grid-template-columns: 72px 1fr auto;
+    column-gap: 48px;
+    align-items: start;
+    padding: 42px 0 36px;
     border-top: 1px solid var(--hair);
     cursor: pointer;
     isolation: isolate;
@@ -467,22 +467,30 @@
   .work-row:hover::after { transform: scaleY(1); }
   .work-row .num {
     font-family: var(--f-mono);
-    font-size: 12px;
+    font-size: 13px;
     color: var(--mute);
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
+    padding-top: 0.55em;
     transition: color 240ms ease, transform 320ms cubic-bezier(.22,.61,.36,1);
   }
   .work-row:hover .num {
     color: var(--ink);
-    transform: translateX(6px);
+    transform: translateX(8px);
+  }
+  /* title block — title + kicker stacked, dominate the row */
+  .work-row .titles {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    min-width: 0;
   }
   .work-row .title {
-    font-size: clamp(28px, 3.4vw, 46px);
+    font-size: clamp(44px, 6.8vw, 110px);
     font-weight: 400;
-    letter-spacing: -0.025em;
-    line-height: 1;
-    /* iPhone-17 "Magichromatic" chromatic sweep — left half is solid ink (default),
-       right half holds the chromatic spectrum, revealed by sliding the bg on hover */
+    letter-spacing: -0.034em;
+    line-height: 0.96;
+    /* iPhone-17 "Magichromatic" chromatic sweep — left half solid ink (default),
+       right half holds the chromatic spectrum, slid in on hover */
     background: linear-gradient(
       90deg,
       var(--ink) 0%, var(--ink) 50%,
@@ -497,56 +505,63 @@
     transition: background-position 560ms cubic-bezier(.22,.61,.36,1);
   }
   .work-row:hover .title { background-position: 100% center; }
+  /* kicker — Fraunces italic body in warm sepia, paired with hero <em> treatment */
   .work-row .desc {
-    font-size: 14px;
+    font-family: "Fraunces", Georgia, "Songti SC", "Source Han Serif SC", serif;
+    font-style: italic;
+    font-weight: 400;
+    font-variation-settings: "opsz" 22;
+    font-size: clamp(15px, 1.25vw, 19px);
     line-height: 1.5;
-    color: var(--ink-2);
-    max-width: 36ch;
+    letter-spacing: -0.005em;
+    color: #8a6537;
+    max-width: 58ch;
   }
-  .work-row .thumb {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    background: #0a0a0a;
-    overflow: hidden;
-    position: relative;
-    transition: opacity 280ms ease;
+  /* meta column — year + arrow stacked, right-aligned, top-aligned with title cap */
+  .work-row .meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 14px;
+    padding-top: 0.55em;
+    white-space: nowrap;
   }
-  .work-row .thumb img,
-  .work-row .thumb video {
-    width: 100%; height: 100%; object-fit: cover; display: block;
-    transition: transform 620ms cubic-bezier(.22,.61,.36,1);
-  }
-  .work-row:hover .thumb img,
-  .work-row:hover .thumb video { transform: scale(1.045); }
-  .work-row .thumb .ph {
-    position: absolute; inset: 0;
-    display: grid; place-items: center;
-    font-family: var(--f-mono);
-    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
-    color: rgba(255,255,255,.7);
-  }
-  .work-row .thumb .ph .pname {
-    font-family: var(--f-sans);
-    font-size: 15px; letter-spacing: -0.01em; text-transform: none;
-    color: #fff; margin-top: 4px;
-  }
-  .work-row:hover .thumb { opacity: 1; }
   .work-row .year {
     font-family: var(--f-mono);
-    font-size: 12px;
+    font-size: 13px;
     color: var(--mute);
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
     text-align: right;
   }
   .work-row .arrow {
     font-family: var(--f-mono);
-    font-size: 14px;
+    font-size: 16px;
     color: var(--mute);
     text-align: right;
     transition: color 220ms ease;
     will-change: transform;
   }
   .work-row:hover .arrow { color: var(--ink); }
+  /* ───────── ROW-BOUND THUMB — slides in from the row's right edge on hover ───────── */
+  .work-row .row-thumb {
+    position: absolute;
+    right: 0;
+    top: 14%;
+    bottom: 14%;
+    width: 40%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 32%, #000 100%);
+            mask-image: linear-gradient(90deg, transparent 0%, #000 32%, #000 100%);
+    clip-path: inset(0 0 0 100%);
+    transition: clip-path 720ms cubic-bezier(.22, .61, .36, 1);
+    pointer-events: none;
+    z-index: -2;
+    opacity: 0.95;
+  }
+  .work-row:hover .row-thumb { clip-path: inset(0 0 0 0); }
+  @media (max-width: 768px) { .work-row .row-thumb { display: none; } }
 
   /* ───────── FLOATING VIDEO PREVIEW ───────── */
   .preview {
@@ -738,16 +753,20 @@
 
   /* ───────── SMALL SCREENS ───────── */
   @media (max-width: 900px) {
-    .work-row { grid-template-columns: 32px 1fr 130px 28px; gap: 16px; padding: 18px 0; }
-    .work-row .desc { display: none; }
-    .work-row .year { display: none; }
-    .work-row .thumb { width: 130px; }
+    .work-row { grid-template-columns: 48px 1fr auto; column-gap: 28px; padding: 30px 0 26px; }
+    .work-row .title { font-size: clamp(40px, 6.4vw, 80px); }
+    .work-row .desc { font-size: 14px; max-width: 50ch; }
+    .work-row .titles { gap: 12px; }
+    .work-row .meta { gap: 10px; }
     .about { grid-template-columns: 1fr; gap: 28px; }
     .nav .meta { gap: 16px; }
   }
   @media (max-width: 520px) {
-    .work-row { grid-template-columns: 28px 1fr 28px; gap: 14px; }
-    .work-row .thumb { display: none; }
+    .work-row { grid-template-columns: 32px 1fr auto; column-gap: 16px; padding: 24px 0 22px; }
+    .work-row .title { font-size: clamp(34px, 9vw, 48px); line-height: 1; }
+    .work-row .desc { display: none; }
+    .work-row .meta .year { display: none; }
+    .work-row .num { padding-top: 0.45em; }
     .section-head { grid-template-columns: 1fr; gap: 6px; padding: 24px 0 20px; }
     .section-head .right { justify-self: start; }
   }
@@ -831,86 +850,93 @@
     <ul class="work-list" id="work">
       <li class="work-row reveal" data-slot="0" data-href="./Product Design Studio — Portfolio.html">
         <div class="num">01</div>
-        <div class="title">Product Design Studio</div>
-        <div class="desc" data-i18n="p1_desc">An AI-driven product definition framework. 3,400 engineering requirements abstracted into ~250 reusable product functions.</div>
-        <div class="thumb"><img src="./PDS/hero.png" alt="Vehicle Design Studio — From Human Intent to Engineering Reality"></div>
-        <div class="year">2025</div>
-        <div class="arrow">↗</div>
+        <div class="titles">
+          <div class="title">Product Design Studio</div>
+          <div class="desc" data-i18n="p1_desc">An AI-driven product definition framework. 3,400 engineering requirements abstracted into ~250 reusable product functions.</div>
+        </div>
+        <div class="meta">
+          <div class="year">2025</div>
+          <div class="arrow">↗</div>
+        </div>
+        <div class="row-thumb" style="background-image: url('./PDS/hero.png')"></div>
       </li>
 
       <li class="work-row reveal" data-slot="1" data-href="./Artifex — Portfolio.html">
         <div class="num">02</div>
-        <div class="title">PixelForge/Artifact</div>
-        <div class="desc" data-i18n="p2_desc">From a single product function to a running HMI prototype — one AI pipeline, end to end.</div>
-        <div class="thumb"><img src="./Artifex/Aesthetic variation1.png" alt="Artifex — Aesthetic variation HMI"></div>
-        <div class="year">2024</div>
-        <div class="arrow">↗</div>
+        <div class="titles">
+          <div class="title">PixelForge/Artifact</div>
+          <div class="desc" data-i18n="p2_desc">From a single product function to a running HMI prototype — one AI pipeline, end to end.</div>
+        </div>
+        <div class="meta">
+          <div class="year">2024</div>
+          <div class="arrow">↗</div>
+        </div>
+        <div class="row-thumb" style="background-image: url('./Artifex/Aesthetic variation1.png')"></div>
       </li>
 
       <li class="work-row reveal" data-slot="2" data-href="projects/transoverlay.html">
         <div class="num">03</div>
-        <div class="title">TransOverlay</div>
-        <div class="desc" data-i18n="p3_desc">An iOS utility that translates anything on screen with a single shortcut. Always on, never in the way.</div>
-        <div class="thumb">
-          <div class="ph" style="background:radial-gradient(40% 40% at 50% 50%,#ffffff14 0%,transparent 70%),#0a0a0a">
-            <div style="text-align:center">
-              <div>03 · 2024</div>
-              <div class="pname">TransOverlay</div>
-            </div>
-          </div>
+        <div class="titles">
+          <div class="title">TransOverlay</div>
+          <div class="desc" data-i18n="p3_desc">An iOS utility that translates anything on screen with a single shortcut. Always on, never in the way.</div>
         </div>
-        <div class="year">2024</div>
-        <div class="arrow">↗</div>
+        <div class="meta">
+          <div class="year">2024</div>
+          <div class="arrow">↗</div>
+        </div>
+        <div class="row-thumb" style="background: radial-gradient(40% 40% at 50% 50%,#ffffff14 0%,transparent 70%),#0a0a0a"></div>
       </li>
 
       <li class="work-row reveal" data-slot="3" data-href="https://trip.vehicledesign.studio/plan/2a8bb025-e0e1-4716-8597-b94764cd1363">
         <div class="num">04</div>
-        <div class="title">Waycraft</div>
-        <div class="desc" data-i18n="p4_desc">An AI trip planner. Conversational intent in, visual itineraries and map overlays out — refined entirely through chat.</div>
-        <div class="thumb"><img src="./Waycraft/hero.png" alt="Waycraft — scene-driven travel planning"></div>
-        <div class="year">2025</div>
-        <div class="arrow">↗</div>
+        <div class="titles">
+          <div class="title">Waycraft</div>
+          <div class="desc" data-i18n="p4_desc">An AI trip planner. Conversational intent in, visual itineraries and map overlays out — refined entirely through chat.</div>
+        </div>
+        <div class="meta">
+          <div class="year">2025</div>
+          <div class="arrow">↗</div>
+        </div>
+        <div class="row-thumb" style="background-image: url('./Waycraft/hero.png')"></div>
       </li>
 
       <li class="work-row reveal" data-slot="4" data-href="https://www.dejob.live/">
         <div class="num">05</div>
-        <div class="title">Dejob</div>
-        <div class="desc" data-i18n="p5_desc">Real-time scraping of German job postings, auto-translated into Chinese as a single, navigable feed.</div>
-        <div class="thumb"><img src="./Dejob/hero.png" alt="Dejob — Germany Job Hub"></div>
-        <div class="year">2025</div>
-        <div class="arrow">↗</div>
+        <div class="titles">
+          <div class="title">Dejob</div>
+          <div class="desc" data-i18n="p5_desc">Real-time scraping of German job postings, auto-translated into Chinese as a single, navigable feed.</div>
+        </div>
+        <div class="meta">
+          <div class="year">2025</div>
+          <div class="arrow">↗</div>
+        </div>
+        <div class="row-thumb" style="background-image: url('./Dejob/hero.png')"></div>
       </li>
 
       <li class="work-row reveal" data-slot="5">
         <div class="num">06</div>
-        <div class="title">Foresee / 境见</div>
-        <div class="desc" data-i18n="p6_desc">I Ching divination and bazi reading. 100k-word source distilled into 1,500 curated cases; AI reasoning engine over a self-iterating match engine.</div>
-        <div class="thumb">
-          <div class="ph" style="background:radial-gradient(60% 60% at 50% 50%,#3a2a14 0%,#0a0a0a 70%)">
-            <div style="text-align:center">
-              <div>06 · 2025</div>
-              <div class="pname">Foresee / 境见</div>
-            </div>
-          </div>
+        <div class="titles">
+          <div class="title">Foresee / 境见</div>
+          <div class="desc" data-i18n="p6_desc">I Ching divination and bazi reading. 100k-word source distilled into 1,500 curated cases; AI reasoning engine over a self-iterating match engine.</div>
         </div>
-        <div class="year">2025</div>
-        <div class="arrow">↗</div>
+        <div class="meta">
+          <div class="year">2025</div>
+          <div class="arrow">↗</div>
+        </div>
+        <div class="row-thumb" style="background: radial-gradient(60% 60% at 50% 50%,#3a2a14 0%,#0a0a0a 70%)"></div>
       </li>
 
       <li class="work-row reveal" data-slot="6">
         <div class="num">07</div>
-        <div class="title">Notisa</div>
-        <div class="desc" data-i18n="p7_desc">A Germany-region utility. Auto-detects your locale, scrapes local tax, holiday and welfare changes, and writes them as calendar reminders before deadlines expire.</div>
-        <div class="thumb">
-          <div class="ph" style="background:linear-gradient(135deg,#0c1a2e 0%,#0a0a0a 70%)">
-            <div style="text-align:center">
-              <div>07 · 2025</div>
-              <div class="pname">Notisa</div>
-            </div>
-          </div>
+        <div class="titles">
+          <div class="title">Notisa</div>
+          <div class="desc" data-i18n="p7_desc">A Germany-region utility. Auto-detects your locale, scrapes local tax, holiday and welfare changes, and writes them as calendar reminders before deadlines expire.</div>
         </div>
-        <div class="year">2025</div>
-        <div class="arrow">↗</div>
+        <div class="meta">
+          <div class="year">2025</div>
+          <div class="arrow">↗</div>
+        </div>
+        <div class="row-thumb" style="background: linear-gradient(135deg,#0c1a2e 0%,#0a0a0a 70%)"></div>
       </li>
     </ul>
   </section>
@@ -1170,7 +1196,8 @@
 
   /* ───────── HOVER: spotlight + magnetic arrow ─────────
      rAF-throttled so updates ride one frame per tick, eliminating
-     the lag/jitter caused by transitioning transform on every mousemove. */
+     the lag/jitter caused by transitioning transform on every mousemove.
+     The row-bound thumb reveal is pure CSS (clip-path on :hover). */
   document.querySelectorAll(".work-row").forEach(row => {
     const arrow = row.querySelector(".arrow");
     if (row.dataset.href) {
