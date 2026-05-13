@@ -213,6 +213,14 @@
     color: #8a6537;            /* warm sepia, in family with the work-row spotlight */
     letter-spacing: -0.018em;
   }
+  /* Chinese hero — CJK glyphs need more weight to feel as solid as the EN sans does at 400 */
+  html[lang="zh"] .hero h1 {
+    font-weight: 700;
+    letter-spacing: -0.05em;
+  }
+  html[lang="zh"] .hero h1 em {
+    font-weight: 600;
+  }
   /* word reveal — padding fits descenders (g/y/p) inside the clip box;
      negative margin keeps the visual line gap unchanged */
   .hero h1 .w {
