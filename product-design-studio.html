@@ -179,12 +179,13 @@
   }
   .chapter-media .frame {
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 16 / 10;  /* matches the 1280×800 video capture */
     overflow: hidden;
     background: #0a0a0a;
   }
   .chapter-media .frame img, .chapter-media .frame video {
-    width: 100%; height: 100%; object-fit: cover;
+    width: 100%; height: 100%; object-fit: contain;  /* fit whole video, no crop */
+    background: #0a0a0a;
   }
   .chapter-cap {
     max-width: 56ch;
@@ -264,9 +265,9 @@
   .stats h2 .mute { color: var(--mute-2); font-weight: 400; }
   .stat-row {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 24px;
-    max-width: 1100px;
+    max-width: 1280px;
     margin: 0 auto;
     border-top: 1px solid var(--hair);
   }
@@ -277,10 +278,11 @@
   .stat:last-child { border-right: 0; }
   .stat .num {
     font-weight: 500;
-    font-size: clamp(56px, 8vw, 120px);
+    font-size: clamp(48px, 6.8vw, 100px);
     line-height: 1;
     letter-spacing: -0.04em;
     color: var(--ink);
+    white-space: nowrap;
   }
   .stat .lbl {
     margin-top: 18px;
@@ -396,11 +398,16 @@
   .reveal.in { opacity: 1; transform: none; }
 
   /* small screens */
+  @media (max-width: 1024px) {
+    .stat-row { grid-template-columns: repeat(2, 1fr); }
+    .stat:nth-child(2n) { border-right: 0; }
+    .stat:nth-child(3), .stat:nth-child(4) { border-top: 1px solid var(--hair); }
+  }
   @media (max-width: 760px) {
     .nav .right { gap: 14px; } .nav .right .clock { display: none; }
     .triptych { grid-template-columns: 1fr; }
     .stat-row { grid-template-columns: 1fr; }
-    .stat { border-right: 0; border-bottom: 1px solid var(--hair); padding: 36px 8px; }
+    .stat { border-right: 0; border-bottom: 1px solid var(--hair); padding: 36px 8px; border-top: 0 !important; }
     .stat:last-child { border-bottom: 0; }
     .meta-strip .grid { grid-template-columns: 1fr 1fr; }
     .next { grid-template-columns: 1fr; }
@@ -495,6 +502,10 @@
       <div class="num">299</div>
       <div class="lbl" data-i18n="s3_lbl">PRODUCT FUNCTIONS</div>
     </div>
+    <div class="stat">
+      <div class="num">~3,000</div>
+      <div class="lbl" data-i18n="s4_lbl">TECH FUNCTIONS</div>
+    </div>
   </div>
 </section>
 
@@ -576,7 +587,7 @@
 
       ml_eye: "CHAPTER 01",
       ml_h: "The <span class='mute'>Master Library.</span>",
-      ml_lede: "A single authoritative graph: <b>11 Domains</b> → <b>54 Features</b> → <b>299 Product Functions</b> → indexed Tech Functions. Search any term, the studio returns its parents and dependents.",
+      ml_lede: "A single authoritative graph: <b>11 Domains</b> → <b>54 Features</b> → <b>299 Product Functions</b> → <b>~3,000 indexed Tech Functions</b>. Search any term, the studio returns its parents and dependents.",
       ml_p1: "Every PF inherits its lineage, status, and the team conversations that produced it. Every TF (TF-xxxxx) traces back to a Feature and a Domain. The library is the source of truth — not a brainstorming canvas.",
 
       gd_eye: "CHAPTER 02",
@@ -591,7 +602,7 @@
 
       stats_eye: "LIVE FROM THE DASHBOARD",
       stats_h: "Counts from the master library, <span class='mute'>not a brochure.</span>",
-      s1_lbl: "DOMAINS", s2_lbl: "FEATURES", s3_lbl: "PRODUCT FUNCTIONS",
+      s1_lbl: "DOMAINS", s2_lbl: "FEATURES", s3_lbl: "PRODUCT FUNCTIONS", s4_lbl: "TECH FUNCTIONS",
 
       intel_eye: "CHAPTER 04",
       intel_h: "Competitive intelligence, <span class='mute'>on tap.</span>",
@@ -621,7 +632,7 @@
 
       ml_eye: "第一章",
       ml_h: "<span class='mute'>Master Library。</span>",
-      ml_lede: "一份权威图谱：<b>11 个领域</b> → <b>54 个特性</b> → <b>299 个产品功能</b> → 索引到具体的 Tech Function。任意词条搜进去，工作台返回它的上游与下游。",
+      ml_lede: "一份权威图谱：<b>11 个领域</b> → <b>54 个特性</b> → <b>299 个产品功能</b> → <b>约 3,000 个被索引的 Tech Function</b>。任意词条搜进去，工作台返回它的上游与下游。",
       ml_p1: "每个 PF 都继承血缘、状态和当初产生它的团队对话。每条 TF（TF-xxxxx）都能回溯到 Feature 和 Domain。Library 是真相源头 —— 不是头脑风暴的白板。",
 
       gd_eye: "第二章",
@@ -636,7 +647,7 @@
 
       stats_eye: "实时来自 DASHBOARD",
       stats_h: "Master Library 的真实计数，<span class='mute'>—— 不是宣传册。</span>",
-      s1_lbl: "领域", s2_lbl: "特性", s3_lbl: "产品功能",
+      s1_lbl: "领域", s2_lbl: "特性", s3_lbl: "产品功能", s4_lbl: "技术功能",
 
       intel_eye: "第四章",
       intel_h: "竞品情报，<span class='mute'>就在指间。</span>",
