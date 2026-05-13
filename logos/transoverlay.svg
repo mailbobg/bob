@@ -1,0 +1,45 @@
+<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Clean gradient following Apple's style -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#007AFF"/>
+      <stop offset="100%" style="stop-color:#0051D5"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background - solid color, no rounded corners (system adds them) -->
+  <rect width="1024" height="1024" fill="url(#bgGrad)"/>
+
+  <!-- Back square - representing original text -->
+  <rect x="200" y="300" width="500" height="500" rx="60" 
+        fill="#FFFFFF" opacity="0.3"/>
+
+  <!-- Front square - representing translated overlay -->
+  <rect x="324" y="224" width="500" height="500" rx="60" 
+        fill="#FFFFFF" opacity="0.5"/>
+
+  <!-- Large, bold "A" symbol in back -->
+  <text x="310" y="650" 
+        font-family="-apple-system, SF Pro Display, sans-serif" 
+        font-size="280" 
+        font-weight="700" 
+        fill="#FFFFFF" 
+        opacity="0.4">A</text>
+
+  <!-- Large, bold translation symbol "文" in front -->
+  <text x="500" y="600" 
+        font-family="PingFang SC, sans-serif" 
+        font-size="280" 
+        font-weight="700" 
+        fill="#FFFFFF">文</text>
+
+  <!-- Simple arrow showing translation direction -->
+  <g transform="translate(400, 780)">
+    <path d="M 0,0 L 60,0 M 30,-30 L 60,0 L 30,30" 
+          stroke="#FFFFFF" 
+          stroke-width="24" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          fill="none"/>
+  </g>
+</svg>
