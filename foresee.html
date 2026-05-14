@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Foresee / 境见 — Portfolio</title>
+
+<meta name="description" content="Foresee / 境见 — AI-reasoned I Ching and BaZi readings. 100,000 words of classical theory distilled into 1,500 curated cases, powered by a self-iterating match engine.">
+<meta name="author" content="Bob Wang">
+<meta name="theme-color" content="#0a0a0a">
+
+<link rel="canonical" href="https://bob.vehicledesign.studio/foresee.html">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Bob Wang — Portfolio">
+<meta property="og:title" content="Foresee / 境见 — Ancient wisdom, reasoned.">
+<meta property="og:description" content="I Ching divination and BaZi reading, powered by an AI reasoning engine over a self-iterating match weight. 100K words distilled into 1,500 curated cases.">
+<meta property="og:url" content="https://bob.vehicledesign.studio/foresee.html">
+<meta property="og:image" content="https://bob.vehicledesign.studio/Foresee/posters/liuyao.jpg">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="zh_CN">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Foresee / 境见 — Ancient wisdom, reasoned.">
+<meta name="twitter:description" content="I Ching divination and BaZi reading, powered by an AI reasoning engine over a self-iterating match weight.">
+<meta name="twitter:image" content="https://bob.vehicledesign.studio/Foresee/posters/liuyao.jpg">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "Foresee / 境见",
+  "headline": "Ancient wisdom, reasoned.",
+  "description": "I Ching (Liu Yao) divination and BaZi reading powered by an AI reasoning engine — 100,000 words of classical theory distilled into 1,500 curated cases, with a self-iterating match engine that re-weights itself on low-confidence readings.",
+  "url": "https://bob.vehicledesign.studio/foresee.html",
+  "image": "https://bob.vehicledesign.studio/Foresee/posters/liuyao.jpg",
+  "inLanguage": "en",
+  "dateCreated": "2025",
+  "creator": {
+    "@type": "Person",
+    "name": "Bob Wang",
+    "url": "https://bob.vehicledesign.studio/"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Bob Wang — Portfolio",
+    "url": "https://bob.vehicledesign.studio/"
+  }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./dejob_files/css2" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  :root {
+    --ink: #1d1d1f;
+    --ink-2: #424245;
+    --mute: #6e6e73;
+    --mute-2: #86868b;
+    --hair: #d2d2d7;
+    --paper: #ffffff;
+    --paper-2: #f5f5f7;
+
+    --dark-bg: #000000;
+    --dark-text: #f5f5f7;
+    --dark-mute: #86868b;
+    --dark-hair: #2a2a2c;
+
+    /* warm sepia accent — keyed to the bagua / 卦 sense of the product */
+    --sepia: #8a6537;
+    --sepia-bg: rgba(138, 101, 55, 0.08);
+
+    --f-sans: "Geist", "Noto Sans SC", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --f-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    --f-serif: "Songti SC", "Source Han Serif SC", "Noto Serif SC", "Times New Roman", serif;
+
+    --px: clamp(20px, 4vw, 56px);
+    --maxw: 1440px;
+    --maxr: 980px;
+  }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--f-sans);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "ss01","ss02","cv11";
+    overflow-x: hidden;
+  }
+  ::selection { background: #0a0a0a; color: #fff; }
+  a { color: inherit; text-decoration: none; }
+  img, video { display: block; }
+
+  .page-wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--px); }
+
+  /* ──────────────── NAV ──────────────── */
+  .nav {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding: 24px var(--px) 0;
+    max-width: var(--maxw); margin: 0 auto;
+    font-size: 13px;
+  }
+  .nav .left, .nav .right {
+    display: flex; gap: 28px; align-items: baseline;
+    font-family: var(--f-mono); font-size: 12px; letter-spacing: .04em; text-transform: uppercase;
+  }
+  .nav .right { color: var(--mute); }
+  .nav .back { color: var(--ink); }
+  .nav .back .ar { display: inline-block; transition: transform .28s cubic-bezier(.22,.61,.36,1); margin-right: 6px; }
+  .nav .back:hover .ar { transform: translateX(-4px); }
+  .nav .crumb { color: var(--mute); }
+  .nav .crumb .cur { color: var(--ink); }
+  .lang-toggle { display: inline-flex; align-items: baseline; gap: 6px; background: none; border: 0; padding: 0; font: inherit; color: var(--ink); cursor: pointer; }
+  .lang-toggle .on { color: var(--ink); }
+  .lang-toggle .off { color: var(--mute-2); }
+  .lang-toggle .sep { color: var(--mute-2); }
+
+  /* ──────────────── HERO ──────────────── */
+  .hero {
+    text-align: center;
+    padding: 22vh 24px 14vh;
+    max-width: var(--maxr);
+    margin: 0 auto;
+    position: relative;
+    will-change: transform, opacity, filter;
+  }
+  .hero .label {
+    font-family: var(--f-mono);
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeIn 700ms 100ms cubic-bezier(.2,.7,.2,1) forwards;
+  }
+  .hero h1 {
+    margin: 0;
+    font-weight: 600;
+    font-size: clamp(56px, 11vw, 168px);
+    line-height: 0.94;
+    letter-spacing: -0.045em;
+    text-wrap: balance;
+  }
+  .hero h1 .ink2 { color: var(--ink-2); font-weight: 400; }
+  .hero h1 .mute { color: var(--mute-2); font-weight: 400; }
+  .hero h1 .w { display: inline-block; overflow: hidden; vertical-align: top; padding: 0.14em 0 0.06em; }
+  .hero h1 .w > span {
+    display: inline-block;
+    transform: translateY(110%); opacity: 0;
+    animation: wordUp 1100ms cubic-bezier(.2,.7,.2,1) forwards;
+    animation-delay: var(--d, 0ms);
+  }
+  @keyframes wordUp { 0%{transform:translateY(110%);opacity:0;} 100%{transform:translateY(0);opacity:1;} }
+  @keyframes fadeIn { to { opacity: 1; } }
+  .hero .sub {
+    margin: 36px auto 0;
+    max-width: 32ch;
+    font-size: clamp(18px, 1.6vw, 24px);
+    line-height: 1.42;
+    color: var(--ink-2);
+    font-weight: 400;
+    opacity: 0;
+    animation: fadeIn 900ms 1100ms cubic-bezier(.2,.7,.2,1) forwards;
+  }
+
+  /* hero glyph row — 8 bagua trigrams as a quiet ornament */
+  .bagua-row {
+    margin: 6vh auto 0;
+    max-width: 720px;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: clamp(6px, 1.4vw, 18px);
+    font-family: var(--f-serif);
+    font-size: clamp(20px, 2.4vw, 32px);
+    color: var(--mute-2);
+    text-align: center;
+    line-height: 1;
+    opacity: 0;
+    animation: fadeIn 1100ms 1500ms cubic-bezier(.2,.7,.2,1) forwards;
+  }
+  .bagua-row span { padding: 6px 0; }
+
+  /* ──────────────── CHAPTER ──────────────── */
+  .chapter {
+    padding: 18vh 24px 4vh;
+    text-align: center;
+    max-width: var(--maxw);
+    margin: 0 auto;
+  }
+  .chapter .eyebrow {
+    font-family: var(--f-mono);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin-bottom: 28px;
+  }
+  .chapter h2 {
+    margin: 0 auto;
+    max-width: 18ch;
+    font-weight: 600;
+    font-size: clamp(40px, 6.5vw, 96px);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+  }
+  .chapter h2 .mute { color: var(--mute-2); font-weight: 400; }
+  .chapter .lede {
+    margin: 28px auto 0;
+    max-width: 38ch;
+    font-size: clamp(17px, 1.4vw, 21px);
+    line-height: 1.5;
+    color: var(--ink-2);
+    text-wrap: pretty;
+  }
+
+  /* phone-frame media (these recordings are vertical) */
+  .chapter-media {
+    margin: 7vh auto 0;
+    padding: 0 24px;
+    max-width: var(--maxw);
+    display: flex; justify-content: center;
+  }
+  .chapter-media .phone {
+    width: min(100%, 380px);
+    aspect-ratio: 9 / 19.5;
+    background: #0a0a0a;
+    border-radius: 34px;
+    overflow: hidden;
+    position: relative;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,.5) inset,
+      0 0 0 1px rgba(0,0,0,.06),
+      0 30px 60px -20px rgba(20,12,4,.28),
+      0 18px 40px -22px rgba(20,12,4,.18);
+  }
+  .chapter-media .phone video,
+  .chapter-media .phone img {
+    width: 100%; height: 100%; object-fit: cover;
+    background: #0a0a0a;
+  }
+  .dark .chapter-media .phone {
+    box-shadow:
+      0 1px 0 rgba(255,255,255,.06) inset,
+      0 0 0 1px rgba(255,255,255,.04),
+      0 30px 60px -18px rgba(0,0,0,.6),
+      0 18px 50px -24px rgba(138,101,55,.18);
+  }
+
+  .chapter-cap {
+    max-width: 56ch;
+    margin: 6vh auto 0;
+    padding: 0 24px;
+    text-align: center;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink-2);
+    text-wrap: pretty;
+  }
+  .chapter-cap p + p { margin-top: 1.1em; }
+  .chapter-cap .glyph {
+    font-family: var(--f-serif);
+    color: var(--sepia);
+    font-size: 1.04em;
+    padding: 0.04em 0.2em;
+  }
+
+  /* ──────────────── DARK SECTION ──────────────── */
+  .dark {
+    background: var(--dark-bg);
+    color: var(--dark-text);
+    padding: 18vh 0 14vh;
+    margin-top: 6vh;
+    position: relative;
+  }
+  .dark::before {
+    /* a quiet radial sepia warmth at the section's center */
+    content: "";
+    position: absolute; inset: 0;
+    background: radial-gradient(60% 50% at 50% 22%, rgba(138,101,55,.12) 0%, rgba(0,0,0,0) 70%);
+    pointer-events: none;
+  }
+  .dark .chapter, .dark .chapter-media, .dark .chapter-cap { color: var(--dark-text); position: relative; }
+  .dark .chapter .eyebrow { color: var(--dark-mute); }
+  .dark .chapter .lede { color: var(--dark-mute); }
+  .dark h2 .mute { color: var(--dark-mute); }
+  .dark .chapter-cap { color: var(--dark-mute); }
+  .dark .chapter-cap .glyph { color: #c4955f; }
+
+  /* ──────────────── PINNED STATS ──────────────── */
+  .stats {
+    padding: 22vh 24px 20vh;
+    max-width: var(--maxw);
+    margin: 0 auto;
+    text-align: center;
+  }
+  .stats .eyebrow {
+    font-family: var(--f-mono);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin-bottom: 32px;
+  }
+  .stats h2 {
+    margin: 0 auto 12vh;
+    max-width: 22ch;
+    font-weight: 600;
+    font-size: clamp(36px, 5.5vw, 80px);
+    line-height: 1.04;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+  .stats h2 .mute { color: var(--mute-2); font-weight: 400; }
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+    border-top: 1px solid var(--hair);
+  }
+  .stat {
+    padding: 56px 8px 24px;
+    border-right: 1px solid var(--hair);
+  }
+  .stat:last-child { border-right: 0; }
+  .stat .num {
+    font-weight: 500;
+    font-size: clamp(48px, 6.8vw, 100px);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .stat .num .unit { color: var(--mute-2); font-weight: 400; font-size: 0.55em; letter-spacing: -0.02em; margin-left: 0.08em; }
+  .stat .lbl {
+    margin-top: 18px;
+    font-family: var(--f-mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mute);
+  }
+
+  /* ──────────────── META + REFLECTION ──────────────── */
+  .meta-strip {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 var(--px);
+  }
+  .meta-strip .grid {
+    border-top: 1px solid var(--hair);
+    padding: 28px 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+    font-family: var(--f-mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .meta-strip .k { color: var(--mute); margin-bottom: 6px; }
+  .meta-strip .v { color: var(--ink); }
+
+  .reflect {
+    padding: 18vh 24px 18vh;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .reflect .body {
+    font-weight: 400;
+    font-size: clamp(24px, 3vw, 44px);
+    line-height: 1.28;
+    letter-spacing: -0.022em;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .reflect .body .mute { color: var(--mute-2); }
+  .reflect .body .glyph { font-family: var(--f-serif); color: var(--sepia); padding: 0 0.06em; }
+
+  /* monospace formula chip — surfaces the match-weight formula inline */
+  .formula {
+    font-family: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 0.86em;
+    background: var(--sepia-bg);
+    color: var(--sepia);
+    padding: 0.12em 0.5em;
+    border-radius: 2px;
+    letter-spacing: -0.005em;
+    white-space: nowrap;
+  }
+  @media (max-width: 720px) { .formula { white-space: normal; } }
+
+  /* ──────────────── NEXT + FOOT ──────────────── */
+  .next-band {
+    background: var(--paper-2);
+    padding: 8vh 0;
+  }
+  .next {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 var(--px);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: end;
+    cursor: pointer;
+    transition: padding 360ms cubic-bezier(.22,.61,.36,1);
+  }
+  .next:hover { padding-left: calc(var(--px) + 8px); }
+  .next .label {
+    font-family: var(--f-mono);
+    font-size: 12px; color: var(--mute);
+    letter-spacing: .12em; text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .next .title {
+    font-size: clamp(40px, 7vw, 104px);
+    font-weight: 600; letter-spacing: -0.035em; line-height: 1;
+  }
+  .next .arr {
+    font-family: var(--f-mono); font-size: 16px; color: var(--mute);
+    transition: color .22s ease, transform .28s cubic-bezier(.22,.61,.36,1);
+    align-self: end; padding-bottom: 14px;
+  }
+  .next:hover .arr { color: var(--ink); transform: translate(6px, -4px); }
+
+  .foot {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 32px var(--px) 36px;
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-top: 1px solid var(--hair);
+    font-family: var(--f-mono); font-size: 11px; color: var(--mute);
+    letter-spacing: .06em; text-transform: uppercase;
+  }
+  .foot a { color: var(--ink); }
+  .foot a:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .foot .right { display: flex; gap: 24px; }
+
+  /* ──────────────── REVEAL ──────────────── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1);
+  }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* small screens */
+  @media (max-width: 1024px) {
+    .stat-row { grid-template-columns: repeat(2, 1fr); }
+    .stat:nth-child(2n) { border-right: 0; }
+    .stat:nth-child(3) { border-top: 1px solid var(--hair); grid-column: 1 / -1; border-right: 0; }
+  }
+  @media (max-width: 760px) {
+    .nav .right { gap: 14px; } .nav .right .clock { display: none; }
+    .stat-row { grid-template-columns: 1fr; }
+    .stat { border-right: 0; border-bottom: 1px solid var(--hair); padding: 36px 8px; border-top: 0 !important; }
+    .stat:last-child { border-bottom: 0; }
+    .meta-strip .grid { grid-template-columns: 1fr 1fr; }
+    .next { grid-template-columns: 1fr; }
+    .bagua-row { font-size: 18px; }
+    .chapter-media .phone { width: min(86vw, 340px); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav reveal in">
+  <div class="left">
+    <a class="back" href="./index.html"><span class="ar">←</span><span data-i18n="back">INDEX</span></a>
+    <span class="crumb"><span data-i18n="crumb_sel">SELECTED WORK</span> / <span class="cur" data-i18n="crumb_cur">Foresee / 境见</span></span>
+  </div>
+  <div class="right">
+    <span class="clock" id="clock">--:--:--</span>
+    <span data-i18n="of">06 / 07</span>
+    <button class="lang-toggle" id="lang">
+      <span id="lang-en" class="on">EN</span>
+      <span class="sep">/</span>
+      <span id="lang-zh" class="off">中</span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="hero">
+  <div class="label" data-i18n="hero_label">Foresee / 境见 · 2025</div>
+  <h1 id="hero-h1" data-i18n-html="hero_h1">Ancient wisdom, <span class="mute">now reasoned.</span></h1>
+  <p class="sub" data-i18n="hero_sub">I Ching divination and BaZi reading, powered by an AI reasoning engine over a self-iterating match weight — 100,000 words of classical theory, distilled into 1,500 curated cases.</p>
+  <div class="bagua-row" aria-hidden="true">
+    <span>☰</span><span>☱</span><span>☲</span><span>☳</span><span>☴</span><span>☵</span><span>☶</span><span>☷</span>
+  </div>
+</header>
+
+<!-- §1 — 六爻 Liu Yao -->
+<section>
+  <div class="chapter reveal">
+    <div class="eyebrow" data-i18n="ly_eye">CHAPTER 01 · 六爻</div>
+    <h2 data-i18n-html="ly_h">Six lines, <span class="mute">ten thousand interpretations.</span></h2>
+    <p class="lede" data-i18n="ly_lede">Cast a hexagram, then read it. The AI reasons over 100,000 words of classical Liu Yao theory, distilled into 1,500 curated cases — every interpretation is a chain of explicit inferences, not a one-line oracle.</p>
+  </div>
+  <div class="chapter-media reveal">
+    <div class="phone"><video data-src="./Foresee/videos/liuyao.mp4" muted loop playsinline preload="none" poster="./Foresee/posters/liuyao.jpg"></video></div>
+  </div>
+  <div class="chapter-cap reveal">
+    <p data-i18n-html="ly_p1">The cast — coin throw, six lines, moving lines — produces the same <span class="glyph">本卦 → 变卦</span> structure a practitioner would draw on paper. From there, the AI traces palace assignment, six relatives, hidden gods and the question's relation to each line — and reads them in order.</p>
+    <p data-i18n="ly_p2">The 1,500 cases aren't a lookup table. They're worked examples the model reasons over: when the same configuration recurs, the answer cites the precedent; when it doesn't, the model derives one and shows the steps.</p>
+  </div>
+</section>
+
+<!-- §2 — DARK — 八字 BaZi -->
+<section class="dark">
+  <div class="chapter reveal">
+    <div class="eyebrow" data-i18n="bz_eye">CHAPTER 02 · 八字</div>
+    <h2 data-i18n-html="bz_h">Eight characters, <span class="mute">one life chart.</span></h2>
+    <p class="lede" data-i18n="bz_lede">Birth time becomes a chart of heavenly stems and earthly branches. The AI reads the chart against classical BaZi texts — four pillars, five elements, ten gods — and turns the configuration into prose you can actually act on.</p>
+  </div>
+  <div class="chapter-media reveal">
+    <div class="phone"><video data-src="./Foresee/videos/bazi.mp4" muted loop playsinline preload="none" poster="./Foresee/posters/bazi.jpg"></video></div>
+  </div>
+  <div class="chapter-cap reveal">
+    <p data-i18n-html="bz_p1">Charting is mechanical — pillar of year, month, day, hour. Interpretation is where the classical texts disagree most, and where the model earns its weight: it carries the disagreement instead of flattening it, surfacing <span class="glyph">三命通会 · 滴天髓 · 子平真诠</span> in the same reading when they pull in different directions.</p>
+  </div>
+</section>
+
+<!-- §3 — STATS -->
+<section class="stats reveal">
+  <div class="eyebrow" data-i18n="stats_eye">BY THE NUMBERS</div>
+  <h2 data-i18n-html="stats_h">An engine, <span class="mute">behind the reading.</span></h2>
+  <div class="stat-row">
+    <div class="stat">
+      <div class="num">100<span class="unit">K</span></div>
+      <div class="lbl" data-i18n="s1_lbl">SOURCE WORDS DISTILLED</div>
+    </div>
+    <div class="stat">
+      <div class="num">1,500</div>
+      <div class="lbl" data-i18n="s2_lbl">CURATED CASE STUDIES</div>
+    </div>
+    <div class="stat">
+      <div class="num">∞</div>
+      <div class="lbl" data-i18n="s3_lbl">SELF-ITERATING WEIGHTS</div>
+    </div>
+  </div>
+</section>
+
+<!-- §4 — Self-optimization -->
+<section>
+  <div class="chapter reveal">
+    <div class="eyebrow" data-i18n="opt_eye">CHAPTER 03 · 自优化</div>
+    <h2 data-i18n-html="opt_h">The engine <span class="mute">grades itself.</span></h2>
+    <p class="lede" data-i18n-html="opt_lede">Low-match readings flag themselves. A nightly job re-weights the case-matching algorithm — the engine that interprets the hexagram is also the engine that improves it. <span class="formula">w' = w + η · (target − match)</span></p>
+  </div>
+  <div class="chapter-media reveal">
+    <div class="phone"><video data-src="./Foresee/videos/optimize.mp4" muted loop playsinline preload="none" poster="./Foresee/posters/optimize.jpg"></video></div>
+  </div>
+  <div class="chapter-cap reveal">
+    <p data-i18n="opt_p1">Every reading carries a match score against the closest precedent case. Scores below threshold are queued; the queue feeds an offline optimizer that nudges the weights — palace, season, ten-gods, hidden stem — until the same hexagram, asked again, matches more confidently.</p>
+    <p data-i18n="opt_p2">The model never re-trains on user data. What iterates is the matcher, not the reasoner — so accuracy compounds without the classical theory drifting under it.</p>
+  </div>
+</section>
+
+<!-- META STRIP -->
+<div class="meta-strip">
+  <div class="grid reveal">
+    <div><div class="k" data-i18n="m_role">ROLE</div><div class="v" data-i18n="m_role_v">FOUNDER · DESIGNER</div></div>
+    <div><div class="k" data-i18n="m_year">YEAR</div><div class="v">2025</div></div>
+    <div><div class="k" data-i18n="m_team">TEAM</div><div class="v" data-i18n="m_team_v">SOLO · AI-ASSISTED</div></div>
+    <div><div class="k" data-i18n="m_domain">DOMAIN</div><div class="v" data-i18n="m_domain_v">DIVINATION · AGENTIC</div></div>
+    <div><div class="k" data-i18n="m_status">STATUS</div><div class="v" data-i18n="m_status_v">PROTOTYPE · ACTIVE</div></div>
+  </div>
+</div>
+
+<!-- REFLECTION -->
+<section class="reflect reveal">
+  <p class="body" data-i18n-html="ref_body">The classics were never short on theory — only short on patience. <span class="mute">An AI that reads <span class="glyph">卦</span> the way a practitioner does, and grades its own confidence, is the rare case where machine reasoning lengthens a tradition instead of flattening it.</span></p>
+</section>
+
+<!-- NEXT -->
+<div class="next-band">
+  <a class="next reveal" href="./index.html#work">
+    <div>
+      <div class="label" data-i18n="next_label">NEXT — 07 / 07</div>
+      <div class="title" data-i18n="next_title">Notisa</div>
+    </div>
+    <div class="arr">↗</div>
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <div data-i18n="foot_copy">© 2025 — All work shown by permission.</div>
+  <div class="right">
+    <a href="mailto:wangbo77@hotmail.com">EMAIL</a>
+    <a href="#">LINKEDIN</a>
+    <a href="#">GITHUB</a>
+  </div>
+</footer>
+
+<script>
+  /* i18n */
+  const I18N = {
+    en: {
+      back: "INDEX", crumb_sel: "SELECTED WORK", crumb_cur: "Foresee / 境见", of: "06 / 07",
+      hero_label: "Foresee / 境见 · 2025",
+      hero_h1: "Ancient wisdom, <span class='mute'>now reasoned.</span>",
+      hero_sub: "I Ching divination and BaZi reading, powered by an AI reasoning engine over a self-iterating match weight — 100,000 words of classical theory, distilled into 1,500 curated cases.",
+
+      ly_eye: "CHAPTER 01 · LIU YAO",
+      ly_h: "Six lines, <span class='mute'>ten thousand interpretations.</span>",
+      ly_lede: "Cast a hexagram, then read it. The AI reasons over 100,000 words of classical Liu Yao theory, distilled into 1,500 curated cases — every interpretation is a chain of explicit inferences, not a one-line oracle.",
+      ly_p1: "The cast — coin throw, six lines, moving lines — produces the same <span class='glyph'>本卦 → 变卦</span> structure a practitioner would draw on paper. From there, the AI traces palace assignment, six relatives, hidden gods and the question's relation to each line — and reads them in order.",
+      ly_p2: "The 1,500 cases aren't a lookup table. They're worked examples the model reasons over: when the same configuration recurs, the answer cites the precedent; when it doesn't, the model derives one and shows the steps.",
+
+      bz_eye: "CHAPTER 02 · BAZI",
+      bz_h: "Eight characters, <span class='mute'>one life chart.</span>",
+      bz_lede: "Birth time becomes a chart of heavenly stems and earthly branches. The AI reads the chart against classical BaZi texts — four pillars, five elements, ten gods — and turns the configuration into prose you can actually act on.",
+      bz_p1: "Charting is mechanical — pillar of year, month, day, hour. Interpretation is where the classical texts disagree most, and where the model earns its weight: it carries the disagreement instead of flattening it, surfacing <span class='glyph'>三命通会 · 滴天髓 · 子平真诠</span> in the same reading when they pull in different directions.",
+
+      stats_eye: "BY THE NUMBERS",
+      stats_h: "An engine, <span class='mute'>behind the reading.</span>",
+      s1_lbl: "SOURCE WORDS DISTILLED", s2_lbl: "CURATED CASE STUDIES", s3_lbl: "SELF-ITERATING WEIGHTS",
+
+      opt_eye: "CHAPTER 03 · SELF-OPTIMIZATION",
+      opt_h: "The engine <span class='mute'>grades itself.</span>",
+      opt_lede: "Low-match readings flag themselves. A nightly job re-weights the case-matching algorithm — the engine that interprets the hexagram is also the engine that improves it. <span class='formula'>w' = w + η · (target − match)</span>",
+      opt_p1: "Every reading carries a match score against the closest precedent case. Scores below threshold are queued; the queue feeds an offline optimizer that nudges the weights — palace, season, ten-gods, hidden stem — until the same hexagram, asked again, matches more confidently.",
+      opt_p2: "The model never re-trains on user data. What iterates is the matcher, not the reasoner — so accuracy compounds without the classical theory drifting under it.",
+
+      m_role: "ROLE", m_role_v: "FOUNDER · DESIGNER",
+      m_year: "YEAR",
+      m_team: "TEAM", m_team_v: "SOLO · AI-ASSISTED",
+      m_domain: "DOMAIN", m_domain_v: "DIVINATION · AGENTIC",
+      m_status: "STATUS", m_status_v: "PROTOTYPE · ACTIVE",
+
+      ref_body: "The classics were never short on theory — only short on patience. <span class='mute'>An AI that reads <span class='glyph'>卦</span> the way a practitioner does, and grades its own confidence, is the rare case where machine reasoning lengthens a tradition instead of flattening it.</span>",
+      next_label: "NEXT — 07 / 07", next_title: "Notisa",
+      foot_copy: "© 2025 — All work shown by permission.",
+    },
+    zh: {
+      back: "返回索引", crumb_sel: "精选作品", crumb_cur: "Foresee / 境见", of: "06 / 07",
+      hero_label: "Foresee / 境见 · 2025",
+      hero_h1: "古道之卦，<span class='mute'>AI 推理。</span>",
+      hero_sub: "六爻排卦与八字排盘，由 AI 推理引擎驱动，搭配自我迭代的算法权重 —— 10 万字古籍理论，提炼为 1,500 例案例推理。",
+
+      ly_eye: "第一章 · 六爻",
+      ly_h: "六爻成卦，<span class='mute'>万象生焉。</span>",
+      ly_lede: "起卦、解卦，一气呵成。AI 在 10 万字六爻古籍理论之上推理，提炼为 1,500 个精选案例 —— 每一次解卦都是一条可溯源的推理链，而不是一句模糊的签文。",
+      ly_p1: "摇卦 —— 三铜钱、六爻、变爻 —— 得到的还是术家在纸上画的那张 <span class='glyph'>本卦 → 变卦</span>。AI 在此之上推演：八宫所属、六亲、伏神、问题与每一爻的对应 —— 按次序解读。",
+      ly_p2: "这 1,500 个案例不是一张查询表，而是模型可以「接着想」下去的推理样本：同样的卦象再现时，答案会引用前例；遇到没有的，模型自己推出来，并把推理步骤展示出来。",
+
+      bz_eye: "第二章 · 八字",
+      bz_h: "八字成盘，<span class='mute'>一命之图。</span>",
+      bz_lede: "出生时间化为天干地支的命盘。AI 在八字古籍之上读取这张盘 —— 四柱、五行、十神 —— 把命局结构译成可以落地的文字。",
+      bz_p1: "排盘是机械的 —— 年、月、日、时四柱。解盘则是古籍最不统一的地方，也是模型显出分量的地方：它把分歧带着走，而不是抹平 —— 把 <span class='glyph'>三命通会 · 滴天髓 · 子平真诠</span> 在同一次解读中并列呈现，当它们指向不同的方向时。",
+
+      stats_eye: "用数字说话",
+      stats_h: "解卦背后，<span class='mute'>是一台引擎。</span>",
+      s1_lbl: "提炼字数", s2_lbl: "精选案例", s3_lbl: "自迭代权重",
+
+      opt_eye: "第三章 · 自优化",
+      opt_h: "引擎自己 <span class='mute'>给自己打分。</span>",
+      opt_lede: "匹配率低的卦象会自标记。一项夜间任务自动回调案例匹配算法的权重 —— 解卦的引擎，也是改进解卦的引擎。<span class='formula'>w' = w + η · (target − match)</span>",
+      opt_p1: "每一次解卦都附一个匹配分数，对应到最接近的先例案例。低于阈值的会进入队列；队列喂给离线优化器，让它去微调权重 —— 八宫、节气、十神、伏藏 —— 直到同一卦再问一次时，匹配更加自信。",
+      opt_p2: "模型本身不在用户数据上重训。迭代的是匹配器，而不是推理器 —— 这样准确率在累积，而古籍理论本身不会在脚下移位。",
+
+      m_role: "角色", m_role_v: "创始人 · 设计师",
+      m_year: "年份",
+      m_team: "团队", m_team_v: "独立 · AI 辅助",
+      m_domain: "领域", m_domain_v: "古道占卜 · 智能体",
+      m_status: "状态", m_status_v: "原型 · 活跃中",
+
+      ref_body: "古籍从不缺理论 —— 缺的是耐心。<span class='mute'>一台像术家那样去读 <span class='glyph'>卦</span>、并且会给自己打分的 AI，是少数几次「机器推理」让一门传统被延长、而不是被压扁的场景之一。</span>",
+      next_label: "下一个 — 07 / 07", next_title: "Notisa",
+      foot_copy: "© 2025 — 作品授权使用。",
+    }
+  };
+
+  let lang = "en";
+  try { const stored = localStorage.getItem("lang"); if (stored === "zh" || stored === "en") lang = stored; } catch(e){}
+  function applyLang() {
+    document.documentElement.lang = lang === "zh" ? "zh" : "en";
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const k = el.getAttribute("data-i18n");
+      if (I18N[lang][k] !== undefined) el.textContent = I18N[lang][k];
+    });
+    document.querySelectorAll("[data-i18n-html]").forEach(el => {
+      const k = el.getAttribute("data-i18n-html");
+      if (I18N[lang][k] !== undefined) el.innerHTML = I18N[lang][k];
+    });
+    document.getElementById("lang-en").className = lang === "en" ? "on" : "off";
+    document.getElementById("lang-zh").className = lang === "zh" ? "on" : "off";
+    splitHeroWords();
+    try { localStorage.setItem("lang", lang); } catch(e){}
+  }
+  document.getElementById("lang").addEventListener("click", () => { lang = lang === "en" ? "zh" : "en"; applyLang(); });
+  applyLang();
+
+  /* HERO word-split */
+  function splitHeroWords() {
+    const h1 = document.getElementById("hero-h1");
+    if (!h1) return;
+    const html = h1.innerHTML;
+    const tokens = [];
+    const re = /(<br[^>]*>)|(<span[^>]*>[^<]*<\/span>)|([^\s<]+)|(\s+)/gi;
+    let m;
+    while ((m = re.exec(html)) !== null) {
+      if (m[1]) tokens.push({type:"br"});
+      else if (m[2]) {
+        const inner = m[2].match(/>([^<]*)</)[1];
+        const cls = m[2].match(/class=['"]([^'"]*)['"]/);
+        const c = cls ? cls[1] : "";
+        const parts = inner.split(/\s+/).filter(Boolean);
+        parts.forEach(p => tokens.push({type:"w", text: p, cls: c}));
+      }
+      else if (m[3]) tokens.push({type:"w", text: m[3], cls: ""});
+    }
+    let out = "", i = 0;
+    tokens.forEach(t => {
+      if (t.type === "br") { out += "<br/>"; return; }
+      const d = i * 70 + 200;
+      const cls = t.cls ? ` class="${t.cls}"` : "";
+      out += `<span class="w" style="margin-right:.24em"><span${cls} style="--d:${d}ms; display:inline-block;">${t.text}</span></span>`;
+      i++;
+    });
+    h1.innerHTML = out;
+  }
+
+  /* clock */
+  const clockEl = document.getElementById("clock");
+  function tickClock() {
+    const d = new Date();
+    const pad = n => String(n).padStart(2,"0");
+    clockEl.textContent = `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())} CST`;
+  }
+  tickClock(); setInterval(tickClock, 1000);
+
+  /* reveal on scroll */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+  document.querySelectorAll(".reveal:not(.in)").forEach(el => io.observe(el));
+
+  /* hero subtle scroll fade (Apple-style) */
+  const hero = document.getElementById("hero");
+  let lastY = -1;
+  function onScroll() {
+    const y = window.scrollY || window.pageYOffset;
+    if (y === lastY) return;
+    lastY = y;
+    const h = window.innerHeight;
+    const range = h * 0.8;
+    const p = Math.min(1, Math.max(0, y / range));
+    const ease = p < 0.5 ? 2*p*p : 1 - Math.pow(-2*p+2, 2)/2;
+    hero.style.opacity = (1 - ease).toFixed(3);
+    hero.style.transform = `translate3d(0, ${(-ease * 40).toFixed(1)}px, 0) scale(${(1 - ease*0.04).toFixed(3)})`;
+    hero.style.filter = `blur(${(ease * 6).toFixed(2)}px)`;
+    hero.style.pointerEvents = (1 - ease) < 0.05 ? "none" : "auto";
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+</script>
+
+<script>
+(function(){
+  const vids = Array.from(document.querySelectorAll('video'));
+  if (!vids.length) return;
+
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const saveData = navigator.connection && navigator.connection.saveData;
+  vids.forEach(attachPosterOverlay);
+
+  function loadVideo(v) {
+    if (v.src || !v.dataset.src) return;
+    v.preload = 'metadata';
+    v.src = v.dataset.src;
+    v.load();
+    v.playbackRate = 1.0;
+  }
+
+  function pauseVideo(v) {
+    if (!v.paused) v.pause();
+  }
+
+  function attachPosterOverlay(v) {
+    if (!v.poster || v.dataset.posterOverlay === 'true') return;
+    v.dataset.posterOverlay = 'true';
+    const parent = v.parentElement;
+    if (!parent) return;
+    if (getComputedStyle(parent).position === 'static') parent.style.position = 'relative';
+
+    const poster = document.createElement('img');
+    poster.src = v.poster;
+    poster.alt = '';
+    poster.decoding = 'async';
+    poster.style.cssText = [
+      'position:absolute',
+      'inset:0',
+      'z-index:2',
+      'width:100%',
+      'height:100%',
+      `object-fit:${getComputedStyle(v).objectFit || 'cover'}`,
+      'background:#0a0a0a',
+      'transition:opacity 180ms ease',
+      'pointer-events:none'
+    ].join(';');
+    parent.appendChild(poster);
+
+    const hidePoster = () => {
+      requestAnimationFrame(() => {
+        poster.style.opacity = '0';
+        window.setTimeout(() => { poster.style.display = 'none'; }, 220);
+      });
+    };
+    v.addEventListener('playing', hidePoster, { once: true });
+  }
+
+  let unlockArmed = false;
+  function armUnlock() {
+    if (unlockArmed) return;
+    unlockArmed = true;
+    const retry = () => {
+      vids.forEach(v => {
+        if (!v.paused) return;
+        if (v.dataset.src && !v.src) { v.src = v.dataset.src; v.load(); }
+        v.play().catch(()=>{});
+      });
+    };
+    const events = ['touchend','pointerup'];
+    const onGesture = () => { events.forEach(ev => document.removeEventListener(ev, onGesture)); retry(); };
+    events.forEach(ev => document.addEventListener(ev, onGesture, { passive: true }));
+    document.addEventListener('WeixinJSBridgeReady', retry, { once: true });
+  }
+  function tryPlay(v) {
+    const p = v.play();
+    if (p && p.catch) p.catch(err => {
+      console.warn('[video] play() failed', v.dataset.src || v.src, err && err.name, err && err.message);
+      armUnlock();
+    });
+  }
+
+  if (reduceMotion || saveData) {
+    vids.forEach(v => {
+      v.addEventListener('click', () => {
+        loadVideo(v);
+        tryPlay(v);
+      }, { once: true });
+    });
+    return;
+  }
+
+  if (!('IntersectionObserver' in window)) {
+    loadVideo(vids[0]);
+    tryPlay(vids[0]);
+    return;
+  }
+
+  const visible = new Map();
+  let scheduled = false;
+
+  function syncPlayback() {
+    scheduled = false;
+    let current = null;
+    let bestRatio = 0;
+    visible.forEach((ratio, v) => {
+      if (ratio > bestRatio) {
+        bestRatio = ratio;
+        current = v;
+      }
+    });
+
+    vids.forEach(v => {
+      if (v === current && bestRatio >= 0.25) {
+        loadVideo(v);
+        tryPlay(v);
+      } else {
+        pauseVideo(v);
+      }
+    });
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) visible.set(e.target, e.intersectionRatio);
+      else visible.delete(e.target);
+    });
+    if (!scheduled) {
+      scheduled = true;
+      requestAnimationFrame(syncPlayback);
+    }
+  }, { rootMargin: '40px 0px', threshold: [0, 0.25, 0.5, 0.75] });
+
+  vids.forEach(v => io.observe(v));
+})();
+</script>
+</body>
+</html>
