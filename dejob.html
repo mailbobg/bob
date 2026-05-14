@@ -835,9 +835,12 @@
   // hiccup, race with v.load()) killed subsequent taps. Both are fixed below.
   let unlockArmed = false;
   function retryAllPaused() {
+    // Retry only videos that are already loaded — let IntersectionObserver
+    // drive src assignment. Eagerly loading every video on every gesture (or
+    // when the WeChat bridge fires at load) starts N simultaneous downloads
+    // and saturates mobile bandwidth.
     vids.forEach(v => {
-      if (!v.paused) return;
-      if (v.dataset.src && !v.src) { v.src = v.dataset.src; v.load(); }
+      if (!v.paused || !v.src) return;
       const p = v.play();
       if (p && p.catch) p.catch(err => {
         console.warn('[video] retry play() failed', v.dataset.src || v.src, err && err.name, err && err.message);
