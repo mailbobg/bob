@@ -422,7 +422,7 @@
 
 <!-- §1 — FULL-BLEED OVERVIEW VIDEO -->
 <section class="stage tall">
-  <video src="./Artifex/videos/media.mp4" autoplay muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:contain;display:block;background:#0a0a0a;"></video>
+  <video src="./Artifex/videos/media.mp4" muted loop playsinline preload="none" poster="./Artifex/posters/media.jpg" style="width:100%;height:100%;object-fit:contain;display:block;background:#0a0a0a;"></video>
 </section>
 
 <!-- §2 — Voice -->
@@ -433,7 +433,7 @@
     <p class="lede" data-i18n="c2_lede">Speech analysis runs on-device. The cabin acts on the dimension a driver is least equipped to manage themselves — their own state.</p>
   </div>
   <div class="chapter-media reveal">
-    <div class="frame"><video src="./Artifex/videos/climate.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
+    <div class="frame"><video src="./Artifex/videos/climate.mp4" muted loop playsinline preload="none" poster="./Artifex/posters/climate.jpg"></video></div>
   </div>
   <div class="chapter-cap reveal">
     <p data-i18n="c2_p1">The system listens for paralinguistic features — pace, pitch contour, breathiness — not the words. Nothing leaves the car.</p>
@@ -501,7 +501,7 @@
     <p class="lede" data-i18n="c6_lede">One editor pane. One live cabin preview. The brief is the design file.</p>
   </div>
   <div class="chapter-media reveal">
-    <div class="frame"><video src="./Artifex/videos/atom-navigation.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
+    <div class="frame"><video src="./Artifex/videos/atom-navigation.mp4" muted loop playsinline preload="none" poster="./Artifex/posters/atom-navigation.jpg"></video></div>
   </div>
   <div class="chapter-cap reveal">
     <p data-i18n="c6_p1">Every sentence in the brief is parsed into a constraint. "The car is a daily commuter for an introvert" is a different sentence than "the car is a Friday weekend toy" — the model composes the cabin against those constraints.</p>
@@ -751,5 +751,23 @@
 
 
 
+<script>
+(function(){
+  const vids = document.querySelectorAll('video');
+  if (!vids.length) return;
+  if (!('IntersectionObserver' in window)) {
+    vids.forEach(v => { try { v.play(); } catch(_){} });
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      const v = e.target;
+      if (e.isIntersecting) { v.play().catch(()=>{}); }
+      else { v.pause(); }
+    });
+  }, { rootMargin: '200px 0px', threshold: 0.1 });
+  vids.forEach(v => io.observe(v));
+})();
+</script>
 </body>
 </html>
