@@ -758,11 +758,16 @@
     v.addEventListener('playing', hidePoster, { once: true });
   }
 
+  function tryPlay(v) {
+    const p = v.play();
+    if (p && p.catch) p.catch(err => console.warn('[video] play() failed', v.dataset.src || v.src, err && err.name, err && err.message));
+  }
+
   if (reduceMotion || saveData) {
     vids.forEach(v => {
       v.addEventListener('click', () => {
         loadVideo(v);
-        v.play().catch(()=>{});
+        tryPlay(v);
       }, { once: true });
     });
     return;
@@ -770,7 +775,7 @@
 
   if (!('IntersectionObserver' in window)) {
     loadVideo(vids[0]);
-    vids[0].play().catch(()=>{});
+    tryPlay(vids[0]);
     return;
   }
 
@@ -791,7 +796,7 @@
     vids.forEach(v => {
       if (v === current && bestRatio >= 0.25) {
         loadVideo(v);
-        v.play().catch(()=>{});
+        tryPlay(v);
       } else {
         pauseVideo(v);
       }
