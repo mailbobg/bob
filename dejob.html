@@ -825,9 +825,28 @@
     v.addEventListener('playing', hidePoster, { once: true });
   }
 
+  let unlockArmed = false;
+  function armUnlock() {
+    if (unlockArmed) return;
+    unlockArmed = true;
+    const retry = () => {
+      vids.forEach(v => {
+        if (!v.paused) return;
+        if (v.dataset.src && !v.src) { v.src = v.dataset.src; v.load(); }
+        v.play().catch(()=>{});
+      });
+    };
+    const events = ['touchend','pointerup'];
+    const onGesture = () => { events.forEach(ev => document.removeEventListener(ev, onGesture)); retry(); };
+    events.forEach(ev => document.addEventListener(ev, onGesture, { passive: true }));
+    document.addEventListener('WeixinJSBridgeReady', retry, { once: true });
+  }
   function tryPlay(v) {
     const p = v.play();
-    if (p && p.catch) p.catch(err => console.warn('[video] play() failed', v.dataset.src || v.src, err && err.name, err && err.message));
+    if (p && p.catch) p.catch(err => {
+      console.warn('[video] play() failed', v.dataset.src || v.src, err && err.name, err && err.message);
+      armUnlock();
+    });
   }
 
   if (reduceMotion || saveData) {
