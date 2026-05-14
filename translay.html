@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Translay — Portfolio</title>
+
+<meta name="description" content="Translay — an iPhone overlay translator. Double-tap to translate any screen in 2 seconds, without leaving the app. DeepL online, on-device Gemma offline.">
+<meta name="author" content="Bob Wang">
+<meta name="theme-color" content="#0a0a0a">
+
+<link rel="canonical" href="https://bob.vehicledesign.studio/translay.html">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Bob Wang — Portfolio">
+<meta property="og:title" content="Translay — Translate any screen. Stay where you are.">
+<meta property="og:description" content="An iPhone overlay translator. Double-tap to translate any screen in two seconds, without leaving the app. DeepL online, on-device Gemma offline.">
+<meta property="og:url" content="https://bob.vehicledesign.studio/translay.html">
+<meta property="og:image" content="https://bob.vehicledesign.studio/Translay/hero.png">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="zh_CN">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Translay — Translate any screen. Stay where you are.">
+<meta name="twitter:description" content="An iPhone overlay translator. Double-tap to translate any screen in two seconds, without leaving the app. DeepL online, on-device Gemma offline.">
+<meta name="twitter:image" content="https://bob.vehicledesign.studio/Translay/hero.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "Translay",
+  "headline": "Translate any screen. Stay where you are.",
+  "description": "An iPhone overlay translator. Double-tap to translate any screen in two seconds, without leaving the app — DeepL online, on-device Gemma offline. 15+ languages.",
+  "url": "https://bob.vehicledesign.studio/translay.html",
+  "image": "https://bob.vehicledesign.studio/Translay/hero.png",
+  "inLanguage": "en",
+  "dateCreated": "2025",
+  "creator": {
+    "@type": "Person",
+    "name": "Bob Wang",
+    "url": "https://bob.vehicledesign.studio/"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Bob Wang — Portfolio",
+    "url": "https://bob.vehicledesign.studio/"
+  }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./translay_files/css2" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  :root {
+    --ink: #1d1d1f;
+    --ink-2: #424245;
+    --mute: #6e6e73;
+    --mute-2: #86868b;
+    --hair: #d2d2d7;
+    --paper: #ffffff;
+    --paper-2: #f5f5f7;
+
+    --dark-bg: #000000;
+    --dark-text: #f5f5f7;
+    --dark-mute: #86868b;
+    --dark-hair: #2a2a2c;
+
+    --f-sans: "Geist", "Noto Sans SC", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --f-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+    --px: clamp(20px, 4vw, 56px);
+    --maxw: 1440px;
+    --maxr: 980px;
+  }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--f-sans);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "ss01","ss02","cv11";
+    overflow-x: hidden;
+  }
+  ::selection { background: #0a0a0a; color: #fff; }
+  a { color: inherit; text-decoration: none; }
+  img, video { display: block; }
+
+  .page-wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--px); }
+
+  /* NAV */
+  .nav {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding: 24px var(--px) 0;
+    max-width: var(--maxw); margin: 0 auto;
+    font-size: 13px;
+  }
+  .nav .left, .nav .right {
+    display: flex; gap: 28px; align-items: baseline;
+    font-family: var(--f-mono); font-size: 12px; letter-spacing: .04em; text-transform: uppercase;
+  }
+  .nav .right { color: var(--mute); }
+  .nav .back { color: var(--ink); }
+  .nav .back .ar { display: inline-block; transition: transform .28s cubic-bezier(.22,.61,.36,1); margin-right: 6px; }
+  .nav .back:hover .ar { transform: translateX(-4px); }
+  .nav .crumb { color: var(--mute); }
+  .nav .crumb .cur { color: var(--ink); }
+  .lang-toggle { display: inline-flex; align-items: baseline; gap: 6px; background: none; border: 0; padding: 0; font: inherit; color: var(--ink); cursor: pointer; }
+  .lang-toggle .on { color: var(--ink); }
+  .lang-toggle .off { color: var(--mute-2); }
+  .lang-toggle .sep { color: var(--mute-2); }
+
+  /* HERO */
+  .hero {
+    text-align: center;
+    padding: 22vh 24px 18vh;
+    max-width: var(--maxr);
+    margin: 0 auto;
+    position: relative;
+    will-change: transform, opacity, filter;
+  }
+  .hero .label {
+    font-family: var(--f-mono);
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeIn 700ms 100ms cubic-bezier(.2,.7,.2,1) forwards;
+  }
+  .hero h1 {
+    margin: 0;
+    font-weight: 600;
+    font-size: clamp(56px, 11vw, 168px);
+    line-height: 0.94;
+    letter-spacing: -0.045em;
+    text-wrap: balance;
+  }
+  .hero h1 .ink2 { color: var(--ink-2); font-weight: 400; }
+  .hero h1 .mute { color: var(--mute-2); font-weight: 400; }
+  .hero h1 .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.05em; }
+  .hero h1 .w > span {
+    display: inline-block;
+    transform: translateY(110%); opacity: 0;
+    animation: wordUp 1100ms cubic-bezier(.2,.7,.2,1) forwards;
+    animation-delay: var(--d, 0ms);
+  }
+  @keyframes wordUp { 0%{transform:translateY(110%);opacity:0;} 100%{transform:translateY(0);opacity:1;} }
+  @keyframes fadeIn { to { opacity: 1; } }
+  .hero .sub {
+    margin: 36px auto 0;
+    max-width: 32ch;
+    font-size: clamp(18px, 1.6vw, 24px);
+    line-height: 1.42;
+    color: var(--ink-2);
+    font-weight: 400;
+    opacity: 0;
+    animation: fadeIn 900ms 1100ms cubic-bezier(.2,.7,.2,1) forwards;
+  }
+
+  /* CHAPTER */
+  .chapter {
+    padding: 22vh 24px 6vh;
+    text-align: center;
+    max-width: var(--maxw);
+    margin: 0 auto;
+  }
+  .chapter .eyebrow {
+    font-family: var(--f-mono);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin-bottom: 28px;
+  }
+  .chapter h2 {
+    margin: 0 auto;
+    max-width: 18ch;
+    font-weight: 600;
+    font-size: clamp(40px, 6.5vw, 96px);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+  }
+  .chapter h2 .mute { color: var(--mute-2); font-weight: 400; }
+  .chapter .lede {
+    margin: 28px auto 0;
+    max-width: 36ch;
+    font-size: clamp(17px, 1.4vw, 21px);
+    line-height: 1.5;
+    color: var(--ink-2);
+    text-wrap: pretty;
+  }
+
+  /* MEDIA — phone variant for vertical iPhone screen recordings */
+  .chapter-media {
+    margin: 6vh auto 0;
+    padding: 0 24px;
+    max-width: var(--maxw);
+  }
+  .chapter-media.phone {
+    display: flex;
+    justify-content: center;
+  }
+  .chapter-media.phone .frame {
+    width: 100%;
+    max-width: 340px;
+    aspect-ratio: 592 / 1200;
+    overflow: hidden;
+    border-radius: 36px;
+    background: #0a0a0a;
+    box-shadow:
+      0 30px 60px -20px rgba(0,0,0,.32),
+      0 18px 38px -22px rgba(0,0,0,.22);
+  }
+  .chapter-media.phone .frame video,
+  .chapter-media.phone .frame img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    background: #0a0a0a;
+  }
+  .dark .chapter-media.phone .frame {
+    box-shadow:
+      0 30px 60px -20px rgba(0,0,0,.6),
+      0 18px 38px -22px rgba(0,0,0,.5);
+  }
+
+  .chapter-cap {
+    max-width: 56ch;
+    margin: 5vh auto 0;
+    padding: 0 24px;
+    text-align: center;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink-2);
+    text-wrap: pretty;
+  }
+  .chapter-cap p + p { margin-top: 1.1em; }
+
+  /* DARK */
+  .dark {
+    background: var(--dark-bg);
+    color: var(--dark-text);
+    padding: 22vh 0 18vh;
+    margin-top: 8vh;
+  }
+  .dark .chapter, .dark .chapter-media, .dark .chapter-cap { color: var(--dark-text); }
+  .dark .chapter .eyebrow { color: var(--dark-mute); }
+  .dark .chapter .lede { color: var(--dark-mute); }
+  .dark h2 .mute { color: var(--dark-mute); }
+  .dark .chapter-cap { color: var(--dark-mute); }
+
+  /* STATS */
+  .stats {
+    padding: 24vh 24px 22vh;
+    max-width: var(--maxw);
+    margin: 0 auto;
+    text-align: center;
+  }
+  .stats .eyebrow {
+    font-family: var(--f-mono);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin-bottom: 32px;
+  }
+  .stats h2 {
+    margin: 0 auto 12vh;
+    max-width: 22ch;
+    font-weight: 600;
+    font-size: clamp(36px, 5.5vw, 80px);
+    line-height: 1.04;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+  .stats h2 .mute { color: var(--mute-2); font-weight: 400; }
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+    border-top: 1px solid var(--hair);
+  }
+  .stat {
+    padding: 56px 8px 24px;
+    border-right: 1px solid var(--hair);
+  }
+  .stat:last-child { border-right: 0; }
+  .stat .num {
+    font-weight: 500;
+    font-size: clamp(48px, 6.8vw, 100px);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .stat .lbl {
+    margin-top: 18px;
+    font-family: var(--f-mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mute);
+  }
+
+  /* META + REFLECT */
+  .meta-strip {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 var(--px);
+  }
+  .meta-strip .grid {
+    border-top: 1px solid var(--hair);
+    padding: 28px 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+    font-family: var(--f-mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .meta-strip .k { color: var(--mute); margin-bottom: 6px; }
+  .meta-strip .v { color: var(--ink); }
+
+  .reflect {
+    padding: 18vh 24px 18vh;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .reflect .body {
+    font-weight: 400;
+    font-size: clamp(24px, 3vw, 44px);
+    line-height: 1.28;
+    letter-spacing: -0.022em;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .reflect .body .mute { color: var(--mute-2); }
+
+  /* NEXT + FOOT */
+  .next-band {
+    background: var(--paper-2);
+    padding: 8vh 0;
+  }
+  .next {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 var(--px);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: end;
+    cursor: pointer;
+    transition: padding 360ms cubic-bezier(.22,.61,.36,1);
+  }
+  .next:hover { padding-left: calc(var(--px) + 8px); }
+  .next .label {
+    font-family: var(--f-mono);
+    font-size: 12px; color: var(--mute);
+    letter-spacing: .12em; text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .next .title {
+    font-size: clamp(40px, 7vw, 104px);
+    font-weight: 600; letter-spacing: -0.035em; line-height: 1;
+  }
+  .next .arr {
+    font-family: var(--f-mono); font-size: 16px; color: var(--mute);
+    transition: color .22s ease, transform .28s cubic-bezier(.22,.61,.36,1);
+    align-self: end; padding-bottom: 14px;
+  }
+  .next:hover .arr { color: var(--ink); transform: translate(6px, -4px); }
+
+  .foot {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 32px var(--px) 36px;
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-top: 1px solid var(--hair);
+    font-family: var(--f-mono); font-size: 11px; color: var(--mute);
+    letter-spacing: .06em; text-transform: uppercase;
+  }
+  .foot a { color: var(--ink); }
+  .foot a:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .foot .right { display: flex; gap: 24px; }
+
+  /* REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1);
+  }
+  .reveal.in { opacity: 1; transform: none; }
+
+  @media (max-width: 1024px) {
+    .stat-row { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 760px) {
+    .nav .right { gap: 14px; } .nav .right .clock { display: none; }
+    .stat-row { grid-template-columns: 1fr; }
+    .stat { border-right: 0; border-bottom: 1px solid var(--hair); padding: 36px 8px; }
+    .stat:last-child { border-bottom: 0; }
+    .meta-strip .grid { grid-template-columns: 1fr 1fr; }
+    .next { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav reveal in">
+  <div class="left">
+    <a class="back" href="./index.html"><span class="ar">←</span><span data-i18n="back">INDEX</span></a>
+    <span class="crumb"><span data-i18n="crumb_sel">SELECTED WORK</span> / <span class="cur" data-i18n="crumb_cur">Translay</span></span>
+  </div>
+  <div class="right">
+    <span class="clock" id="clock">00:00:00 CST</span>
+    <span data-i18n="of">03 / 07</span>
+    <button class="lang-toggle" id="lang">
+      <span id="lang-en" class="on">EN</span>
+      <span class="sep">/</span>
+      <span id="lang-zh" class="off">中</span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="hero">
+  <div class="label" data-i18n="hero_label">TRANSLAY · 2025</div>
+  <h1 id="hero-h1" data-i18n-html="hero_h1">Translate any screen. <span class="mute">Stay where you are.</span></h1>
+  <p class="sub" data-i18n="hero_sub">An iPhone overlay translator. Double-tap to translate the screen in two seconds, without leaving the app — DeepL when online, on-device Gemma when not.</p>
+</header>
+
+<!-- §1 — One tap. Stay where you are. -->
+<section>
+  <div class="chapter reveal">
+    <div class="eyebrow" data-i18n="c1_eye">CHAPTER 01</div>
+    <h2 data-i18n-html="c1_h">One tap. <span class="mute">Stay where you are.</span></h2>
+    <p class="lede" data-i18n="c1_lede">Open WeChat, Safari, Instagram — anywhere with text. Double-tap the back of your iPhone. Two seconds later the translation is layered exactly over the original, line by line, in place.</p>
+  </div>
+  <div class="chapter-media phone">
+    <div class="frame"><video data-src="./Translay/videos/overlay.mp4" muted loop playsinline preload="none" poster="./Translay/posters/overlay.jpg"></video></div>
+  </div>
+  <div class="chapter-cap reveal">
+    <p data-i18n="c1_p1">The translator never owns your screen — it borrows it for a moment. No app switch, no clipboard, no copy-paste. One shortcut, one overlay, the original layout left untouched.</p>
+  </div>
+</section>
+
+<!-- §2 — Online + offline -->
+<section class="dark">
+  <div class="chapter reveal">
+    <div class="eyebrow" data-i18n="c2_eye">CHAPTER 02</div>
+    <h2 data-i18n-html="c2_h">Online when you want speed. <span class="mute">Offline when you can't.</span></h2>
+    <p class="lede" data-i18n="c2_lede">DeepL on a network, Gemma on the device. The same shortcut, two engines underneath — picked by where you are, not what you toggled.</p>
+  </div>
+  <div class="chapter-media phone">
+    <div class="frame"><video data-src="./Translay/videos/engines.mp4" muted loop playsinline preload="none" poster="./Translay/posters/engines.jpg"></video></div>
+  </div>
+  <div class="chapter-cap reveal">
+    <p data-i18n="c2_p1">On-device Gemma means a plane cabin, a subway tunnel, a country with no data plan — none of it is a wall. OCR runs locally too, so the screenshot itself never leaves the device.</p>
+  </div>
+</section>
+
+<!-- §3 — STATS -->
+<section class="stats reveal">
+  <div class="eyebrow" data-i18n="stats_eye">BY THE NUMBERS</div>
+  <h2 data-i18n-html="stats_h">Fifteen languages, <span class="mute">two seconds, one tap.</span></h2>
+  <div class="stat-row">
+    <div class="stat">
+      <div class="num">15+</div>
+      <div class="lbl" data-i18n="s1_lbl">LANGUAGES</div>
+    </div>
+    <div class="stat">
+      <div class="num">~2s</div>
+      <div class="lbl" data-i18n="s2_lbl">OVERLAY DELAY</div>
+    </div>
+    <div class="stat">
+      <div class="num">100%</div>
+      <div class="lbl" data-i18n="s3_lbl">ON-DEVICE OCR</div>
+    </div>
+  </div>
+</section>
+
+<!-- §4 — Built for every screen, every language -->
+<section>
+  <div class="chapter reveal">
+    <div class="eyebrow" data-i18n="c3_eye">CHAPTER 03</div>
+    <h2 data-i18n-html="c3_h">Built for <span class="mute">any screen, any language.</span></h2>
+    <p class="lede" data-i18n="c3_lede">Chinese, Japanese, Korean, English, German, French, Russian, Spanish, Italian, Portuguese — and more. Pick a target language once; every overlay after that respects it.</p>
+  </div>
+  <div class="chapter-media phone">
+    <div class="frame"><video data-src="./Translay/videos/overview.mp4" muted loop playsinline preload="none" poster="./Translay/posters/overview.jpg"></video></div>
+  </div>
+  <div class="chapter-cap reveal">
+    <p data-i18n="c3_p1">Gaming a Japanese RPG, shopping on a Russian site, reading a German contract — Translay treats them all the same way: the line of text in front of you, rendered in the language you read.</p>
+  </div>
+</section>
+
+<!-- META STRIP -->
+<div class="meta-strip">
+  <div class="grid reveal">
+    <div><div class="k" data-i18n="m_role">ROLE</div><div class="v" data-i18n="m_role_v">FOUNDER · DESIGNER</div></div>
+    <div><div class="k" data-i18n="m_year">YEAR</div><div class="v">2025</div></div>
+    <div><div class="k" data-i18n="m_team">TEAM</div><div class="v" data-i18n="m_team_v">SOLO · AI-ASSISTED</div></div>
+    <div><div class="k" data-i18n="m_domain">DOMAIN</div><div class="v" data-i18n="m_domain_v">iOS · TRANSLATION</div></div>
+    <div><div class="k" data-i18n="m_status">STATUS</div><div class="v" data-i18n="m_status_v">LIVE · translay.imyway.cn</div></div>
+  </div>
+</div>
+
+<!-- REFLECTION -->
+<section class="reflect reveal">
+  <p class="body" data-i18n-html="ref_body">Translation tools have spent fifteen years pulling text out of context to fix it. <span class="mute">The harder discipline is to leave the context exactly where it stood — and to set the translation under it, not in front of it.</span></p>
+</section>
+
+<!-- NEXT -->
+<div class="next-band">
+  <a class="next reveal" href="./waycraft.html">
+    <div>
+      <div class="label" data-i18n="next_label">NEXT — 04 / 07</div>
+      <div class="title" data-i18n="next_title">Waycraft</div>
+    </div>
+    <div class="arr">↗</div>
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <div data-i18n="foot_copy">© 2025 — All work shown by permission.</div>
+  <div class="right">
+    <a href="mailto:wangbo77@hotmail.com">EMAIL</a>
+    <a href="https://www.linkedin.com/in/imbob/" target="_blank" rel="me noopener noreferrer">LINKEDIN</a>
+    <a href="https://github.com/mailbobg" target="_blank" rel="me noopener noreferrer">GITHUB</a>
+  </div>
+</footer>
+
+<script>
+  /* i18n */
+  const I18N = {
+    en: {
+      back: "INDEX", crumb_sel: "SELECTED WORK", crumb_cur: "Translay", of: "03 / 07",
+      hero_label: "TRANSLAY · 2025",
+      hero_h1: "Translate any screen. <span class='mute'>Stay where you are.</span>",
+      hero_sub: "An iPhone overlay translator. Double-tap to translate the screen in two seconds, without leaving the app — DeepL when online, on-device Gemma when not.",
+
+      c1_eye: "CHAPTER 01",
+      c1_h: "One tap. <span class='mute'>Stay where you are.</span>",
+      c1_lede: "Open WeChat, Safari, Instagram — anywhere with text. Double-tap the back of your iPhone. Two seconds later the translation is layered exactly over the original, line by line, in place.",
+      c1_p1: "The translator never owns your screen — it borrows it for a moment. No app switch, no clipboard, no copy-paste. One shortcut, one overlay, the original layout left untouched.",
+
+      c2_eye: "CHAPTER 02",
+      c2_h: "Online when you want speed. <span class='mute'>Offline when you can't.</span>",
+      c2_lede: "DeepL on a network, Gemma on the device. The same shortcut, two engines underneath — picked by where you are, not what you toggled.",
+      c2_p1: "On-device Gemma means a plane cabin, a subway tunnel, a country with no data plan — none of it is a wall. OCR runs locally too, so the screenshot itself never leaves the device.",
+
+      stats_eye: "BY THE NUMBERS",
+      stats_h: "Fifteen languages, <span class='mute'>two seconds, one tap.</span>",
+      s1_lbl: "LANGUAGES", s2_lbl: "OVERLAY DELAY", s3_lbl: "ON-DEVICE OCR",
+
+      c3_eye: "CHAPTER 03",
+      c3_h: "Built for <span class='mute'>any screen, any language.</span>",
+      c3_lede: "Chinese, Japanese, Korean, English, German, French, Russian, Spanish, Italian, Portuguese — and more. Pick a target language once; every overlay after that respects it.",
+      c3_p1: "Gaming a Japanese RPG, shopping on a Russian site, reading a German contract — Translay treats them all the same way: the line of text in front of you, rendered in the language you read.",
+
+      m_role: "ROLE", m_role_v: "FOUNDER · DESIGNER",
+      m_year: "YEAR",
+      m_team: "TEAM", m_team_v: "SOLO · AI-ASSISTED",
+      m_domain: "DOMAIN", m_domain_v: "iOS · TRANSLATION",
+      m_status: "STATUS", m_status_v: "LIVE · translay.imyway.cn",
+
+      ref_body: "Translation tools have spent fifteen years pulling text out of context to fix it. <span class='mute'>The harder discipline is to leave the context exactly where it stood — and to set the translation under it, not in front of it.</span>",
+      next_label: "NEXT — 04 / 07", next_title: "Waycraft",
+      foot_copy: "© 2025 — All work shown by permission.",
+    },
+    zh: {
+      back: "返回索引", crumb_sel: "精选作品", crumb_cur: "Translay", of: "03 / 07",
+      hero_label: "TRANSLAY · 2025",
+      hero_h1: "翻译任何屏幕，<span class='mute'>不离开当下。</span>",
+      hero_sub: "iPhone 即屏翻译。双击两秒之内出译文，不跳出当前 App —— 在线时走 DeepL，离线时跑端侧 Gemma。",
+
+      c1_eye: "第一章",
+      c1_h: "一键翻译，<span class='mute'>不离开 App。</span>",
+      c1_lede: "微信、Safari、Instagram —— 任何带文字的界面里，双击 iPhone 背面。两秒后，译文逐行铺在原文上方，位置一致，原界面没动。",
+      c1_p1: "翻译工具从不把屏幕据为己有 —— 它只是借用一瞬间。无切屏、无剪贴板、无复制粘贴。一个快捷键、一层叠加、原排版不变。",
+
+      c2_eye: "第二章",
+      c2_h: "在线追求速度，<span class='mute'>离线照样能用。</span>",
+      c2_lede: "联网走 DeepL，离线跑端侧 Gemma。同一个快捷键、两个底层引擎，按所处环境自动切换 —— 而不是要你提前调档位。",
+      c2_p1: "端侧 Gemma 意味着飞机、地铁隧道、没买当地流量的国家 —— 任何场景都不是墙。OCR 也在本机完成，截图从未离开过手机。",
+
+      stats_eye: "用数字说话",
+      stats_h: "<span class='mute'>15 种语言，两秒，一次轻按。</span>",
+      s1_lbl: "支持语言", s2_lbl: "覆盖延迟", s3_lbl: "本机 OCR",
+
+      c3_eye: "第三章",
+      c3_h: "为任何屏幕、<span class='mute'>任何语言而设计。</span>",
+      c3_lede: "中文、日文、韩文、英文、德文、法文、俄文、西班牙文、意大利文、葡萄牙文 —— 以及更多。目标语言设一次，之后每次覆盖译文都按它来。",
+      c3_p1: "玩日文 RPG、上俄语电商、读德语合同 —— Translay 一视同仁：眼前那一行文字，用你读的语言显示。",
+
+      m_role: "角色", m_role_v: "创始人 · 设计师",
+      m_year: "年份",
+      m_team: "团队", m_team_v: "独立 · AI 辅助",
+      m_domain: "领域", m_domain_v: "iOS · 翻译",
+      m_status: "状态", m_status_v: "已上线 · translay.imyway.cn",
+
+      ref_body: "过去十五年的翻译工具，一直在把文字从上下文里拽出来再修。<span class='mute'>更难的功夫，是让上下文一动不动 —— 把译文垫在它下面，而不是挡在前面。</span>",
+      next_label: "下一个 — 04 / 07", next_title: "Waycraft",
+      foot_copy: "© 2025 — 作品授权使用。",
+    }
+  };
+
+  let lang = "en";
+  try { const stored = localStorage.getItem("lang"); if (stored === "zh" || stored === "en") lang = stored; } catch(e){}
+  function applyLang() {
+    document.documentElement.lang = lang === "zh" ? "zh" : "en";
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const k = el.getAttribute("data-i18n");
+      if (I18N[lang][k] !== undefined) el.textContent = I18N[lang][k];
+    });
+    document.querySelectorAll("[data-i18n-html]").forEach(el => {
+      const k = el.getAttribute("data-i18n-html");
+      if (I18N[lang][k] !== undefined) el.innerHTML = I18N[lang][k];
+    });
+    document.getElementById("lang-en").className = lang === "en" ? "on" : "off";
+    document.getElementById("lang-zh").className = lang === "zh" ? "on" : "off";
+    splitHeroWords();
+    try { localStorage.setItem("lang", lang); } catch(e){}
+  }
+  document.getElementById("lang").addEventListener("click", () => { lang = lang === "en" ? "zh" : "en"; applyLang(); });
+  applyLang();
+
+  /* HERO word-split */
+  function splitHeroWords() {
+    const h1 = document.getElementById("hero-h1");
+    if (!h1) return;
+    const html = h1.innerHTML;
+    const tokens = [];
+    const re = /(<br[^>]*>)|(<span[^>]*>[^<]*<\/span>)|([^\s<]+)|(\s+)/gi;
+    let m;
+    while ((m = re.exec(html)) !== null) {
+      if (m[1]) tokens.push({type:"br"});
+      else if (m[2]) {
+        const inner = m[2].match(/>([^<]*)</)[1];
+        const cls = m[2].match(/class=['"]([^'"]*)['"]/);
+        const c = cls ? cls[1] : "";
+        const parts = inner.split(/\s+/).filter(Boolean);
+        parts.forEach(p => tokens.push({type:"w", text: p, cls: c}));
+      }
+      else if (m[3]) tokens.push({type:"w", text: m[3], cls: ""});
+    }
+    let out = "", i = 0;
+    tokens.forEach(t => {
+      if (t.type === "br") { out += "<br/>"; return; }
+      const d = i * 70 + 200;
+      const cls = t.cls ? ` class="${t.cls}"` : "";
+      out += `<span class="w" style="margin-right:.24em"><span${cls} style="--d:${d}ms; display:inline-block;">${t.text}</span></span>`;
+      i++;
+    });
+    h1.innerHTML = out;
+  }
+
+  /* clock */
+  const clockEl = document.getElementById("clock");
+  function tickClock() {
+    const d = new Date();
+    const pad = n => String(n).padStart(2,"0");
+    clockEl.textContent = `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())} CST`;
+  }
+  tickClock(); setInterval(tickClock, 1000);
+
+  /* reveal on scroll */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+  document.querySelectorAll(".reveal:not(.in)").forEach(el => io.observe(el));
+
+  /* hero subtle scroll fade */
+  const hero = document.getElementById("hero");
+  let lastY = -1;
+  function onScroll() {
+    const y = window.scrollY || window.pageYOffset;
+    if (y === lastY) return;
+    lastY = y;
+    const h = window.innerHeight;
+    const range = h * 0.8;
+    const p = Math.min(1, Math.max(0, y / range));
+    const ease = p < 0.5 ? 2*p*p : 1 - Math.pow(-2*p+2, 2)/2;
+    hero.style.opacity = (1 - ease).toFixed(3);
+    hero.style.transform = `translate3d(0, ${(-ease * 40).toFixed(1)}px, 0) scale(${(1 - ease*0.04).toFixed(3)})`;
+    hero.style.filter = `blur(${(ease * 6).toFixed(2)}px)`;
+    hero.style.pointerEvents = (1 - ease) < 0.05 ? "none" : "auto";
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+</script>
+
+<script>
+(function(){
+  const vids = Array.from(document.querySelectorAll('video'));
+  if (!vids.length) return;
+
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const saveData = navigator.connection && navigator.connection.saveData;
+  vids.forEach(attachPosterOverlay);
+
+  function loadVideo(v) {
+    if (v.src || !v.dataset.src) return;
+    v.preload = 'metadata';
+    v.src = v.dataset.src;
+    v.load();
+    v.playbackRate = 1.5;
+  }
+
+  function pauseVideo(v) {
+    if (!v.paused) v.pause();
+  }
+
+  function attachPosterOverlay(v) {
+    if (!v.poster || v.dataset.posterOverlay === 'true') return;
+    v.dataset.posterOverlay = 'true';
+    const parent = v.parentElement;
+    if (!parent) return;
+    if (getComputedStyle(parent).position === 'static') parent.style.position = 'relative';
+
+    const poster = document.createElement('img');
+    poster.src = v.poster;
+    poster.alt = '';
+    poster.decoding = 'async';
+    poster.style.cssText = [
+      'position:absolute',
+      'inset:0',
+      'z-index:2',
+      'width:100%',
+      'height:100%',
+      `object-fit:${getComputedStyle(v).objectFit || 'cover'}`,
+      'background:#0a0a0a',
+      'transition:opacity 180ms ease',
+      'pointer-events:none'
+    ].join(';');
+    parent.appendChild(poster);
+
+    const hidePoster = () => {
+      requestAnimationFrame(() => {
+        poster.style.opacity = '0';
+        window.setTimeout(() => { poster.style.display = 'none'; }, 220);
+      });
+    };
+    v.addEventListener('playing', hidePoster, { once: true });
+  }
+
+  if (reduceMotion || saveData) {
+    vids.forEach(v => {
+      v.addEventListener('click', () => {
+        loadVideo(v);
+        v.play().catch(()=>{});
+      }, { once: true });
+    });
+    return;
+  }
+
+  if (!('IntersectionObserver' in window)) {
+    loadVideo(vids[0]);
+    vids[0].play().catch(()=>{});
+    return;
+  }
+
+  const visible = new Map();
+  let scheduled = false;
+
+  function syncPlayback() {
+    scheduled = false;
+    let current = null;
+    let bestRatio = 0;
+    visible.forEach((ratio, v) => {
+      if (ratio > bestRatio) {
+        bestRatio = ratio;
+        current = v;
+      }
+    });
+
+    vids.forEach(v => {
+      if (v === current && bestRatio >= 0.25) {
+        loadVideo(v);
+        v.play().catch(()=>{});
+      } else {
+        pauseVideo(v);
+      }
+    });
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) visible.set(e.target, e.intersectionRatio);
+      else visible.delete(e.target);
+    });
+    if (!scheduled) {
+      scheduled = true;
+      requestAnimationFrame(syncPlayback);
+    }
+  }, { rootMargin: '40px 0px', threshold: [0, 0.25, 0.5, 0.75] });
+
+  vids.forEach(v => io.observe(v));
+})();
+</script>
+</body>
+</html>
