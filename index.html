@@ -871,12 +871,12 @@
     .nav .meta { gap: 16px; }
   }
   @media (max-width: 520px) {
-    .work-row { grid-template-columns: 40px 24px 1fr auto; column-gap: 12px; padding: 24px 0 22px; min-height: 0; }
-    .work-row .row-logo { width: 40px; height: 40px; border-radius: 10px; }
-    .work-row .title { font-size: clamp(26px, 8vw, 40px); line-height: 1.04; overflow-wrap: anywhere; }
+    .work-row { grid-template-columns: 32px 1fr auto; column-gap: 16px; padding: 24px 0 22px; }
+    .work-row .row-logo { display: none; }    /* hide logo on phone — title carries the brand */
+    .work-row .title { font-size: clamp(34px, 9vw, 48px); line-height: 1; }
     .work-row .desc { display: none; }
     .work-row .meta .year { display: none; }
-    .work-row .num { padding-top: 0.3em; font-size: 11px; }
+    .work-row .num { padding-top: 0.45em; }
     .section-head { grid-template-columns: 1fr; gap: 6px; padding: 24px 0 20px; }
     .section-head .right { justify-self: start; }
   }
