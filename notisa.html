@@ -1,38 +1,38 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Foresee / 境见 — Portfolio</title>
+<title>Notisa — Portfolio</title>
 
-<meta name="description" content="Foresee / 境见 — AI-reasoned I Ching and BaZi readings. 100,000 words of classical theory distilled into 1,500 curated cases, powered by a self-iterating match engine.">
+<meta name="description" content="Notisa — local Germany, on your calendar. PLZ-aware, AI-conversational, source-direct: tax dates, holidays, welfare windows and school terms written into iOS Calendar before any deadline expires.">
 <meta name="author" content="Bob Wang">
 <meta name="theme-color" content="#0a0a0a">
 
-<link rel="canonical" href="https://bob.vehicledesign.studio/foresee.html">
+<link rel="canonical" href="https://bob.vehicledesign.studio/notisa.html">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Bob Wang — Portfolio">
-<meta property="og:title" content="Foresee / 境见 — Ancient wisdom, reasoned.">
-<meta property="og:description" content="I Ching divination and BaZi reading, powered by an AI reasoning engine over a self-iterating match weight. 100K words distilled into 1,500 curated cases.">
-<meta property="og:url" content="https://bob.vehicledesign.studio/foresee.html">
-<meta property="og:image" content="https://bob.vehicledesign.studio/Foresee/posters/liuyao.jpg">
+<meta property="og:title" content="Notisa — Local Germany, on your calendar.">
+<meta property="og:description" content="PLZ-aware, AI-conversational, source-direct. Notisa scrapes German .de sources for your postal code and writes deadlines into your calendar.">
+<meta property="og:url" content="https://bob.vehicledesign.studio/notisa.html">
+<meta property="og:image" content="https://bob.vehicledesign.studio/Notisa/posters/ai.jpg">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="zh_CN">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Foresee / 境见 — Ancient wisdom, reasoned.">
-<meta name="twitter:description" content="I Ching divination and BaZi reading, powered by an AI reasoning engine over a self-iterating match weight.">
-<meta name="twitter:image" content="https://bob.vehicledesign.studio/Foresee/posters/liuyao.jpg">
+<meta name="twitter:title" content="Notisa — Local Germany, on your calendar.">
+<meta name="twitter:description" content="PLZ-aware, AI-conversational, source-direct.">
+<meta name="twitter:image" content="https://bob.vehicledesign.studio/Notisa/posters/ai.jpg">
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "CreativeWork",
-  "name": "Foresee / 境见",
-  "headline": "Ancient wisdom, reasoned.",
-  "description": "I Ching (Liu Yao) divination and BaZi reading powered by an AI reasoning engine — 100,000 words of classical theory distilled into 1,500 curated cases, with a self-iterating match engine that re-weights itself on low-confidence readings.",
-  "url": "https://bob.vehicledesign.studio/foresee.html",
-  "image": "https://bob.vehicledesign.studio/Foresee/posters/liuyao.jpg",
+  "name": "Notisa",
+  "headline": "Local Germany, on your calendar.",
+  "description": "PLZ-aware, AI-conversational, source-direct: Notisa scrapes German .de sources for your postal code and writes tax dates, holidays, welfare windows and school terms into iOS Calendar before any deadline expires.",
+  "url": "https://bob.vehicledesign.studio/notisa.html",
+  "image": "https://bob.vehicledesign.studio/Notisa/posters/ai.jpg",
   "inLanguage": "en",
   "dateCreated": "2025",
   "creator": {
@@ -71,9 +71,9 @@
     --dark-mute: #86868b;
     --dark-hair: #2a2a2c;
 
-    /* warm sepia accent — keyed to the bagua / 卦 sense of the product */
-    --sepia: #8a6537;
-    --sepia-bg: rgba(138, 101, 55, 0.08);
+    /* civic blue accent — keyed to the German PLZ / Bundesland sense of the product */
+    --civic: #2c5fa6;
+    --civic-bg: rgba(44, 95, 166, 0.08);
 
     --f-sans: "Geist", "Noto Sans SC", "Helvetica Neue", Helvetica, Arial, sans-serif;
     --f-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
@@ -170,22 +170,23 @@
     animation: fadeIn 900ms 1100ms cubic-bezier(.2,.7,.2,1) forwards;
   }
 
-  /* hero glyph row — 8 bagua trigrams as a quiet ornament */
-  .bagua-row {
+  /* hero glyph row — 8 German Bundesland codes as a quiet ornament */
+  .land-row {
     margin: 6vh auto 0;
     max-width: 720px;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     gap: clamp(6px, 1.4vw, 18px);
-    font-family: var(--f-serif);
-    font-size: clamp(20px, 2.4vw, 32px);
+    font-family: var(--f-mono);
+    font-size: clamp(13px, 1.5vw, 18px);
+    letter-spacing: 0.1em;
     color: var(--mute-2);
     text-align: center;
     line-height: 1;
     opacity: 0;
     animation: fadeIn 1100ms 1500ms cubic-bezier(.2,.7,.2,1) forwards;
   }
-  .bagua-row span { padding: 6px 0; }
+  .land-row span { padding: 6px 0; }
 
   /* ──────────────── CHAPTER ──────────────── */
   .chapter {
@@ -238,8 +239,8 @@
     box-shadow:
       0 1px 0 rgba(255,255,255,.5) inset,
       0 0 0 1px rgba(0,0,0,.06),
-      0 30px 60px -20px rgba(20,12,4,.28),
-      0 18px 40px -22px rgba(20,12,4,.18);
+      0 30px 60px -20px rgba(8,16,32,.32),
+      0 18px 40px -22px rgba(8,16,32,.22);
   }
   .chapter-media .phone video,
   .chapter-media .phone img {
@@ -251,7 +252,7 @@
       0 1px 0 rgba(255,255,255,.06) inset,
       0 0 0 1px rgba(255,255,255,.04),
       0 30px 60px -18px rgba(0,0,0,.6),
-      0 18px 50px -24px rgba(138,101,55,.18);
+      0 18px 50px -24px rgba(44,95,166,.22);
   }
 
   .chapter-cap {
@@ -266,10 +267,11 @@
   }
   .chapter-cap p + p { margin-top: 1.1em; }
   .chapter-cap .glyph {
-    font-family: var(--f-serif);
-    color: var(--sepia);
-    font-size: 1.04em;
+    font-family: var(--f-mono);
+    color: var(--civic);
+    font-size: 1.0em;
     padding: 0.04em 0.2em;
+    letter-spacing: 0.02em;
   }
 
   /* ──────────────── DARK SECTION ──────────────── */
@@ -281,10 +283,10 @@
     position: relative;
   }
   .dark::before {
-    /* a quiet radial sepia warmth at the section's center */
+    /* a quiet radial civic-blue warmth at the section's center */
     content: "";
     position: absolute; inset: 0;
-    background: radial-gradient(60% 50% at 50% 22%, rgba(138,101,55,.12) 0%, rgba(0,0,0,0) 70%);
+    background: radial-gradient(60% 50% at 50% 22%, rgba(44,95,166,.14) 0%, rgba(0,0,0,0) 70%);
     pointer-events: none;
   }
   .dark .chapter, .dark .chapter-media, .dark .chapter-cap { color: var(--dark-text); position: relative; }
@@ -292,7 +294,7 @@
   .dark .chapter .lede { color: var(--dark-mute); }
   .dark h2 .mute { color: var(--dark-mute); }
   .dark .chapter-cap { color: var(--dark-mute); }
-  .dark .chapter-cap .glyph { color: #c4955f; }
+  .dark .chapter-cap .glyph { color: #6a96cd; }
 
   /* ──────────────── PINNED STATS ──────────────── */
   .stats {
@@ -385,20 +387,20 @@
     text-wrap: balance;
   }
   .reflect .body .mute { color: var(--mute-2); }
-  .reflect .body .glyph { font-family: var(--f-serif); color: var(--sepia); padding: 0 0.06em; }
+  .reflect .body .glyph { font-family: var(--f-mono); color: var(--civic); padding: 0 0.08em; }
 
-  /* monospace formula chip — surfaces the match-weight formula inline */
-  .formula {
+  /* monospace chip — surfaces a PLZ / source URL inline */
+  .chip {
     font-family: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
     font-size: 0.86em;
-    background: var(--sepia-bg);
-    color: var(--sepia);
+    background: var(--civic-bg);
+    color: var(--civic);
     padding: 0.12em 0.5em;
     border-radius: 2px;
     letter-spacing: -0.005em;
     white-space: nowrap;
   }
-  @media (max-width: 720px) { .formula { white-space: normal; } }
+  @media (max-width: 720px) { .chip { white-space: normal; } }
 
   /* ──────────────── NEXT + FOOT ──────────────── */
   .next-band {
@@ -468,7 +470,7 @@
     .stat:last-child { border-bottom: 0; }
     .meta-strip .grid { grid-template-columns: 1fr 1fr; }
     .next { grid-template-columns: 1fr; }
-    .bagua-row { font-size: 18px; }
+    .land-row { font-size: 12px; }
     .chapter-media .phone { width: min(86vw, 340px); }
   }
 </style>
@@ -479,11 +481,11 @@
 <nav class="nav reveal in">
   <div class="left">
     <a class="back" href="./index.html"><span class="ar">←</span><span data-i18n="back">INDEX</span></a>
-    <span class="crumb"><span data-i18n="crumb_sel">SELECTED WORK</span> / <span class="cur" data-i18n="crumb_cur">Foresee / 境见</span></span>
+    <span class="crumb"><span data-i18n="crumb_sel">SELECTED WORK</span> / <span class="cur" data-i18n="crumb_cur">Notisa</span></span>
   </div>
   <div class="right">
     <span class="clock" id="clock">--:--:--</span>
-    <span data-i18n="of">06 / 07</span>
+    <span data-i18n="of">07 / 07</span>
     <button class="lang-toggle" id="lang">
       <span id="lang-en" class="on">EN</span>
       <span class="sep">/</span>
@@ -494,78 +496,79 @@
 
 <!-- HERO -->
 <header class="hero" id="hero">
-  <div class="label" data-i18n="hero_label">Foresee / 境见 · 2025</div>
-  <h1 id="hero-h1" data-i18n-html="hero_h1">Ancient wisdom, <span class="mute">now reasoned.</span></h1>
-  <p class="sub" data-i18n="hero_sub">I Ching divination and BaZi reading, powered by an AI reasoning engine over a self-iterating match weight — 100,000 words of classical theory, distilled into 1,500 curated cases.</p>
-  <div class="bagua-row" aria-hidden="true">
-    <span>☰</span><span>☱</span><span>☲</span><span>☳</span><span>☴</span><span>☵</span><span>☶</span><span>☷</span>
+  <div class="label" data-i18n="hero_label">Notisa · 2025</div>
+  <h1 id="hero-h1" data-i18n-html="hero_h1">Local Germany, <span class="mute">on your calendar.</span></h1>
+  <p class="sub" data-i18n="hero_sub">Tax dates, holidays, welfare windows, school terms — Notisa scrapes the .de sources for your PLZ and writes them into your calendar before any deadline expires.</p>
+  <div class="land-row" aria-hidden="true">
+    <span>BE</span><span>BW</span><span>BY</span><span>HE</span><span>HH</span><span>NI</span><span>NW</span><span>SN</span>
   </div>
 </header>
 
-<!-- §1 — 六爻 Liu Yao -->
+<!-- §1 — Locale / PLZ -->
 <section>
   <div class="chapter reveal">
-    <div class="eyebrow" data-i18n="ly_eye">CHAPTER 01 · 六爻</div>
-    <h2 data-i18n-html="ly_h">Six lines, <span class="mute">ten thousand interpretations.</span></h2>
-    <p class="lede" data-i18n="ly_lede">Cast a hexagram, then read it. The AI reasons over 100,000 words of classical Liu Yao theory, distilled into 1,500 curated cases — every interpretation is a chain of explicit inferences, not a one-line oracle.</p>
+    <div class="eyebrow" data-i18n="loc_eye">CHAPTER 01 · LOCALE</div>
+    <h2 data-i18n-html="loc_h">One PLZ, <span class="mute">your whole local calendar.</span></h2>
+    <p class="lede" data-i18n="loc_lede">Pick a Bundesland and a postal code — or tap «use my location» and let GPS resolve it. From that one fact, Notisa decides which Berlin trash days, Bavarian school holidays, or Mitte welfare deadlines belong on your home screen.</p>
   </div>
   <div class="chapter-media reveal">
-    <div class="phone"><video data-src="./Foresee/videos/liuyao.mp4" muted loop playsinline preload="none" poster="./Foresee/posters/liuyao.jpg"></video></div>
+    <div class="phone"><video data-src="./Notisa/videos/locale.mp4" muted loop playsinline preload="none" poster="./Notisa/posters/locale.jpg"></video></div>
   </div>
   <div class="chapter-cap reveal">
-    <p data-i18n-html="ly_p1">The cast — coin throw, six lines, moving lines — produces the same <span class="glyph">本卦 → 变卦</span> structure a practitioner would draw on paper. From there, the AI traces palace assignment, six relatives, hidden gods and the question's relation to each line — and reads them in order.</p>
-    <p data-i18n="ly_p2">The 1,500 cases aren't a lookup table. They're worked examples the model reasons over: when the same configuration recurs, the answer cites the precedent; when it doesn't, the model derives one and shows the steps.</p>
+    <p data-i18n-html="loc_p1">Two pickers — <span class="glyph">state → PLZ</span> — and the entire calendar reshapes around you. Settings also carry household type (local resident or new arrival), reminder lead-time, and per-category toggles, so the feed stays in your noise band, not the city's.</p>
+    <p data-i18n="loc_p2">Locale isn't decoration here — it is the model. Two neighbours one PLZ apart in Berlin can have different trash pickup days and different school holiday windows; Notisa treats those differences as first-class.</p>
   </div>
 </section>
 
-<!-- §2 — DARK — 八字 BaZi -->
+<!-- §2 — DARK — AI Concierge -->
 <section class="dark">
   <div class="chapter reveal">
-    <div class="eyebrow" data-i18n="bz_eye">CHAPTER 02 · 八字</div>
-    <h2 data-i18n-html="bz_h">Eight characters, <span class="mute">one life chart.</span></h2>
-    <p class="lede" data-i18n="bz_lede">Birth time becomes a chart of heavenly stems and earthly branches. The AI reads the chart against classical BaZi texts — four pillars, five elements, ten gods — and turns the configuration into prose you can actually act on.</p>
+    <div class="eyebrow" data-i18n="ai_eye">CHAPTER 02 · AI CONCIERGE</div>
+    <h2 data-i18n-html="ai_h">Ask in plain language, <span class="mute">land on your calendar.</span></h2>
+    <p class="lede" data-i18n="ai_lede">An on-device GovHome assistant. Ask for school holidays in Berlin, family-allowance deadlines, or this week's community events — Notisa returns curated cards, and one confirm writes them into iOS Calendar with a deadline-aware reminder.</p>
   </div>
   <div class="chapter-media reveal">
-    <div class="phone"><video data-src="./Foresee/videos/bazi.mp4" muted loop playsinline preload="none" poster="./Foresee/posters/bazi.jpg"></video></div>
+    <div class="phone"><video data-src="./Notisa/videos/ai.mp4" muted loop playsinline preload="none" poster="./Notisa/posters/ai.jpg"></video></div>
   </div>
   <div class="chapter-cap reveal">
-    <p data-i18n-html="bz_p1">Charting is mechanical — pillar of year, month, day, hour. Interpretation is where the classical texts disagree most, and where the model earns its weight: it carries the disagreement instead of flattening it, surfacing <span class="glyph">三命通会 · 滴天髓 · 子平真诠</span> in the same reading when they pull in different directions.</p>
+    <p data-i18n-html="ai_p1">The conversation is the index. Categories surface as chips — <span class="glyph">垃圾 · 假期 · 学校 · 家庭 · 移民 · 税务</span> — and the assistant answers each in cards with a single «Select» action. Selection becomes calendar event; no app-hopping, no copy-paste.</p>
+    <p data-i18n="ai_p2">Lead-time follows the deadline, not the clock — a tax filing gets a different reminder cadence than a one-day public holiday. The assistant carries that logic so the user doesn't have to.</p>
   </div>
 </section>
 
 <!-- §3 — STATS -->
 <section class="stats reveal">
   <div class="eyebrow" data-i18n="stats_eye">BY THE NUMBERS</div>
-  <h2 data-i18n-html="stats_h">An engine, <span class="mute">behind the reading.</span></h2>
+  <h2 data-i18n-html="stats_h">A local utility, <span class="mute">at federal scale.</span></h2>
   <div class="stat-row">
     <div class="stat">
-      <div class="num">100<span class="unit">K</span></div>
-      <div class="lbl" data-i18n="s1_lbl">SOURCE WORDS DISTILLED</div>
+      <div class="num">16</div>
+      <div class="lbl" data-i18n="s1_lbl">BUNDESLÄNDER COVERED</div>
     </div>
     <div class="stat">
-      <div class="num">1,500</div>
-      <div class="lbl" data-i18n="s2_lbl">CURATED CASE STUDIES</div>
+      <div class="num">8<span class="unit">K+</span></div>
+      <div class="lbl" data-i18n="s2_lbl">PLZ DISTRICTS</div>
     </div>
     <div class="stat">
-      <div class="num">∞</div>
-      <div class="lbl" data-i18n="s3_lbl">SELF-ITERATING WEIGHTS</div>
+      <div class="num">24/7</div>
+      <div class="lbl" data-i18n="s3_lbl">LIVE SOURCE SCRAPING</div>
     </div>
   </div>
 </section>
 
-<!-- §4 — Self-optimization -->
+<!-- §4 — Live sources -->
 <section>
   <div class="chapter reveal">
-    <div class="eyebrow" data-i18n="opt_eye">CHAPTER 03 · 自优化</div>
-    <h2 data-i18n-html="opt_h">The engine <span class="mute">grades itself.</span></h2>
-    <p class="lede" data-i18n-html="opt_lede">Low-match readings flag themselves. A nightly job re-weights the case-matching algorithm — the engine that interprets the hexagram is also the engine that improves it. <span class="formula">w' = w + η · (target − match)</span></p>
+    <div class="eyebrow" data-i18n="live_eye">CHAPTER 03 · LIVE SOURCES</div>
+    <h2 data-i18n-html="live_h">Direct from the .de source, <span class="mute">auto-translated.</span></h2>
+    <p class="lede" data-i18n-html="live_lede">Every card is scraped from a primary .de source — feiertage.net, the Bundeszentralamt, the per-state portals — and rendered in Auto / DE / EN / 中文 on the fly. The original link is always one tap away. <span class="chip">QUELLE / SOURCE</span></p>
   </div>
   <div class="chapter-media reveal">
-    <div class="phone"><video data-src="./Foresee/videos/optimize.mp4" muted loop playsinline preload="none" poster="./Foresee/posters/optimize.jpg"></video></div>
+    <div class="phone"><video data-src="./Notisa/videos/live.mp4" muted loop playsinline preload="none" poster="./Notisa/posters/live.jpg"></video></div>
   </div>
   <div class="chapter-cap reveal">
-    <p data-i18n="opt_p1">Every reading carries a match score against the closest precedent case. Scores below threshold are queued; the queue feeds an offline optimizer that nudges the weights — palace, season, ten-gods, hidden stem — until the same hexagram, asked again, matches more confidently.</p>
-    <p data-i18n="opt_p2">The model never re-trains on user data. What iterates is the matcher, not the reasoner — so accuracy compounds without the classical theory drifting under it.</p>
+    <p data-i18n-html="live_p1">Translation happens at read-time, not at scrape-time. The card stores the German original and a translation pair; switching language is instant, and the source link goes to the .de page exactly as the agency published it — <span class="glyph">QUELLE</span> stays sovereign.</p>
+    <p data-i18n="live_p2">Stale data is the failure mode here, not bad UI. Notisa re-pulls each source on a per-source cadence — a weekly tax bulletin re-pulls weekly; a one-off Tagesordnung re-pulls the morning of — so the calendar reflects what's actually live.</p>
   </div>
 </section>
 
@@ -575,22 +578,22 @@
     <div><div class="k" data-i18n="m_role">ROLE</div><div class="v" data-i18n="m_role_v">FOUNDER · DESIGNER</div></div>
     <div><div class="k" data-i18n="m_year">YEAR</div><div class="v">2025</div></div>
     <div><div class="k" data-i18n="m_team">TEAM</div><div class="v" data-i18n="m_team_v">SOLO · AI-ASSISTED</div></div>
-    <div><div class="k" data-i18n="m_domain">DOMAIN</div><div class="v" data-i18n="m_domain_v">DIVINATION · AGENTIC</div></div>
+    <div><div class="k" data-i18n="m_domain">DOMAIN</div><div class="v" data-i18n="m_domain_v">CIVIC · LOCALE</div></div>
     <div><div class="k" data-i18n="m_status">STATUS</div><div class="v" data-i18n="m_status_v">PROTOTYPE · ACTIVE</div></div>
   </div>
 </div>
 
 <!-- REFLECTION -->
 <section class="reflect reveal">
-  <p class="body" data-i18n-html="ref_body">The classics were never short on theory — only short on patience. <span class="mute">An AI that reads <span class="glyph">卦</span> the way a practitioner does, and grades its own confidence, is the rare case where machine reasoning lengthens a tradition instead of flattening it.</span></p>
+  <p class="body" data-i18n-html="ref_body">Bureaucracy never went away — it just got out-of-band. <span class="mute">An app that reads the <span class="glyph">§</span> the way a German civil servant would, and pushes it to your calendar before it bites, is the quietest kind of leverage immigrants have ever had.</span></p>
 </section>
 
 <!-- NEXT -->
 <div class="next-band">
-  <a class="next reveal" href="./notisa.html">
+  <a class="next reveal" href="./product-design-studio.html">
     <div>
-      <div class="label" data-i18n="next_label">NEXT — 07 / 07</div>
-      <div class="title" data-i18n="next_title">Notisa</div>
+      <div class="label" data-i18n="next_label">START OVER — 01 / 07</div>
+      <div class="title" data-i18n="next_title">Product Design Studio</div>
     </div>
     <div class="arr">↗</div>
   </a>
@@ -610,77 +613,79 @@
   /* i18n */
   const I18N = {
     en: {
-      back: "INDEX", crumb_sel: "SELECTED WORK", crumb_cur: "Foresee / 境见", of: "06 / 07",
-      hero_label: "Foresee / 境见 · 2025",
-      hero_h1: "Ancient wisdom, <span class='mute'>now reasoned.</span>",
-      hero_sub: "I Ching divination and BaZi reading, powered by an AI reasoning engine over a self-iterating match weight — 100,000 words of classical theory, distilled into 1,500 curated cases.",
+      back: "INDEX", crumb_sel: "SELECTED WORK", crumb_cur: "Notisa", of: "07 / 07",
+      hero_label: "Notisa · 2025",
+      hero_h1: "Local Germany, <span class='mute'>on your calendar.</span>",
+      hero_sub: "Tax dates, holidays, welfare windows, school terms — Notisa scrapes the .de sources for your PLZ and writes them into your calendar before any deadline expires.",
 
-      ly_eye: "CHAPTER 01 · LIU YAO",
-      ly_h: "Six lines, <span class='mute'>ten thousand interpretations.</span>",
-      ly_lede: "Cast a hexagram, then read it. The AI reasons over 100,000 words of classical Liu Yao theory, distilled into 1,500 curated cases — every interpretation is a chain of explicit inferences, not a one-line oracle.",
-      ly_p1: "The cast — coin throw, six lines, moving lines — produces the same <span class='glyph'>本卦 → 变卦</span> structure a practitioner would draw on paper. From there, the AI traces palace assignment, six relatives, hidden gods and the question's relation to each line — and reads them in order.",
-      ly_p2: "The 1,500 cases aren't a lookup table. They're worked examples the model reasons over: when the same configuration recurs, the answer cites the precedent; when it doesn't, the model derives one and shows the steps.",
+      loc_eye: "CHAPTER 01 · LOCALE",
+      loc_h: "One PLZ, <span class='mute'>your whole local calendar.</span>",
+      loc_lede: "Pick a Bundesland and a postal code — or tap «use my location» and let GPS resolve it. From that one fact, Notisa decides which Berlin trash days, Bavarian school holidays, or Mitte welfare deadlines belong on your home screen.",
+      loc_p1: "Two pickers — <span class='glyph'>state → PLZ</span> — and the entire calendar reshapes around you. Settings also carry household type (local resident or new arrival), reminder lead-time, and per-category toggles, so the feed stays in your noise band, not the city's.",
+      loc_p2: "Locale isn't decoration here — it is the model. Two neighbours one PLZ apart in Berlin can have different trash pickup days and different school holiday windows; Notisa treats those differences as first-class.",
 
-      bz_eye: "CHAPTER 02 · BAZI",
-      bz_h: "Eight characters, <span class='mute'>one life chart.</span>",
-      bz_lede: "Birth time becomes a chart of heavenly stems and earthly branches. The AI reads the chart against classical BaZi texts — four pillars, five elements, ten gods — and turns the configuration into prose you can actually act on.",
-      bz_p1: "Charting is mechanical — pillar of year, month, day, hour. Interpretation is where the classical texts disagree most, and where the model earns its weight: it carries the disagreement instead of flattening it, surfacing <span class='glyph'>三命通会 · 滴天髓 · 子平真诠</span> in the same reading when they pull in different directions.",
+      ai_eye: "CHAPTER 02 · AI CONCIERGE",
+      ai_h: "Ask in plain language, <span class='mute'>land on your calendar.</span>",
+      ai_lede: "An on-device GovHome assistant. Ask for school holidays in Berlin, family-allowance deadlines, or this week's community events — Notisa returns curated cards, and one confirm writes them into iOS Calendar with a deadline-aware reminder.",
+      ai_p1: "The conversation is the index. Categories surface as chips — <span class='glyph'>垃圾 · 假期 · 学校 · 家庭 · 移民 · 税务</span> — and the assistant answers each in cards with a single «Select» action. Selection becomes calendar event; no app-hopping, no copy-paste.",
+      ai_p2: "Lead-time follows the deadline, not the clock — a tax filing gets a different reminder cadence than a one-day public holiday. The assistant carries that logic so the user doesn't have to.",
 
       stats_eye: "BY THE NUMBERS",
-      stats_h: "An engine, <span class='mute'>behind the reading.</span>",
-      s1_lbl: "SOURCE WORDS DISTILLED", s2_lbl: "CURATED CASE STUDIES", s3_lbl: "SELF-ITERATING WEIGHTS",
+      stats_h: "A local utility, <span class='mute'>at federal scale.</span>",
+      s1_lbl: "BUNDESLÄNDER COVERED", s2_lbl: "PLZ DISTRICTS", s3_lbl: "LIVE SOURCE SCRAPING",
 
-      opt_eye: "CHAPTER 03 · SELF-OPTIMIZATION",
-      opt_h: "The engine <span class='mute'>grades itself.</span>",
-      opt_lede: "Low-match readings flag themselves. A nightly job re-weights the case-matching algorithm — the engine that interprets the hexagram is also the engine that improves it. <span class='formula'>w' = w + η · (target − match)</span>",
-      opt_p1: "Every reading carries a match score against the closest precedent case. Scores below threshold are queued; the queue feeds an offline optimizer that nudges the weights — palace, season, ten-gods, hidden stem — until the same hexagram, asked again, matches more confidently.",
-      opt_p2: "The model never re-trains on user data. What iterates is the matcher, not the reasoner — so accuracy compounds without the classical theory drifting under it.",
+      live_eye: "CHAPTER 03 · LIVE SOURCES",
+      live_h: "Direct from the .de source, <span class='mute'>auto-translated.</span>",
+      live_lede: "Every card is scraped from a primary .de source — feiertage.net, the Bundeszentralamt, the per-state portals — and rendered in Auto / DE / EN / 中文 on the fly. The original link is always one tap away. <span class='chip'>QUELLE / SOURCE</span>",
+      live_p1: "Translation happens at read-time, not at scrape-time. The card stores the German original and a translation pair; switching language is instant, and the source link goes to the .de page exactly as the agency published it — <span class='glyph'>QUELLE</span> stays sovereign.",
+      live_p2: "Stale data is the failure mode here, not bad UI. Notisa re-pulls each source on a per-source cadence — a weekly tax bulletin re-pulls weekly; a one-off Tagesordnung re-pulls the morning of — so the calendar reflects what's actually live.",
 
       m_role: "ROLE", m_role_v: "FOUNDER · DESIGNER",
       m_year: "YEAR",
       m_team: "TEAM", m_team_v: "SOLO · AI-ASSISTED",
-      m_domain: "DOMAIN", m_domain_v: "DIVINATION · AGENTIC",
+      m_domain: "DOMAIN", m_domain_v: "CIVIC · LOCALE",
       m_status: "STATUS", m_status_v: "PROTOTYPE · ACTIVE",
 
-      ref_body: "The classics were never short on theory — only short on patience. <span class='mute'>An AI that reads <span class='glyph'>卦</span> the way a practitioner does, and grades its own confidence, is the rare case where machine reasoning lengthens a tradition instead of flattening it.</span>",
-      next_label: "NEXT — 07 / 07", next_title: "Notisa",
+      ref_body: "Bureaucracy never went away — it just got out-of-band. <span class='mute'>An app that reads the <span class='glyph'>§</span> the way a German civil servant would, and pushes it to your calendar before it bites, is the quietest kind of leverage immigrants have ever had.</span>",
+      next_label: "START OVER — 01 / 07", next_title: "Product Design Studio",
       foot_copy: "© 2025 — All work shown by permission.",
     },
     zh: {
-      back: "返回索引", crumb_sel: "精选作品", crumb_cur: "Foresee / 境见", of: "06 / 07",
-      hero_label: "Foresee / 境见 · 2025",
-      hero_h1: "古道之卦，<span class='mute'>AI 推理。</span>",
-      hero_sub: "六爻排卦与八字排盘，由 AI 推理引擎驱动，搭配自我迭代的算法权重 —— 10 万字古籍理论，提炼为 1,500 例案例推理。",
+      back: "返回索引", crumb_sel: "精选作品", crumb_cur: "Notisa", of: "07 / 07",
+      hero_label: "Notisa · 2025",
+      hero_h1: "本地这件事，<span class='mute'>自动入历。</span>",
+      hero_sub: "报税日、法定假日、福利窗口、学期 —— Notisa 按你的邮编抓取 .de 源头资料，在每一个截止日到来之前，把它写进你的日历。",
 
-      ly_eye: "第一章 · 六爻",
-      ly_h: "六爻成卦，<span class='mute'>万象生焉。</span>",
-      ly_lede: "起卦、解卦，一气呵成。AI 在 10 万字六爻古籍理论之上推理，提炼为 1,500 个精选案例 —— 每一次解卦都是一条可溯源的推理链，而不是一句模糊的签文。",
-      ly_p1: "摇卦 —— 三铜钱、六爻、变爻 —— 得到的还是术家在纸上画的那张 <span class='glyph'>本卦 → 变卦</span>。AI 在此之上推演：八宫所属、六亲、伏神、问题与每一爻的对应 —— 按次序解读。",
-      ly_p2: "这 1,500 个案例不是一张查询表，而是模型可以「接着想」下去的推理样本：同样的卦象再现时，答案会引用前例；遇到没有的，模型自己推出来，并把推理步骤展示出来。",
+      loc_eye: "第一章 · 本地",
+      loc_h: "一个邮编，<span class='mute'>一整本本地日历。</span>",
+      loc_lede: "选择一个联邦州和一个邮编 —— 或者点「使用我的位置」让 GPS 替你解析。基于这一个事实，Notisa 决定哪些柏林的垃圾日、巴伐利亚的学期假、米特区的福利截止日应该出现在你的首页。",
+      loc_p1: "两个选择器 —— <span class='glyph'>州 → PLZ</span> —— 整个日历就围着你重排。设置里还有家庭类型（本地居民 / 移民 · 新居民）、提醒提前量、按类别的开关，让信息流停留在你的噪声段，而不是这座城市的。",
+      loc_p2: "在 Notisa 里，「本地」不是装饰 —— 它就是模型本身。柏林相邻两个邮编可能垃圾日完全不同、学期假窗口完全不同；Notisa 把这种差异当成一等公民。",
 
-      bz_eye: "第二章 · 八字",
-      bz_h: "八字成盘，<span class='mute'>一命之图。</span>",
-      bz_lede: "出生时间化为天干地支的命盘。AI 在八字古籍之上读取这张盘 —— 四柱、五行、十神 —— 把命局结构译成可以落地的文字。",
-      bz_p1: "排盘是机械的 —— 年、月、日、时四柱。解盘则是古籍最不统一的地方，也是模型显出分量的地方：它把分歧带着走，而不是抹平 —— 把 <span class='glyph'>三命通会 · 滴天髓 · 子平真诠</span> 在同一次解读中并列呈现，当它们指向不同的方向时。",
+      ai_eye: "第二章 · AI 助理",
+      ai_h: "用日常语言提问，<span class='mute'>结果直入日历。</span>",
+      ai_lede: "在端侧运行的 GovHome 助理。问柏林学校假期、育儿金的截止日，或者本周社区活动 —— Notisa 返回精选卡片，一次确认即可写入 iOS 日历，并附带按截止日的智能提醒。",
+      ai_p1: "对话就是索引。类别以小标签的形式浮现 —— <span class='glyph'>垃圾 · 假期 · 学校 · 家庭 · 移民 · 税务</span> —— 助理逐项以卡片作答，每张卡片只需一次「Select」。一次选择即成一条日历事件；不切换 App，不复制粘贴。",
+      ai_p2: "提前量是跟着截止日走的，不是跟着时钟走的 —— 一笔报税与一个法定假日的提醒节奏天差地远。助理把这套逻辑背走，用户不必再背。",
 
       stats_eye: "用数字说话",
-      stats_h: "解卦背后，<span class='mute'>是一台引擎。</span>",
-      s1_lbl: "提炼字数", s2_lbl: "精选案例", s3_lbl: "自迭代权重",
+      stats_h: "一个本地工具，<span class='mute'>覆盖联邦尺度。</span>",
+      s1_lbl: "覆盖联邦州", s2_lbl: "邮编区域", s3_lbl: "实时源头抓取",
 
-      opt_eye: "第三章 · 自优化",
-      opt_h: "引擎自己 <span class='mute'>给自己打分。</span>",
-      opt_lede: "匹配率低的卦象会自标记。一项夜间任务自动回调案例匹配算法的权重 —— 解卦的引擎，也是改进解卦的引擎。<span class='formula'>w' = w + η · (target − match)</span>",
-      opt_p1: "每一次解卦都附一个匹配分数，对应到最接近的先例案例。低于阈值的会进入队列；队列喂给离线优化器，让它去微调权重 —— 八宫、节气、十神、伏藏 —— 直到同一卦再问一次时，匹配更加自信。",
-      opt_p2: "模型本身不在用户数据上重训。迭代的是匹配器，而不是推理器 —— 这样准确率在累积，而古籍理论本身不会在脚下移位。",
+      live_eye: "第三章 · 实时抓取",
+      live_h: "直连 .de 源头，<span class='mute'>自动翻译。</span>",
+      live_lede: "每一张卡片，都从 .de 一手源头抓取 —— feiertage.net、Bundeszentralamt、各联邦州的官方门户 —— 并即时呈现为 Auto / DE / EN / 中文。原始链接永远一键可达。<span class='chip'>QUELLE / 来源</span>",
+      live_p1: "翻译发生在「读取时」，而不是「抓取时」。卡片同时保留德文原文与译文对；切换语言即时生效，「原文链接」直通各机构发布的 .de 原页 —— <span class='glyph'>QUELLE</span> 保持原汁原味。",
+      live_p2: "在这里，真正的失败模式不是 UI 差，而是数据陈旧。Notisa 按各源头自己的节奏重抓 —— 每周一期的税务公告每周重抓；一次性的 Tagesordnung 当天早上重抓 —— 所以日历反映的是「此刻是真的」。",
 
       m_role: "角色", m_role_v: "创始人 · 设计师",
       m_year: "年份",
       m_team: "团队", m_team_v: "独立 · AI 辅助",
-      m_domain: "领域", m_domain_v: "古道占卜 · 智能体",
+      m_domain: "领域", m_domain_v: "民生 · 本地",
       m_status: "状态", m_status_v: "原型 · 活跃中",
 
-      ref_body: "古籍从不缺理论 —— 缺的是耐心。<span class='mute'>一台像术家那样去读 <span class='glyph'>卦</span>、并且会给自己打分的 AI，是少数几次「机器推理」让一门传统被延长、而不是被压扁的场景之一。</span>",
-      next_label: "下一个 — 07 / 07", next_title: "Notisa",
+      ref_body: "官僚体系从未消失 —— 只是越来越「不在频道里」。<span class='mute'>一个像德国公务员那样读 <span class='glyph'>§</span> 条款、然后赶在它咬人之前把它推到你日历的程序，是新移民拿到过的最安静的杠杆。</span>",
+      next_label: "重新开始 — 01 / 07", next_title: "Product Design Studio",
       foot_copy: "© 2025 — 作品授权使用。",
     }
   };
