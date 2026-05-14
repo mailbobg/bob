@@ -567,10 +567,10 @@
     min-width: 0;
   }
   .work-row .title {
-    font-size: clamp(44px, 6.8vw, 110px);
-    font-weight: 400;
-    letter-spacing: -0.034em;
-    line-height: 0.96;
+    font-size: clamp(22px, 2.6vw, 38px);
+    font-weight: 600;
+    letter-spacing: -0.022em;
+    line-height: 1.02;
     /* iPhone-17 "Magichromatic" chromatic sweep — left half solid ink (default),
        right half holds the chromatic spectrum, slid in on hover */
     background: linear-gradient(
@@ -584,9 +584,17 @@
             background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
-    transition: background-position 560ms cubic-bezier(.22,.61,.36,1);
+    transform-origin: left center;
+    transition:
+      font-size 520ms cubic-bezier(.22,.61,.36,1),
+      letter-spacing 520ms cubic-bezier(.22,.61,.36,1),
+      background-position 560ms cubic-bezier(.22,.61,.36,1);
   }
-  .work-row:hover .title { background-position: 100% center; }
+  .work-row:hover .title {
+    font-size: clamp(56px, 7vw, 110px);
+    letter-spacing: -0.034em;
+    background-position: 100% center;
+  }
   /* kicker — Fraunces italic body in warm sepia, paired with hero <em> treatment */
   .work-row .desc {
     font-family: "Fraunces", Georgia, "Songti SC", "Source Han Serif SC", serif;
@@ -801,6 +809,17 @@
   }
   .about .meta .k { color: var(--mute); }
   .about .meta .v { color: var(--ink); margin-top: 4px; }
+  .about-left { display: flex; flex-direction: column; gap: 36px; }
+  .about-left .portrait {
+    width: clamp(140px, 12vw, 196px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow:
+      0 0 0 1px var(--hair),
+      0 22px 38px -22px rgba(0,0,0,.22);
+  }
+  .about-left .portrait img { width: 100%; height: 100%; display: block; object-fit: cover; }
 
   /* ───────── FOOTER ───────── */
   .foot {
@@ -875,10 +894,10 @@
           <span class="t">Product Design Studio</span>
           <span class="y">2025</span>
         </a>
-        <a href="./pixelforge-artifact.html" role="menuitem">
-          <span class="logo"><img src="./logos/artifact.svg" alt=""></span>
+        <a href="./pixelforge-artifax.html" role="menuitem">
+          <span class="logo"><img src="./logos/artifax.svg" alt=""></span>
           <span class="n">02</span>
-          <span class="t">PixelForge/Artifact</span>
+          <span class="t">PixelForge/Artifax</span>
           <span class="y">2024</span>
         </a>
         <a href="./translay.html" role="menuitem">
@@ -972,18 +991,18 @@
         <div class="row-thumb" style="background-image: url('./PDS/hero.png')"></div>
       </li>
 
-      <li class="work-row reveal" data-slot="1" data-href="./pixelforge-artifact.html">
-        <div class="row-logo"><img src="./logos/artifact.svg" alt=""></div>
+      <li class="work-row reveal" data-slot="1" data-href="./pixelforge-artifax.html">
+        <div class="row-logo"><img src="./logos/artifax.svg" alt=""></div>
         <div class="num">02</div>
         <div class="titles">
-          <div class="title">PixelForge/Artifact</div>
+          <div class="title">PixelForge/Artifax</div>
           <div class="desc" data-i18n="p2_desc">From a single product function to a running HMI prototype — one AI pipeline, end to end.</div>
         </div>
         <div class="meta">
           <div class="year">2024</div>
           <div class="arrow">↗</div>
         </div>
-        <div class="row-thumb" style="background-image: url('./Artifex/Aesthetic variation1.png')"></div>
+        <div class="row-thumb" style="background-image: url('./Artifax/Aesthetic variation1.png')"></div>
       </li>
 
       <li class="work-row reveal" data-slot="2" data-href="./translay.html">
@@ -1060,9 +1079,12 @@
 
   <!-- ABOUT (minimal) -->
   <section class="about reveal" id="about">
-    <div class="label">
-      <span style="color:var(--mute)">§ 02 &nbsp;</span>
-      <span data-i18n="about_title">ABOUT</span>
+    <div class="about-left">
+      <div class="label">
+        <span style="color:var(--mute)">§ 02 &nbsp;</span>
+        <span data-i18n="about_title">ABOUT</span>
+      </div>
+      <div class="portrait"><img src="./me.jpg" alt="Bob Wang — portrait" loading="lazy" decoding="async"></div>
     </div>
     <div>
       <p class="body" data-i18n-html="about_p1">
