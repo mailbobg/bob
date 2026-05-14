@@ -500,6 +500,8 @@
     cursor: pointer;
     isolation: isolate;
     overflow: hidden;
+    min-height: 220px;        /* reserve enough room for the hover title; kills row-height jitter */
+    contain: layout paint;    /* isolate layout cost from neighbouring rows */
     --mx: 50%;
     --my: 50%;
   }
@@ -589,14 +591,15 @@
     color: transparent;
     -webkit-text-fill-color: transparent;
     transform-origin: left center;
+    will-change: font-size;
     transition:
-      font-size 520ms cubic-bezier(.22,.61,.36,1),
-      letter-spacing 520ms cubic-bezier(.22,.61,.36,1),
-      background-position 560ms cubic-bezier(.22,.61,.36,1);
+      font-size 340ms cubic-bezier(.22,.7,.32,1),
+      letter-spacing 340ms cubic-bezier(.22,.7,.32,1),
+      background-position 460ms cubic-bezier(.22,.7,.32,1);
   }
   .work-row:hover .title {
-    font-size: clamp(56px, 7vw, 110px);
-    letter-spacing: -0.034em;
+    font-size: clamp(48px, 5.6vw, 86px);
+    letter-spacing: -0.032em;
     background-position: 100% center;
   }
   /* kicker — Fraunces italic body in warm sepia, paired with hero <em> treatment */
