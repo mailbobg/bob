@@ -488,7 +488,7 @@
     <p class="lede" data-i18n-html="ml_lede">A single authoritative graph: <b>11 Domains</b> → <b>54 Features</b> → <b>299 Product Functions</b> → indexed Tech Functions. Search any term, the studio returns its parents and dependents.</p>
   </div>
   <div class="chapter-media">
-    <div class="frame"><video src="./PDS/videos/master-library-overview.mp4" muted loop playsinline preload="none" poster="./PDS/posters/master-library-overview.jpg"></video></div>
+    <div class="frame"><video data-src="./PDS/videos/master-library-overview.mp4" muted loop playsinline preload="none" poster="./PDS/posters/master-library-overview.jpg"></video></div>
   </div>
   <div class="chapter-cap reveal">
     <p data-i18n="ml_p1">Every PF inherits its lineage, status, and the team conversations that produced it. Every TF (TF-xxxxx) traces back to a Feature and a Domain. The library is the source of truth — not a brainstorming canvas.</p>
@@ -503,7 +503,7 @@
     <p class="lede" data-i18n="gd_lede">A protocol, not a rule book — the depth at which each entity is allowed to live, and the dimensions along which it is allowed to stretch.</p>
   </div>
   <div class="chapter-media">
-    <div class="frame"><video src="./PDS/videos/granularity-dimension.mp4" muted loop playsinline preload="none" poster="./PDS/posters/granularity-dimension.jpg"></video></div>
+    <div class="frame"><video data-src="./PDS/videos/granularity-dimension.mp4" muted loop playsinline preload="none" poster="./PDS/posters/granularity-dimension.jpg"></video></div>
   </div>
   <div class="chapter-cap reveal">
     <p data-i18n="gd_p1">Reading depth — intent → scene → interaction → function → spec — sets which questions a team must answer to move on. Seven sensory dimensions and five system dimensions keep the language tight: nothing slips into "it depends".</p>
@@ -518,7 +518,7 @@
     <p class="lede" data-i18n-html="sd_lede"><span class="formula">Scene-Mode = f(User Intent, Situation Context, User State, Experience Goal)</span>. Three columns — Context &amp; Scope, Scene Definition, Refine &amp; Generate — compose against the Master Library, never outside its bounds.</p>
   </div>
   <div class="chapter-media">
-    <div class="frame"><video src="./PDS/videos/scene-design.mp4" muted loop playsinline preload="none" poster="./PDS/posters/scene-design.jpg"></video></div>
+    <div class="frame"><video data-src="./PDS/videos/scene-design.mp4" muted loop playsinline preload="none" poster="./PDS/posters/scene-design.jpg"></video></div>
   </div>
   <div class="chapter-cap reveal">
     <p data-i18n="sd_p1">Two dozen canonical Scene Modes seed the library — Morning Preparation, Commute, Arrival, Departure, Comfort Drive, Cinema, Gaming, Lock &amp; Leave. Each Mode owns its scenes; scenes own their flowcharts; flowcharts ground every spec the studio emits.</p>
@@ -557,7 +557,7 @@
     <p class="lede" data-i18n="intel_lede">A continuous feed of OTA releases, model launches, and competitive moves — auto-classified, summarised, and queryable against the Master Library.</p>
   </div>
   <div class="chapter-media">
-    <div class="frame"><video src="./PDS/videos/intel-center.mp4" muted loop playsinline preload="none" poster="./PDS/posters/intel-center.jpg"></video></div>
+    <div class="frame"><video data-src="./PDS/videos/intel-center.mp4" muted loop playsinline preload="none" poster="./PDS/posters/intel-center.jpg"></video></div>
   </div>
   <div class="chapter-cap reveal">
     <p data-i18n="intel_p1">"Did the new Xiaomi update ship a feature we have defined?" — the answer is one query away. AI Intelligent Analysis cross-references each item against the Feature catalog, surfacing gaps and overlaps in seconds, not weeks.</p>
@@ -572,7 +572,7 @@
     <p class="lede" data-i18n="pc_lede">One click on a Feature emits campaign copy, persona prompts, and target-customer narratives — all grounded in the Master Library so the marketing language never drifts from engineering reality.</p>
   </div>
   <div class="chapter-media">
-    <div class="frame"><video src="./PDS/videos/product-copywriting.mp4" muted loop playsinline preload="none" poster="./PDS/posters/product-copywriting.jpg"></video></div>
+    <div class="frame"><video data-src="./PDS/videos/product-copywriting.mp4" muted loop playsinline preload="none" poster="./PDS/posters/product-copywriting.jpg"></video></div>
   </div>
   <div class="chapter-cap reveal">
     <p data-i18n="pc_p1">Define with intent. Build with confidence. Sell with the same vocabulary you built it with — no rebriefing the agency, no re-translating the spec.</p>
@@ -802,19 +802,74 @@
 
 <script>
 (function(){
-  const vids = document.querySelectorAll('video');
+  const vids = Array.from(document.querySelectorAll('video'));
   if (!vids.length) return;
-  if (!('IntersectionObserver' in window)) {
-    vids.forEach(v => { try { v.play(); } catch(_){} });
+
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const saveData = navigator.connection && navigator.connection.saveData;
+
+  function loadVideo(v) {
+    if (v.src || !v.dataset.src) return;
+    v.preload = 'metadata';
+    v.src = v.dataset.src;
+    v.load();
+  }
+
+  function pauseVideo(v) {
+    if (!v.paused) v.pause();
+  }
+
+  if (reduceMotion || saveData) {
+    vids.forEach(v => {
+      v.addEventListener('click', () => {
+        loadVideo(v);
+        v.play().catch(()=>{});
+      }, { once: true });
+    });
     return;
   }
+
+  if (!('IntersectionObserver' in window)) {
+    loadVideo(vids[0]);
+    vids[0].play().catch(()=>{});
+    return;
+  }
+
+  const visible = new Map();
+  let scheduled = false;
+
+  function syncPlayback() {
+    scheduled = false;
+    let current = null;
+    let bestRatio = 0;
+    visible.forEach((ratio, v) => {
+      if (ratio > bestRatio) {
+        bestRatio = ratio;
+        current = v;
+      }
+    });
+
+    vids.forEach(v => {
+      if (v === current && bestRatio >= 0.25) {
+        loadVideo(v);
+        v.play().catch(()=>{});
+      } else {
+        pauseVideo(v);
+      }
+    });
+  }
+
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      const v = e.target;
-      if (e.isIntersecting) { v.play().catch(()=>{}); }
-      else { v.pause(); }
+      if (e.isIntersecting) visible.set(e.target, e.intersectionRatio);
+      else visible.delete(e.target);
     });
-  }, { rootMargin: '200px 0px', threshold: 0.1 });
+    if (!scheduled) {
+      scheduled = true;
+      requestAnimationFrame(syncPlayback);
+    }
+  }, { rootMargin: '40px 0px', threshold: [0, 0.25, 0.5, 0.75] });
+
   vids.forEach(v => io.observe(v));
 })();
 </script>

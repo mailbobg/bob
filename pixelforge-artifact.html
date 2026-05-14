@@ -467,7 +467,7 @@
 
 <!-- §1 — FULL-BLEED OVERVIEW VIDEO -->
 <section class="stage tall">
-  <video src="./Artifex/videos/media.mp4" muted loop playsinline preload="none" poster="./Artifex/posters/media.jpg" style="width:100%;height:100%;object-fit:contain;display:block;background:#0a0a0a;"></video>
+  <video data-src="./Artifex/videos/media.mp4" muted loop playsinline preload="none" poster="./Artifex/posters/media.jpg" style="width:100%;height:100%;object-fit:contain;display:block;background:#0a0a0a;"></video>
 </section>
 
 <!-- §2 — Voice -->
@@ -478,7 +478,7 @@
     <p class="lede" data-i18n="c2_lede">Speech analysis runs on-device. The cabin acts on the dimension a driver is least equipped to manage themselves — their own state.</p>
   </div>
   <div class="chapter-media">
-    <div class="frame"><video src="./Artifex/videos/climate.mp4" muted loop playsinline preload="none" poster="./Artifex/posters/climate.jpg"></video></div>
+    <div class="frame"><video data-src="./Artifex/videos/climate.mp4" muted loop playsinline preload="none" poster="./Artifex/posters/climate.jpg"></video></div>
   </div>
   <div class="chapter-cap reveal">
     <p data-i18n="c2_p1">The system listens for paralinguistic features — pace, pitch contour, breathiness — not the words. Nothing leaves the car.</p>
@@ -546,7 +546,7 @@
     <p class="lede" data-i18n="c6_lede">One editor pane. One live cabin preview. The brief is the design file.</p>
   </div>
   <div class="chapter-media">
-    <div class="frame"><video src="./Artifex/videos/atom-navigation.mp4" muted loop playsinline preload="none" poster="./Artifex/posters/atom-navigation.jpg"></video></div>
+    <div class="frame"><video data-src="./Artifex/videos/atom-navigation.mp4" muted loop playsinline preload="none" poster="./Artifex/posters/atom-navigation.jpg"></video></div>
   </div>
   <div class="chapter-cap reveal">
     <p data-i18n="c6_p1">Every sentence in the brief is parsed into a constraint. "The car is a daily commuter for an introvert" is a different sentence than "the car is a Friday weekend toy" — the model composes the cabin against those constraints.</p>
@@ -798,19 +798,74 @@
 
 <script>
 (function(){
-  const vids = document.querySelectorAll('video');
+  const vids = Array.from(document.querySelectorAll('video'));
   if (!vids.length) return;
-  if (!('IntersectionObserver' in window)) {
-    vids.forEach(v => { try { v.play(); } catch(_){} });
+
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const saveData = navigator.connection && navigator.connection.saveData;
+
+  function loadVideo(v) {
+    if (v.src || !v.dataset.src) return;
+    v.preload = 'metadata';
+    v.src = v.dataset.src;
+    v.load();
+  }
+
+  function pauseVideo(v) {
+    if (!v.paused) v.pause();
+  }
+
+  if (reduceMotion || saveData) {
+    vids.forEach(v => {
+      v.addEventListener('click', () => {
+        loadVideo(v);
+        v.play().catch(()=>{});
+      }, { once: true });
+    });
     return;
   }
+
+  if (!('IntersectionObserver' in window)) {
+    loadVideo(vids[0]);
+    vids[0].play().catch(()=>{});
+    return;
+  }
+
+  const visible = new Map();
+  let scheduled = false;
+
+  function syncPlayback() {
+    scheduled = false;
+    let current = null;
+    let bestRatio = 0;
+    visible.forEach((ratio, v) => {
+      if (ratio > bestRatio) {
+        bestRatio = ratio;
+        current = v;
+      }
+    });
+
+    vids.forEach(v => {
+      if (v === current && bestRatio >= 0.25) {
+        loadVideo(v);
+        v.play().catch(()=>{});
+      } else {
+        pauseVideo(v);
+      }
+    });
+  }
+
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      const v = e.target;
-      if (e.isIntersecting) { v.play().catch(()=>{}); }
-      else { v.pause(); }
+      if (e.isIntersecting) visible.set(e.target, e.intersectionRatio);
+      else visible.delete(e.target);
     });
-  }, { rootMargin: '200px 0px', threshold: 0.1 });
+    if (!scheduled) {
+      scheduled = true;
+      requestAnimationFrame(syncPlayback);
+    }
+  }, { rootMargin: '40px 0px', threshold: [0, 0.25, 0.5, 0.75] });
+
   vids.forEach(v => io.observe(v));
 })();
 </script>

@@ -488,7 +488,7 @@
     <p class="lede" data-i18n="mi_lede">Six days in Zhangjiajie, one screen. Switch between days; the route redraws on the map. Switch POI filters — restaurants, hotels, sights — to see what is around every stop.</p>
   </div>
   <div class="chapter-media">
-    <div class="frame"><video src="./Dejob/videos/landing.mp4" muted loop playsinline preload="none" poster="./Dejob/posters/landing.jpg"></video></div>
+    <div class="frame"><video data-src="./Dejob/videos/landing.mp4" muted loop playsinline preload="none" poster="./Dejob/posters/landing.jpg"></video></div>
   </div>
   <div class="chapter-cap reveal">
     <p data-i18n="mi_p1">The itinerary is a small graph — each day's edges show drive time, walking distance, schedule density. The map and the day-by-day plan are the same data, just two views of it.</p>
@@ -503,7 +503,7 @@
     <p class="lede" data-i18n="hl_lede">Hotel choices live inside the trip — not in a separate tab in a different app. Every night's location is anchored to a sight, a transit station, or a meal stop.</p>
   </div>
   <div class="chapter-media">
-    <div class="frame"><video src="./Dejob/videos/jobs-list.mp4" muted loop playsinline preload="none" poster="./Dejob/posters/jobs-list.jpg"></video></div>
+    <div class="frame"><video data-src="./Dejob/videos/jobs-list.mp4" muted loop playsinline preload="none" poster="./Dejob/posters/jobs-list.jpg"></video></div>
   </div>
   <div class="chapter-cap reveal">
     <p data-i18n="hl_p1">Filters that matter — kid-friendly, breakfast included, near hot springs — come pre-rolled. The price tag and the route impact are read together, in one place.</p>
@@ -538,7 +538,7 @@
     <p class="lede" data-i18n="fl_lede">Flight options surface alongside the rail alternative, the drive time and luggage rules. The trip already knows your home city, so the most useful combinations land first.</p>
   </div>
   <div class="chapter-media">
-    <div class="frame"><video src="./Dejob/videos/job-detail.mp4" muted loop playsinline preload="none" poster="./Dejob/posters/job-detail.jpg"></video></div>
+    <div class="frame"><video data-src="./Dejob/videos/job-detail.mp4" muted loop playsinline preload="none" poster="./Dejob/posters/job-detail.jpg"></video></div>
   </div>
   <div class="chapter-cap reveal">
     <p data-i18n="fl_p1">Compared side-by-side — arrival time, transit-to-hotel, family seating. The system never lists everything; it lists what is actually shippable into the existing plan.</p>
@@ -553,7 +553,7 @@
     <p class="lede" data-i18n="sh_lede">Send the trip to your spouse, your kid's school, the family group. The shared page renders the same map, itinerary, lodging and flights — no login required.</p>
   </div>
   <div class="chapter-media">
-    <div class="frame"><video src="./Dejob/videos/policy.mp4" muted loop playsinline preload="none" poster="./Dejob/posters/policy.jpg"></video></div>
+    <div class="frame"><video data-src="./Dejob/videos/policy.mp4" muted loop playsinline preload="none" poster="./Dejob/posters/policy.jpg"></video></div>
   </div>
   <div class="chapter-cap reveal">
     <p data-i18n="sh_p1">Re-edits do not break the link. The recipient sees a frozen snapshot at the moment of sharing, while the planner keeps working — two views of the same plan, no version conflict.</p>
@@ -773,19 +773,74 @@
 
 <script>
 (function(){
-  const vids = document.querySelectorAll('video');
+  const vids = Array.from(document.querySelectorAll('video'));
   if (!vids.length) return;
-  if (!('IntersectionObserver' in window)) {
-    vids.forEach(v => { try { v.play(); } catch(_){} });
+
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const saveData = navigator.connection && navigator.connection.saveData;
+
+  function loadVideo(v) {
+    if (v.src || !v.dataset.src) return;
+    v.preload = 'metadata';
+    v.src = v.dataset.src;
+    v.load();
+  }
+
+  function pauseVideo(v) {
+    if (!v.paused) v.pause();
+  }
+
+  if (reduceMotion || saveData) {
+    vids.forEach(v => {
+      v.addEventListener('click', () => {
+        loadVideo(v);
+        v.play().catch(()=>{});
+      }, { once: true });
+    });
     return;
   }
+
+  if (!('IntersectionObserver' in window)) {
+    loadVideo(vids[0]);
+    vids[0].play().catch(()=>{});
+    return;
+  }
+
+  const visible = new Map();
+  let scheduled = false;
+
+  function syncPlayback() {
+    scheduled = false;
+    let current = null;
+    let bestRatio = 0;
+    visible.forEach((ratio, v) => {
+      if (ratio > bestRatio) {
+        bestRatio = ratio;
+        current = v;
+      }
+    });
+
+    vids.forEach(v => {
+      if (v === current && bestRatio >= 0.25) {
+        loadVideo(v);
+        v.play().catch(()=>{});
+      } else {
+        pauseVideo(v);
+      }
+    });
+  }
+
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      const v = e.target;
-      if (e.isIntersecting) { v.play().catch(()=>{}); }
-      else { v.pause(); }
+      if (e.isIntersecting) visible.set(e.target, e.intersectionRatio);
+      else visible.delete(e.target);
     });
-  }, { rootMargin: '200px 0px', threshold: 0.1 });
+    if (!scheduled) {
+      scheduled = true;
+      requestAnimationFrame(syncPlayback);
+    }
+  }, { rootMargin: '40px 0px', threshold: [0, 0.25, 0.5, 0.75] });
+
   vids.forEach(v => io.observe(v));
 })();
 </script>
