@@ -777,6 +777,8 @@
 
   const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const saveData = navigator.connection && navigator.connection.saveData;
+  const isWeChat = /MicroMessenger/i.test(navigator.userAgent);
+
   vids.forEach(attachPosterOverlay);
 
   function loadVideo(v) {
@@ -824,22 +826,47 @@
     v.addEventListener('playing', hidePoster, { once: true });
   }
 
+  // ── Re-armable tap unlock + WeChat bridge unlock.
+  // Original implementation deferred the WeixinJSBridgeReady listener until
+  // play() had already rejected — by which point on X5/WeChat the event has
+  // usually fired and the listener never runs. Also armUnlock latched on
+  // first tap and never re-armed, so any retry that also rejected (codec
+  // hiccup, race with v.load()) killed subsequent taps. Both are fixed below.
   let unlockArmed = false;
+  function retryAllPaused() {
+    vids.forEach(v => {
+      if (!v.paused) return;
+      if (v.dataset.src && !v.src) { v.src = v.dataset.src; v.load(); }
+      const p = v.play();
+      if (p && p.catch) p.catch(err => {
+        console.warn('[video] retry play() failed', v.dataset.src || v.src, err && err.name, err && err.message);
+        armUnlock(); // re-arm — next tap tries again
+      });
+    });
+  }
+  function unlockHandler() {
+    document.removeEventListener('touchend', unlockHandler);
+    document.removeEventListener('pointerup', unlockHandler);
+    unlockArmed = false;
+    retryAllPaused();
+  }
   function armUnlock() {
     if (unlockArmed) return;
     unlockArmed = true;
-    const retry = () => {
-      vids.forEach(v => {
-        if (!v.paused) return;
-        if (v.dataset.src && !v.src) { v.src = v.dataset.src; v.load(); }
-        v.play().catch(()=>{});
-      });
-    };
-    const events = ['touchend','pointerup'];
-    const onGesture = () => { events.forEach(ev => document.removeEventListener(ev, onGesture)); retry(); };
-    events.forEach(ev => document.addEventListener(ev, onGesture, { passive: true }));
-    document.addEventListener('WeixinJSBridgeReady', retry, { once: true });
+    document.addEventListener('touchend', unlockHandler, { passive: true });
+    document.addEventListener('pointerup', unlockHandler, { passive: true });
   }
+  // WeChat bridge: register before any play attempt, plus handle the case
+  // where the bridge is already ready by the time this script runs.
+  if (typeof window.WeixinJSBridge !== 'undefined') {
+    setTimeout(retryAllPaused, 0);
+  } else {
+    document.addEventListener('WeixinJSBridgeReady', retryAllPaused, { once: true });
+  }
+  // In WeChat, arm the gesture unlock eagerly so the first tap anywhere on
+  // the page retries play — don't wait for tryPlay's catch to do it.
+  if (isWeChat) armUnlock();
+
   function tryPlay(v) {
     const p = v.play();
     if (p && p.catch) p.catch(err => {
