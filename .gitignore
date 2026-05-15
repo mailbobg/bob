@@ -5,3 +5,10 @@ node_modules/
 .env
 .env.local
 Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+
+# Local script caches
+scripts/.logo_cache/
