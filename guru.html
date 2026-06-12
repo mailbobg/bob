@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guru — Portfolio</title>
+
+<meta name="description" content="Guru — an AI concierge woven into a live travel site. The content comes first; the conversation follows. The AI highlights, opens and recomposes the page as you speak.">
+<meta name="author" content="Bob Wang">
+<meta name="theme-color" content="#0a0a0a">
+
+<link rel="canonical" href="https://bob.vehicledesign.studio/guru.html">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Bob Wang — Portfolio">
+<meta property="og:title" content="Guru｜王波 作品集">
+<meta property="og:description" content="即见，即说。">
+<meta property="og:url" content="https://bob.vehicledesign.studio/guru.html">
+<meta property="og:image" content="https://bob.vehicledesign.studio/share/guru.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="1200">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:locale:alternate" content="zh_CN">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Guru｜王波 作品集">
+<meta name="twitter:description" content="即见，即说。">
+<meta name="twitter:image" content="https://bob.vehicledesign.studio/share/guru.jpg">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "Guru",
+  "headline": "See it. Say it.",
+  "description": "An AI concierge woven into a live travel site. The content comes first; the conversation follows — the AI highlights, opens and recomposes the page as you speak.",
+  "url": "https://bob.vehicledesign.studio/guru.html",
+  "image": "https://bob.vehicledesign.studio/Guru/hero.png",
+  "inLanguage": "en",
+  "dateCreated": "2026",
+  "creator": {
+    "@type": "Person",
+    "name": "Bob Wang",
+    "url": "https://bob.vehicledesign.studio/"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Bob Wang — Portfolio",
+    "url": "https://bob.vehicledesign.studio/"
+  }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./waycraft_files/css2" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  :root {
+    --ink: #1d1d1f;
+    --ink-2: #424245;
+    --mute: #6e6e73;
+    --mute-2: #86868b;
+    --hair: #d2d2d7;
+    --paper: #ffffff;
+    --paper-2: #f5f5f7;
+
+    --dark-bg: #000000;
+    --dark-text: #f5f5f7;
+    --dark-mute: #86868b;
+    --dark-hair: #2a2a2c;
+
+    --f-sans: "Geist", "Noto Sans SC", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --f-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+    --px: clamp(20px, 4vw, 56px);
+    --maxw: 1440px;
+    --maxr: 980px;  /* reading width */
+  }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--f-sans);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "ss01","ss02","cv11";
+    overflow-x: hidden;
+  }
+  ::selection { background: #0a0a0a; color: #fff; }
+  a { color: inherit; text-decoration: none; }
+  img, video { display: block; }
+
+  .page-wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--px); }
+
+  /* ──────────────── NAV ──────────────── */
+  .nav {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding: 24px var(--px) 0;
+    max-width: var(--maxw); margin: 0 auto;
+    font-size: 13px;
+  }
+  .nav .left, .nav .right {
+    display: flex; gap: 28px; align-items: baseline;
+    font-family: var(--f-mono); font-size: 12px; letter-spacing: .04em; text-transform: uppercase;
+  }
+  .nav .right { color: var(--mute); }
+  .nav .back { color: var(--ink); }
+  .nav .back .ar { display: inline-block; transition: transform .28s cubic-bezier(.22,.61,.36,1); margin-right: 6px; }
+  .nav .back:hover .ar { transform: translateX(-4px); }
+  .nav .crumb { color: var(--mute); }
+  .nav .crumb .cur { color: var(--ink); }
+  .lang-toggle { display: inline-flex; align-items: baseline; gap: 6px; background: none; border: 0; padding: 0; font: inherit; color: var(--ink); cursor: pointer; }
+  .lang-toggle .on { color: var(--ink); }
+  .lang-toggle .off { color: var(--mute-2); }
+  .lang-toggle .sep { color: var(--mute-2); }
+
+  /* ──────────────── HERO ──────────────── */
+  .hero {
+    text-align: center;
+    padding: 22vh 24px 18vh;
+    max-width: var(--maxr);
+    margin: 0 auto;
+    position: relative;
+    will-change: transform, opacity, filter;
+  }
+  .hero .label {
+    font-family: var(--f-mono);
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeIn 700ms 100ms cubic-bezier(.2,.7,.2,1) forwards;
+  }
+  .hero h1 {
+    margin: 0;
+    font-weight: 600;
+    font-size: clamp(56px, 11vw, 168px);
+    line-height: 0.94;
+    letter-spacing: -0.045em;
+    text-wrap: balance;
+  }
+  .hero h1 .ink2 { color: var(--ink-2); font-weight: 400; }
+  .hero h1 .mute { color: var(--mute-2); font-weight: 400; }
+  .hero h1 .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.05em; }
+  .hero h1 .w > span {
+    display: inline-block;
+    transform: translateY(110%); opacity: 0;
+    animation: wordUp 1100ms cubic-bezier(.2,.7,.2,1) forwards;
+    animation-delay: var(--d, 0ms);
+  }
+  @keyframes wordUp { 0%{transform:translateY(110%);opacity:0;} 100%{transform:translateY(0);opacity:1;} }
+  @keyframes fadeIn { to { opacity: 1; } }
+  .hero .sub {
+    margin: 36px auto 0;
+    max-width: 30ch;
+    font-size: clamp(18px, 1.6vw, 24px);
+    line-height: 1.42;
+    color: var(--ink-2);
+    font-weight: 400;
+    opacity: 0;
+    animation: fadeIn 900ms 1100ms cubic-bezier(.2,.7,.2,1) forwards;
+  }
+
+  /* ──────────────── CHAPTER ──────────────── */
+  .chapter {
+    padding: 22vh 24px 6vh;
+    text-align: center;
+    max-width: var(--maxw);
+    margin: 0 auto;
+  }
+  .chapter .eyebrow {
+    font-family: var(--f-mono);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin-bottom: 28px;
+  }
+  .chapter h2 {
+    margin: 0 auto;
+    max-width: 18ch;
+    font-weight: 600;
+    font-size: clamp(40px, 6.5vw, 96px);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+  }
+  .chapter h2 .mute { color: var(--mute-2); font-weight: 400; }
+  .chapter .lede {
+    margin: 28px auto 0;
+    max-width: 38ch;
+    font-size: clamp(17px, 1.4vw, 21px);
+    line-height: 1.5;
+    color: var(--ink-2);
+    text-wrap: pretty;
+  }
+  /* media slot below a chapter */
+  .chapter-media {
+    margin: 6vh auto 0;
+    padding: 0 24px;
+    max-width: var(--maxw);
+  }
+  .chapter-media .frame {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: #0a0a0a;
+  }
+  .chapter-media .frame img, .chapter-media .frame video {
+    width: 100%; height: 100%; object-fit: contain;  /* fit whole video, no crop */
+    background: #0a0a0a;
+  }
+  .chapter-cap {
+    max-width: 56ch;
+    margin: 5vh auto 0;
+    padding: 0 24px;
+    text-align: center;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink-2);
+    text-wrap: pretty;
+  }
+  .chapter-cap p + p { margin-top: 1.1em; }
+
+  /* ──────────────── DARK SECTION ──────────────── */
+  .dark {
+    background: var(--dark-bg);
+    color: var(--dark-text);
+    padding: 22vh 0 18vh;
+    margin-top: 8vh;
+  }
+  .dark .chapter, .dark .chapter-media, .dark .chapter-cap { color: var(--dark-text); }
+  .dark .chapter .eyebrow { color: var(--dark-mute); }
+  .dark .chapter .lede { color: var(--dark-mute); }
+  .dark h2 .mute { color: var(--dark-mute); }
+  .dark .chapter-cap { color: var(--dark-mute); }
+
+  /* ──────────────── VERSUS — the inversion, side by side ──────────────── */
+  .versus {
+    margin: 8vh auto 0;
+    padding: 0 24px;
+    max-width: 1100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    text-align: left;
+  }
+  .versus .cell {
+    border: 1px solid var(--hair);
+    padding: 32px 30px 30px;
+  }
+  .dark .versus .cell { border-color: var(--dark-hair); }
+  .versus .cell .tag {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin-bottom: 18px;
+  }
+  .versus .cell .name {
+    font-size: clamp(22px, 2.2vw, 30px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+  }
+  .versus .cell .flow {
+    font-family: var(--f-mono);
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    color: #8a6537;
+    background: rgba(138, 101, 55, 0.08);
+    padding: 10px 14px;
+    border-radius: 2px;
+    margin-bottom: 16px;
+    white-space: nowrap;
+  }
+  .dark .versus .cell .flow { color: #c4a265; background: rgba(196, 162, 101, 0.10); }
+  .versus .cell .note {
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--mute);
+  }
+  @media (max-width: 760px) {
+    .versus { grid-template-columns: 1fr; }
+    .versus .cell .flow { white-space: normal; }
+  }
+
+  /* ──────────────── PINNED STATS ──────────────── */
+  .stats {
+    padding: 24vh 24px 22vh;
+    max-width: var(--maxw);
+    margin: 0 auto;
+    text-align: center;
+  }
+  .stats .eyebrow {
+    font-family: var(--f-mono);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin-bottom: 32px;
+  }
+  .stats h2 {
+    margin: 0 auto 12vh;
+    max-width: 22ch;
+    font-weight: 600;
+    font-size: clamp(36px, 5.5vw, 80px);
+    line-height: 1.04;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+  .stats h2 .mute { color: var(--mute-2); font-weight: 400; }
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+    border-top: 1px solid var(--hair);
+  }
+  .stat {
+    padding: 56px 8px 24px;
+    border-right: 1px solid var(--hair);
+  }
+  .stat:last-child { border-right: 0; }
+  .stat .num {
+    font-weight: 500;
+    font-size: clamp(48px, 6.8vw, 100px);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .stat .lbl {
+    margin-top: 18px;
+    font-family: var(--f-mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mute);
+  }
+
+  /* ──────────────── META + REFLECTION ──────────────── */
+  .meta-strip {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 var(--px);
+  }
+  .meta-strip .grid {
+    border-top: 1px solid var(--hair);
+    padding: 28px 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+    font-family: var(--f-mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .meta-strip .k { color: var(--mute); margin-bottom: 6px; }
+  .meta-strip .v { color: var(--ink); }
+
+  .reflect {
+    padding: 18vh 24px 18vh;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .reflect .body {
+    font-weight: 400;
+    font-size: clamp(24px, 3vw, 44px);
+    line-height: 1.28;
+    letter-spacing: -0.022em;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .reflect .body .mute { color: var(--mute-2); }
+
+  /* monospace formula inline — keeps tool verbs visually distinct */
+  .formula {
+    font-family: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 0.86em;
+    background: rgba(138, 101, 55, 0.08);
+    color: #8a6537;
+    padding: 0.12em 0.5em;
+    border-radius: 2px;
+    letter-spacing: -0.005em;
+    white-space: nowrap;
+  }
+  .dark .formula { color: #c4a265; background: rgba(196, 162, 101, 0.10); }
+  @media (max-width: 720px) { .formula { white-space: normal; } }
+
+  /* ──────────────── NEXT + FOOT ──────────────── */
+  .next-band {
+    background: var(--paper-2);
+    padding: 8vh 0;
+  }
+  .next {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 var(--px);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: end;
+    cursor: pointer;
+    transition: padding 360ms cubic-bezier(.22,.61,.36,1);
+  }
+  .next:hover { padding-left: calc(var(--px) + 8px); }
+  .next .label {
+    font-family: var(--f-mono);
+    font-size: 12px; color: var(--mute);
+    letter-spacing: .12em; text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .next .title {
+    font-size: clamp(40px, 7vw, 104px);
+    font-weight: 600; letter-spacing: -0.035em; line-height: 1;
+  }
+  .next .arr {
+    font-family: var(--f-mono); font-size: 16px; color: var(--mute);
+    transition: color .22s ease, transform .28s cubic-bezier(.22,.61,.36,1);
+    align-self: end; padding-bottom: 14px;
+  }
+  .next:hover .arr { color: var(--ink); transform: translate(6px, -4px); }
+
+  .foot {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 32px var(--px) 36px;
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-top: 1px solid var(--hair);
+    font-family: var(--f-mono); font-size: 11px; color: var(--mute);
+    letter-spacing: .06em; text-transform: uppercase;
+  }
+  .foot a { color: var(--ink); }
+  .foot a:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .foot .right { display: flex; gap: 24px; }
+
+  /* ──────────────── REVEAL ──────────────── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1);
+  }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* small screens */
+  @media (max-width: 1024px) {
+    .stat-row { grid-template-columns: repeat(2, 1fr); }
+    .stat:nth-child(2n) { border-right: 0; }
+    .stat:nth-child(3), .stat:nth-child(4) { border-top: 1px solid var(--hair); }
+  }
+  @media (max-width: 760px) {
+    .nav .right { gap: 14px; } .nav .right .clock { display: none; }
+    .stat-row { grid-template-columns: 1fr; }
+    .stat { border-right: 0; border-bottom: 1px solid var(--hair); padding: 36px 8px; border-top: 0 !important; }
+    .stat:last-child { border-bottom: 0; }
+    .meta-strip .grid { grid-template-columns: 1fr 1fr; }
+    .next { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav reveal in">
+  <div class="left">
+    <a class="back" href="./index.html"><span class="ar">←</span><span data-i18n="back">INDEX</span></a>
+    <span class="crumb"><span data-i18n="crumb_sel">SELECTED WORK</span> / <span class="cur" data-i18n="crumb_cur">GURU</span></span>
+  </div>
+  <div class="right">
+    <span class="clock" id="clock">--:--:--</span>
+    <span data-i18n="of">08 / 08</span>
+    <button class="lang-toggle" id="lang">
+      <span id="lang-en" class="on">EN</span>
+      <span class="sep">/</span>
+      <span id="lang-zh" class="off">中</span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="hero">
+  <div class="label" data-i18n="hero_label">GURU · 2026</div>
+  <h1 id="hero-h1" data-i18n-html="hero_h1">See it. <span class="mute">Say it.</span></h1>
+  <p class="sub" data-i18n="hero_sub">An AI concierge woven into a live travel site. The content comes first; the conversation follows — and it acts on the page you are looking at.</p>
+</header>
+
+<!-- §1 — The inversion -->
+<section>
+  <div class="chapter reveal">
+    <div class="eyebrow" data-i18n="iv_eye">CHAPTER 01</div>
+    <h2 data-i18n-html="iv_h">Content first, <span class="mute">conversation second.</span></h2>
+    <p class="lede" data-i18n="iv_lede">Waycraft starts from an empty chat: you describe a trip, and AI generates the content. Guru inverts the order — twenty years of curated China journeys are already on screen, and you simply react to what you see.</p>
+  </div>
+  <div class="versus reveal">
+    <div class="cell">
+      <div class="tag" data-i18n="vs_a_tag">WAYCRAFT · CHAT-FIRST</div>
+      <div class="name">Waycraft</div>
+      <div class="flow" data-i18n="vs_a_flow">say it → AI generates → see it</div>
+      <p class="note" data-i18n="vs_a_note">You start from a blank conversation. The AI listens to intent, then builds the itinerary, map and lodging from scratch.</p>
+    </div>
+    <div class="cell">
+      <div class="tag" data-i18n="vs_b_tag">GURU · CONTENT-FIRST</div>
+      <div class="name">Guru</div>
+      <div class="flow" data-i18n="vs_b_flow">see it → say it → AI acts on it</div>
+      <p class="note" data-i18n="vs_b_note">You start from real journeys already on screen. The AI works on the page itself — highlighting, opening, recomposing what you see.</p>
+    </div>
+  </div>
+  <div class="chapter-media">
+    <div class="frame"><video data-src="./Guru/videos/brand.mp4" muted loop playsinline preload="none" poster="./Guru/posters/brand.jpg"></video></div>
+  </div>
+  <div class="chapter-cap reveal">
+    <p data-i18n="iv_p1">A blank prompt asks people to imagine; a composed page lets them recognise. Faced with real itineraries, real prices and real photography, nobody freezes — they point. Guru is built around that pointing.</p>
+  </div>
+</section>
+
+<!-- §2 — DARK — The concierge sees the page -->
+<section class="dark">
+  <div class="chapter reveal">
+    <div class="eyebrow" data-i18n="ss_eye">CHAPTER 02</div>
+    <h2 data-i18n-html="ss_h">Say it where <span class="mute">you see it.</span></h2>
+    <p class="lede" data-i18n="ss_lede">Ask about Shanghai and the concierge doesn't paste links into a chat — it highlights the matching packages right on the page, then opens the one that catches your eye.</p>
+  </div>
+  <div class="chapter-media">
+    <div class="frame"><video data-src="./Guru/videos/see-say.mp4" muted loop playsinline preload="none" poster="./Guru/posters/see-say.jpg"></video></div>
+  </div>
+  <div class="chapter-cap reveal">
+    <p data-i18n-html="ss_p1">The model shares the page's live state — which city you are browsing, which package is open, which section is on screen. A fixed set of verbs, <span class="formula">highlightPackages</span> and <span class="formula">openPackageDetails</span> among them, lets it act on the page instead of describing it.</p>
+  </div>
+</section>
+
+<!-- §3 — Compose -->
+<section>
+  <div class="chapter reveal">
+    <div class="eyebrow" data-i18n="cp_eye">CHAPTER 03</div>
+    <h2 data-i18n-html="cp_h">One sentence, <span class="mute">a recomposed journey.</span></h2>
+    <p class="lede" data-i18n="cp_lede">“Shanghai Disney, plus five days in Hangzhou.” The concierge assembles a multi-day journey out of real packages — day by day, priced, mapped — without ever leaving the page.</p>
+  </div>
+  <div class="chapter-media">
+    <div class="frame"><video data-src="./Guru/videos/compose.mp4" muted loop playsinline preload="none" poster="./Guru/posters/compose.jpg"></video></div>
+  </div>
+  <div class="chapter-cap reveal">
+    <p data-i18n="cp_p1">Composition, not generation: every day in the plan is a real, bookable package from the catalogue. The AI arranges inventory — it doesn't invent it. One more tap and the whole journey lands on a route map.</p>
+  </div>
+</section>
+
+<!-- §4 — STATS -->
+<section class="stats reveal">
+  <div class="eyebrow" data-i18n="stats_eye">BY THE NUMBERS</div>
+  <h2 data-i18n-html="stats_h">A real catalogue, <span class="mute">live in four languages.</span></h2>
+  <div class="stat-row">
+    <div class="stat">
+      <div class="num">50+</div>
+      <div class="lbl" data-i18n="s1_lbl">SIGNATURE PACKAGES</div>
+    </div>
+    <div class="stat">
+      <div class="num">11</div>
+      <div class="lbl" data-i18n="s2_lbl">CITIES COVERED</div>
+    </div>
+    <div class="stat">
+      <div class="num">4</div>
+      <div class="lbl" data-i18n="s3_lbl">LANGUAGES</div>
+    </div>
+  </div>
+</section>
+
+<!-- META STRIP -->
+<div class="meta-strip">
+  <div class="grid reveal">
+    <div><div class="k" data-i18n="m_role">ROLE</div><div class="v" data-i18n="m_role_v">FOUNDER · DESIGNER</div></div>
+    <div><div class="k" data-i18n="m_year">YEAR</div><div class="v">2026</div></div>
+    <div><div class="k" data-i18n="m_team">TEAM</div><div class="v" data-i18n="m_team_v">SOLO · AI-ASSISTED</div></div>
+    <div><div class="k" data-i18n="m_domain">DOMAIN</div><div class="v" data-i18n="m_domain_v">AGENTIC UI · TRAVEL</div></div>
+    <div><div class="k" data-i18n="m_status">STATUS</div><div class="v" data-i18n="m_status_v">LIVE · travelguruchina.com</div></div>
+  </div>
+</div>
+
+<!-- REFLECTION -->
+<section class="reflect reveal">
+  <p class="body" data-i18n-html="ref_body">Chat-first AI asks people to imagine what they want. Content-first AI lets them recognise it. <span class="mute">The next interface is not a chatbot beside the page — it is the page itself, listening.</span></p>
+</section>
+
+<!-- NEXT -->
+<div class="next-band">
+  <a class="next reveal" href="./product-design-studio.html">
+    <div>
+      <div class="label" data-i18n="next_label">START OVER — 01 / 08</div>
+      <div class="title" data-i18n="next_title">Product Design Studio</div>
+    </div>
+    <div class="arr">↗</div>
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <div data-i18n="foot_copy">© 2025 — All work shown by permission.</div>
+  <div class="right">
+    <a href="mailto:wangbo77@hotmail.com">EMAIL</a>
+    <a href="https://www.linkedin.com/in/imbob/" target="_blank" rel="me noopener noreferrer">LINKEDIN</a>
+    <a href="https://github.com/mailbobg" target="_blank" rel="me noopener noreferrer">GITHUB</a>
+  </div>
+</footer>
+
+<script>
+  /* i18n */
+  const I18N = {
+    en: {
+      back: "INDEX", crumb_sel: "SELECTED WORK", crumb_cur: "GURU", of: "08 / 08",
+      hero_label: "GURU · 2026",
+      hero_h1: "See it. <span class='mute'>Say it.</span>",
+      hero_sub: "An AI concierge woven into a live travel site. The content comes first; the conversation follows — and it acts on the page you are looking at.",
+
+      iv_eye: "CHAPTER 01",
+      iv_h: "Content first, <span class='mute'>conversation second.</span>",
+      iv_lede: "Waycraft starts from an empty chat: you describe a trip, and AI generates the content. Guru inverts the order — twenty years of curated China journeys are already on screen, and you simply react to what you see.",
+      vs_a_tag: "WAYCRAFT · CHAT-FIRST",
+      vs_a_flow: "say it → AI generates → see it",
+      vs_a_note: "You start from a blank conversation. The AI listens to intent, then builds the itinerary, map and lodging from scratch.",
+      vs_b_tag: "GURU · CONTENT-FIRST",
+      vs_b_flow: "see it → say it → AI acts on it",
+      vs_b_note: "You start from real journeys already on screen. The AI works on the page itself — highlighting, opening, recomposing what you see.",
+      iv_p1: "A blank prompt asks people to imagine; a composed page lets them recognise. Faced with real itineraries, real prices and real photography, nobody freezes — they point. Guru is built around that pointing.",
+
+      ss_eye: "CHAPTER 02",
+      ss_h: "Say it where <span class='mute'>you see it.</span>",
+      ss_lede: "Ask about Shanghai and the concierge doesn't paste links into a chat — it highlights the matching packages right on the page, then opens the one that catches your eye.",
+      ss_p1: "The model shares the page's live state — which city you are browsing, which package is open, which section is on screen. A fixed set of verbs, <span class='formula'>highlightPackages</span> and <span class='formula'>openPackageDetails</span> among them, lets it act on the page instead of describing it.",
+
+      cp_eye: "CHAPTER 03",
+      cp_h: "One sentence, <span class='mute'>a recomposed journey.</span>",
+      cp_lede: "“Shanghai Disney, plus five days in Hangzhou.” The concierge assembles a multi-day journey out of real packages — day by day, priced, mapped — without ever leaving the page.",
+      cp_p1: "Composition, not generation: every day in the plan is a real, bookable package from the catalogue. The AI arranges inventory — it doesn't invent it. One more tap and the whole journey lands on a route map.",
+
+      stats_eye: "BY THE NUMBERS",
+      stats_h: "A real catalogue, <span class='mute'>live in four languages.</span>",
+      s1_lbl: "SIGNATURE PACKAGES", s2_lbl: "CITIES COVERED", s3_lbl: "LANGUAGES",
+
+      m_role: "ROLE", m_role_v: "FOUNDER · DESIGNER",
+      m_year: "YEAR",
+      m_team: "TEAM", m_team_v: "SOLO · AI-ASSISTED",
+      m_domain: "DOMAIN", m_domain_v: "AGENTIC UI · TRAVEL",
+      m_status: "STATUS", m_status_v: "LIVE · travelguruchina.com",
+
+      ref_body: "Chat-first AI asks people to imagine what they want. Content-first AI lets them recognise it. <span class='mute'>The next interface is not a chatbot beside the page — it is the page itself, listening.</span>",
+      next_label: "START OVER — 01 / 08", next_title: "Product Design Studio",
+      foot_copy: "© 2025 — All work shown by permission.",
+    },
+    zh: {
+      back: "返回索引", crumb_sel: "精选作品", crumb_cur: "GURU", of: "08 / 08",
+      hero_label: "GURU · 2026",
+      hero_h1: "即见，<span class='mute'>即说。</span>",
+      hero_sub: "长在真实旅行网站里的 AI 礼宾 —— 内容在前，对话在后。它直接作用于你正在看的页面与数据。",
+
+      iv_eye: "第一章",
+      iv_h: "内容在前，<span class='mute'>对话在后。</span>",
+      iv_lede: "Waycraft 从一个空白对话框开始：你描述，AI 生成内容。Guru 把顺序倒过来 —— 二十年沉淀的中国行程已经铺在眼前，你只需要对看到的东西开口。",
+      vs_a_tag: "WAYCRAFT · 对话先行",
+      vs_a_flow: "先说 → AI 生成 → 再看到",
+      vs_a_note: "从一段空白对话开始。AI 听懂意图，再从零构建行程、地图与住宿。",
+      vs_b_tag: "GURU · 内容先行",
+      vs_b_flow: "先看到 → 开口说 → AI 作用于页面",
+      vs_b_note: "从已经铺开的真实行程开始。AI 在页面本身上工作 —— 高亮、打开、重组你眼前的内容。",
+      iv_p1: "空白的输入框要求人凭空想象；铺开的页面让人一眼认出。面对真实的行程、真实的价格、真实的影像，没有人会卡住 —— 人会指。Guru 就建立在这个“指”上。",
+
+      ss_eye: "第二章",
+      ss_h: "看到哪里，<span class='mute'>就说到哪里。</span>",
+      ss_lede: "问一句上海，AI 不是往聊天框里贴链接 —— 它直接在页面上高亮匹配的行程包，再替你打开你看中的那一个。",
+      ss_p1: "模型与页面共享实时状态 —— 你在看哪座城、打开了哪个包、停在哪个区块，它都知道。一组固定动词，如 <span class='formula'>highlightPackages</span> 与 <span class='formula'>openPackageDetails</span>，让它在页面上行动，而不是转述页面。",
+
+      cp_eye: "第三章",
+      cp_h: "一句话，<span class='mute'>重组一趟旅程。</span>",
+      cp_lede: "“做一个上海迪士尼 + 杭州五天的行程。”AI 礼宾用真实行程包拼装出一趟多日旅程 —— 逐日排布、明码标价、落上地图 —— 全程不离开页面。",
+      cp_p1: "是编排，不是生成：计划里的每一天都是目录中真实可订的行程包。AI 调度的是库存，而不是幻觉。再点一下，整趟旅程落在一张路线地图上。",
+
+      stats_eye: "用数字说话",
+      stats_h: "真实库存，<span class='mute'>四语在线。</span>",
+      s1_lbl: "精选行程包", s2_lbl: "覆盖城市", s3_lbl: "语言版本",
+
+      m_role: "角色", m_role_v: "创始人 · 设计师",
+      m_year: "年份",
+      m_team: "团队", m_team_v: "独立 · AI 辅助",
+      m_domain: "领域", m_domain_v: "AGENTIC UI · 旅行",
+      m_status: "状态", m_status_v: "已上线 · travelguruchina.com",
+
+      ref_body: "Chat-first 的 AI，要人凭空想象自己要什么；Content-first 的 AI，让人一眼认出自己要什么。<span class='mute'>下一代界面不是页面旁边的聊天窗 —— 而是页面本身在听。</span>",
+      next_label: "重新开始 — 01 / 08", next_title: "Product Design Studio",
+      foot_copy: "© 2025 — 作品授权使用。",
+    }
+  };
+
+  let lang = "en";
+  try { const stored = localStorage.getItem("lang"); if (stored === "zh" || stored === "en") lang = stored; } catch(e){}
+  function applyLang() {
+    document.documentElement.lang = lang === "zh" ? "zh" : "en";
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const k = el.getAttribute("data-i18n");
+      if (I18N[lang][k] !== undefined) el.textContent = I18N[lang][k];
+    });
+    document.querySelectorAll("[data-i18n-html]").forEach(el => {
+      const k = el.getAttribute("data-i18n-html");
+      if (I18N[lang][k] !== undefined) el.innerHTML = I18N[lang][k];
+    });
+    document.getElementById("lang-en").className = lang === "en" ? "on" : "off";
+    document.getElementById("lang-zh").className = lang === "zh" ? "on" : "off";
+    splitHeroWords();
+    try { localStorage.setItem("lang", lang); } catch(e){}
+  }
+  document.getElementById("lang").addEventListener("click", () => { lang = lang === "en" ? "zh" : "en"; applyLang(); });
+  applyLang();
+
+  /* HERO word-split */
+  function splitHeroWords() {
+    const h1 = document.getElementById("hero-h1");
+    if (!h1) return;
+    const html = h1.innerHTML;
+    // tokenize: <span class="mute">...</span>, <br>, word, ws
+    const tokens = [];
+    const re = /(<br[^>]*>)|(<span[^>]*>[^<]*<\/span>)|([^\s<]+)|(\s+)/gi;
+    let m;
+    while ((m = re.exec(html)) !== null) {
+      if (m[1]) tokens.push({type:"br"});
+      else if (m[2]) {
+        // split inner text of span into words
+        const inner = m[2].match(/>([^<]*)</)[1];
+        const cls = m[2].match(/class=['"]([^'"]*)['"]/);
+        const c = cls ? cls[1] : "";
+        const parts = inner.split(/\s+/).filter(Boolean);
+        parts.forEach(p => tokens.push({type:"w", text: p, cls: c}));
+      }
+      else if (m[3]) tokens.push({type:"w", text: m[3], cls: ""});
+    }
+    let out = "", i = 0;
+    tokens.forEach(t => {
+      if (t.type === "br") { out += "<br/>"; return; }
+      const d = i * 70 + 200;
+      const cls = t.cls ? ` class="${t.cls}"` : "";
+      out += `<span class="w" style="margin-right:.24em"><span${cls} style="--d:${d}ms; display:inline-block;">${t.text}</span></span>`;
+      i++;
+    });
+    h1.innerHTML = out;
+  }
+
+  /* clock */
+  const clockEl = document.getElementById("clock");
+  function tickClock() {
+    const d = new Date();
+    const pad = n => String(n).padStart(2,"0");
+    clockEl.textContent = `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())} CST`;
+  }
+  tickClock(); setInterval(tickClock, 1000);
+
+  /* reveal on scroll */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+  document.querySelectorAll(".reveal:not(.in)").forEach(el => io.observe(el));
+
+  /* hero subtle scroll fade (Apple-style) */
+  const hero = document.getElementById("hero");
+  let lastY = -1;
+  function onScroll() {
+    const y = window.scrollY || window.pageYOffset;
+    if (y === lastY) return;
+    lastY = y;
+    const h = window.innerHeight;
+    const range = h * 0.8;
+    const p = Math.min(1, Math.max(0, y / range));
+    const ease = p < 0.5 ? 2*p*p : 1 - Math.pow(-2*p+2, 2)/2;
+    hero.style.opacity = (1 - ease).toFixed(3);
+    hero.style.transform = `translate3d(0, ${(-ease * 40).toFixed(1)}px, 0) scale(${(1 - ease*0.04).toFixed(3)})`;
+    hero.style.filter = `blur(${(ease * 6).toFixed(2)}px)`;
+    hero.style.pointerEvents = (1 - ease) < 0.05 ? "none" : "auto";
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+</script>
+
+<script>
+(function(){
+  const vids = Array.from(document.querySelectorAll('video'));
+  if (!vids.length) return;
+
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const saveData = navigator.connection && navigator.connection.saveData;
+  const isWeChat = /MicroMessenger/i.test(navigator.userAgent);
+
+  vids.forEach(attachPosterOverlay);
+
+  function loadVideo(v) {
+    if (v.src || !v.dataset.src) return;
+    v.preload = 'metadata';
+    v.src = v.dataset.src;
+    v.load();
+    v.playbackRate = 1.5;
+  }
+
+  function pauseVideo(v) {
+    if (!v.paused) v.pause();
+  }
+
+  function attachPosterOverlay(v) {
+    if (!v.poster || v.dataset.posterOverlay === 'true') return;
+    v.dataset.posterOverlay = 'true';
+    const parent = v.parentElement;
+    if (!parent) return;
+    if (getComputedStyle(parent).position === 'static') parent.style.position = 'relative';
+
+    const poster = document.createElement('img');
+    poster.src = v.poster;
+    poster.alt = '';
+    poster.decoding = 'async';
+    poster.style.cssText = [
+      'position:absolute',
+      'inset:0',
+      'z-index:2',
+      'width:100%',
+      'height:100%',
+      `object-fit:${getComputedStyle(v).objectFit || 'cover'}`,
+      'background:#0a0a0a',
+      'transition:opacity 180ms ease',
+      'pointer-events:none'
+    ].join(';');
+    parent.appendChild(poster);
+
+    const hidePoster = () => {
+      requestAnimationFrame(() => {
+        poster.style.opacity = '0';
+        window.setTimeout(() => { poster.style.display = 'none'; }, 220);
+      });
+    };
+    v.addEventListener('playing', hidePoster, { once: true });
+  }
+
+  // ── Re-armable tap unlock + WeChat bridge unlock.
+  let unlockArmed = false;
+  function retryAllPaused() {
+    // Retry only videos that are already loaded — let IntersectionObserver
+    // drive src assignment. Eagerly loading every video on every gesture (or
+    // when the WeChat bridge fires at load) starts N simultaneous downloads
+    // and saturates mobile bandwidth.
+    vids.forEach(v => {
+      if (!v.paused || !v.src) return;
+      const p = v.play();
+      if (p && p.catch) p.catch(err => {
+        console.warn('[video] retry play() failed', v.dataset.src || v.src, err && err.name, err && err.message);
+        armUnlock(); // re-arm — next tap tries again
+      });
+    });
+  }
+  function unlockHandler() {
+    document.removeEventListener('touchend', unlockHandler);
+    document.removeEventListener('pointerup', unlockHandler);
+    unlockArmed = false;
+    retryAllPaused();
+  }
+  function armUnlock() {
+    if (unlockArmed) return;
+    unlockArmed = true;
+    document.addEventListener('touchend', unlockHandler, { passive: true });
+    document.addEventListener('pointerup', unlockHandler, { passive: true });
+  }
+  // WeChat bridge: register before any play attempt, plus handle the case
+  // where the bridge is already ready by the time this script runs.
+  if (typeof window.WeixinJSBridge !== 'undefined') {
+    setTimeout(retryAllPaused, 0);
+  } else {
+    document.addEventListener('WeixinJSBridgeReady', retryAllPaused, { once: true });
+  }
+  // In WeChat, arm the gesture unlock eagerly so the first tap anywhere on
+  // the page retries play — don't wait for tryPlay's catch to do it.
+  if (isWeChat) armUnlock();
+
+  function tryPlay(v) {
+    const p = v.play();
+    if (p && p.catch) p.catch(err => {
+      console.warn('[video] play() failed', v.dataset.src || v.src, err && err.name, err && err.message);
+      armUnlock();
+    });
+  }
+
+  if (reduceMotion || saveData) {
+    vids.forEach(v => {
+      v.addEventListener('click', () => {
+        loadVideo(v);
+        tryPlay(v);
+      }, { once: true });
+    });
+    return;
+  }
+
+  if (!('IntersectionObserver' in window)) {
+    loadVideo(vids[0]);
+    tryPlay(vids[0]);
+    return;
+  }
+
+  const visible = new Map();
+  let scheduled = false;
+
+  function syncPlayback() {
+    scheduled = false;
+    let current = null;
+    let bestRatio = 0;
+    visible.forEach((ratio, v) => {
+      if (ratio > bestRatio) {
+        bestRatio = ratio;
+        current = v;
+      }
+    });
+
+    vids.forEach(v => {
+      if (v === current && bestRatio >= 0.25) {
+        loadVideo(v);
+        tryPlay(v);
+      } else {
+        pauseVideo(v);
+      }
+    });
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) visible.set(e.target, e.intersectionRatio);
+      else visible.delete(e.target);
+    });
+    if (!scheduled) {
+      scheduled = true;
+      requestAnimationFrame(syncPlayback);
+    }
+  }, { rootMargin: '40px 0px', threshold: [0, 0.25, 0.5, 0.75] });
+
+  vids.forEach(v => io.observe(v));
+})();
+</script>
+</body>
+</html>

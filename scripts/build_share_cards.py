@@ -1,7 +1,7 @@
 """
 Build 1200×1200 WeChat-friendly share cards for the portfolio.
 
-Layout: 4×2 work-grid (7 project tiles + 'Bob · 王波 / PORTFOLIO' brand tile in
+Layout: 3×3 work-grid (8 project tiles + 'Bob · 王波 / PORTFOLIO' brand tile in
 the bottom-right slot). The project page being shared gets its tile boosted
 with its accent colour outline + glow; on the index card no tile is focal,
 and the three "weak" tiles (PDS / Waycraft / DEjob) sit at low saturation
@@ -37,15 +37,15 @@ HAIR = (210, 210, 215)
 TILE_BG = (255, 255, 255)
 
 # ── Layout
-TILE = 220
-GAP_X = 32
-ROW_GAP = 60
-LABEL_GAP = 18
-ROWS, COLS = 2, 4
+TILE = 200
+GAP_X = 48
+ROW_GAP = 58
+LABEL_GAP = 16
+ROWS, COLS = 3, 3
 
 grid_w = COLS * TILE + (COLS - 1) * GAP_X
 GRID_X = (W - grid_w) // 2
-TOP_BAND = 200
+TOP_BAND = 196
 GRID_Y = TOP_BAND
 
 # ── Projects (single source of truth)
@@ -97,6 +97,11 @@ PROJECTS = [
          html="notisa.html",
          title="Notisa｜王波 作品集",
          desc ="本地这件事，自动入历。"),
+    dict(slot=8, slug="guru",     code="08", short="GURU",     logo="guru",
+         accent=(196, 162, 101), style="branded",
+         html="guru.html",
+         title="Guru｜王波 作品集",
+         desc ="即见，即说。"),
 ]
 
 INDEX_META = dict(
@@ -221,7 +226,7 @@ def render_tight(text, font, color):
     return tmp.crop(bb) if bb else tmp
 
 def draw_brand_tile(canvas):
-    x, y = slot_xy(8)
+    x, y = slot_xy(9)
     bob_img  = render_tight("Bob",       font_brand,     INK)
     sep_img  = render_tight("·",         font_brand_dot, MUTE)
     zh_img   = render_tight("王波",       font_brand_zh,  INK)
@@ -274,12 +279,12 @@ def build(highlight_slug, out_path):
     draw.rectangle([(W - line_w) // 2, bot_hl_y, (W + line_w) // 2, bot_hl_y + 1], fill=HAIR)
     if highlight_slug:
         proj = next(p for p in PROJECTS if p["slug"] == highlight_slug)
-        ft = f"{proj['code']} / 07  ·  {proj['short']}"
+        ft = f"{proj['code']} / 08  ·  {proj['short']}"
         fb = draw.textbbox((0, 0), ft, font=font_meta)
         draw.text(((W - (fb[2] - fb[0])) // 2, bot_hl_y + 24),
                   ft, font=font_meta, fill=proj["accent"])
     else:
-        sel = "07 PROJECTS  ·  2024 – 2025"
+        sel = "08 PROJECTS  ·  2024 – 2026"
         sb = draw.textbbox((0, 0), sel, font=font_meta)
         draw.text(((W - (sb[2] - sb[0])) // 2, bot_hl_y + 24),
                   sel, font=font_meta, fill=MUTE)
