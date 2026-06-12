@@ -166,6 +166,28 @@
     opacity: 0;
     animation: fadeIn 900ms 1100ms cubic-bezier(.2,.7,.2,1) forwards;
   }
+  .hero .visit {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-top: 32px;
+    font-family: var(--f-mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    border-bottom: 1px solid var(--hair);
+    padding-bottom: 6px;
+    opacity: 0;
+    animation: fadeIn 900ms 1500ms cubic-bezier(.2,.7,.2,1) forwards;
+    transition: border-color .22s ease;
+  }
+  .hero .visit:hover { border-color: var(--ink); }
+  .hero .visit .ar {
+    display: inline-block;
+    transition: transform .28s cubic-bezier(.22,.61,.36,1);
+  }
+  .hero .visit:hover .ar { transform: translate(3px, -2px); }
 
   /* ──────────────── CHAPTER ──────────────── */
   .chapter {
@@ -366,6 +388,7 @@
   }
   .meta-strip .k { color: var(--mute); margin-bottom: 6px; }
   .meta-strip .v { color: var(--ink); }
+  .meta-strip .v a:hover { text-decoration: underline; text-underline-offset: 4px; }
 
   .reflect {
     padding: 18vh 24px 18vh;
@@ -492,6 +515,7 @@
   <div class="label" data-i18n="hero_label">GURU · 2026</div>
   <h1 id="hero-h1" data-i18n-html="hero_h1">See it. <span class="mute">Say it.</span></h1>
   <p class="sub" data-i18n="hero_sub">An AI concierge woven into a live travel site. The content comes first; the conversation follows — and it acts on the page you are looking at.</p>
+  <div><a class="visit" href="https://www.travelguruchina.com" target="_blank" rel="noopener noreferrer"><span data-i18n="hero_visit">VISIT THE LIVE SITE — travelguruchina.com</span><span class="ar">↗</span></a></div>
 </header>
 
 <!-- §1 — The inversion -->
@@ -580,7 +604,7 @@
     <div><div class="k" data-i18n="m_year">YEAR</div><div class="v">2026</div></div>
     <div><div class="k" data-i18n="m_team">TEAM</div><div class="v" data-i18n="m_team_v">SOLO · AI-ASSISTED</div></div>
     <div><div class="k" data-i18n="m_domain">DOMAIN</div><div class="v" data-i18n="m_domain_v">AGENTIC UI · TRAVEL</div></div>
-    <div><div class="k" data-i18n="m_status">STATUS</div><div class="v" data-i18n="m_status_v">LIVE · travelguruchina.com</div></div>
+    <div><div class="k" data-i18n="m_status">STATUS</div><div class="v" data-i18n-html="m_status_v">LIVE · <a href="https://www.travelguruchina.com" target="_blank" rel="noopener noreferrer">travelguruchina.com</a></div></div>
   </div>
 </div>
 
@@ -618,6 +642,7 @@
       hero_label: "GURU · 2026",
       hero_h1: "See it. <span class='mute'>Say it.</span>",
       hero_sub: "An AI concierge woven into a live travel site. The content comes first; the conversation follows — and it acts on the page you are looking at.",
+      hero_visit: "VISIT THE LIVE SITE — travelguruchina.com",
 
       iv_eye: "CHAPTER 01",
       iv_h: "Content first, <span class='mute'>conversation second.</span>",
@@ -648,7 +673,7 @@
       m_year: "YEAR",
       m_team: "TEAM", m_team_v: "SOLO · AI-ASSISTED",
       m_domain: "DOMAIN", m_domain_v: "AGENTIC UI · TRAVEL",
-      m_status: "STATUS", m_status_v: "LIVE · travelguruchina.com",
+      m_status: "STATUS", m_status_v: "LIVE · <a href='https://www.travelguruchina.com' target='_blank' rel='noopener noreferrer'>travelguruchina.com</a>",
 
       ref_body: "Chat-first AI asks people to imagine what they want. Content-first AI lets them recognise it. <span class='mute'>The next interface is not a chatbot beside the page — it is the page itself, listening.</span>",
       next_label: "START OVER — 01 / 08", next_title: "Product Design Studio",
@@ -659,6 +684,7 @@
       hero_label: "GURU · 2026",
       hero_h1: "即见，<span class='mute'>即说。</span>",
       hero_sub: "长在真实旅行网站里的 AI 礼宾 —— 内容在前，对话在后。它直接作用于你正在看的页面与数据。",
+      hero_visit: "访问线上网站 — travelguruchina.com",
 
       iv_eye: "第一章",
       iv_h: "内容在前，<span class='mute'>对话在后。</span>",
@@ -689,7 +715,7 @@
       m_year: "年份",
       m_team: "团队", m_team_v: "独立 · AI 辅助",
       m_domain: "领域", m_domain_v: "AGENTIC UI · 旅行",
-      m_status: "状态", m_status_v: "已上线 · travelguruchina.com",
+      m_status: "状态", m_status_v: "已上线 · <a href='https://www.travelguruchina.com' target='_blank' rel='noopener noreferrer'>travelguruchina.com</a>",
 
       ref_body: "Chat-first 的 AI，要人凭空想象自己要什么；Content-first 的 AI，让人一眼认出自己要什么。<span class='mute'>下一代界面不是页面旁边的聊天窗 —— 而是页面本身在听。</span>",
       next_label: "重新开始 — 01 / 08", next_title: "Product Design Studio",
